@@ -9,6 +9,8 @@ import {
   type Inquiry,
   type InsertInquiry
 } from "@shared/schema";
+import { db } from "./db";
+import { eq } from "drizzle-orm";
 
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
@@ -23,6 +25,69 @@ export interface IStorage {
   
   createInquiry(inquiry: InsertInquiry): Promise<Inquiry>;
   getAllInquiries(): Promise<Inquiry[]>;
+}
+
+export class DatabaseStorage implements IStorage {
+  async getUser(id: number): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user || undefined;
+  }
+
+  async getUserByUsername(username: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.username, username));
+    return user || undefined;
+  }
+
+  async createUser(insertUser: InsertUser): Promise<User> {
+    const [user] = await db
+      .insert(users)
+      .values(insertUser)
+      .returning();
+    return user;
+  }
+
+  async getAllProperties(): Promise<Property[]> {
+    return await db.select().from(properties);
+  }
+
+  async getProperty(id: number): Promise<Property | undefined> {
+    const [property] = await db.select().from(properties).where(eq(properties.id, id));
+    return property || undefined;
+  }
+
+  async getFeaturedProperties(): Promise<Property[]> {
+    return await db.select().from(properties).where(eq(properties.featured, true));
+  }
+
+  async getPropertiesByCategory(category: string): Promise<Property[]> {
+    return await db.select().from(properties).where(eq(properties.category, category));
+  }
+
+  async createProperty(insertProperty: InsertProperty): Promise<Property> {
+    const [property] = await db
+      .insert(properties)
+      .values(insertProperty)
+      .returning();
+    return property;
+  }
+
+  async createInquiry(insertInquiry: InsertInquiry): Promise<Inquiry> {
+    const inquiryData = {
+      ...insertInquiry,
+      propertyId: insertInquiry.propertyId ?? null,
+      createdAt: new Date().toISOString()
+    };
+    
+    const [inquiry] = await db
+      .insert(inquiries)
+      .values(inquiryData)
+      .returning();
+    return inquiry;
+  }
+
+  async getAllInquiries(): Promise<Inquiry[]> {
+    return await db.select().from(inquiries);
+  }
 }
 
 export class MemStorage implements IStorage {
@@ -224,4 +289,4 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();
