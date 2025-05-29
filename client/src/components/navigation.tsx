@@ -40,7 +40,7 @@ const Navigation = () => {
           <Link href="/">
             <div className="flex items-center cursor-pointer group">
               <img 
-                src="/logo.jpg" 
+                src="/logo.png" 
                 alt="Arabian Coast Holiday Homes" 
                 className="h-12 w-auto transition-opacity group-hover:opacity-80"
               />
