@@ -197,7 +197,11 @@ export class MemStorage implements IStorage {
 
   async createProperty(insertProperty: InsertProperty): Promise<Property> {
     const id = this.currentPropertyId++;
-    const property: Property = { ...insertProperty, id };
+    const property: Property = { 
+      ...insertProperty, 
+      id,
+      featured: insertProperty.featured ?? false
+    };
     this.properties.set(id, property);
     return property;
   }
@@ -205,7 +209,12 @@ export class MemStorage implements IStorage {
   async createInquiry(insertInquiry: InsertInquiry): Promise<Inquiry> {
     const id = this.currentInquiryId++;
     const createdAt = new Date().toISOString();
-    const inquiry: Inquiry = { ...insertInquiry, id, createdAt };
+    const inquiry: Inquiry = { 
+      ...insertInquiry, 
+      id, 
+      createdAt,
+      propertyId: insertInquiry.propertyId ?? null
+    };
     this.inquiries.set(id, inquiry);
     return inquiry;
   }

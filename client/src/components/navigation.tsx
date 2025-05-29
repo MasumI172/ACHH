@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Home, Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Navigation = () => {
@@ -38,11 +38,12 @@ const Navigation = () => {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link href="/">
-            <div className="flex items-center space-x-2 cursor-pointer group">
-              <Home className="h-8 w-8 text-gold-500 group-hover:text-gold-600 transition-colors" />
-              <div className="text-xl font-bold text-gray-900 group-hover:text-gold-600 transition-colors">
-                Arabian Coast
-              </div>
+            <div className="flex items-center cursor-pointer group">
+              <img 
+                src="/logo.jpg" 
+                alt="Arabian Coast Holiday Homes" 
+                className="h-12 w-auto transition-opacity group-hover:opacity-80"
+              />
             </div>
           </Link>
 
