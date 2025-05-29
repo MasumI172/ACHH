@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { motion } from "framer-motion";
+import logoPath from "@assets/ChatGPT Image May 29, 2025, 05_54_20 PM.png";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -40,9 +41,9 @@ const Navigation = () => {
           <Link href="/">
             <div className="flex items-center cursor-pointer group">
               <img 
-                src="/logo.png" 
+                src={logoPath} 
                 alt="Arabian Coast Holiday Homes" 
-                className="h-12 w-auto transition-opacity group-hover:opacity-80 mix-blend-multiply dark:mix-blend-screen"
+                className="h-12 w-auto transition-opacity group-hover:opacity-80"
                 style={{ 
                   filter: 'drop-shadow(0 0 0 transparent)',
                   background: 'transparent'
