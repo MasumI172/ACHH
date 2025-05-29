@@ -9,16 +9,16 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-3">
-              <img 
-                src={logoPath} 
-                alt="Arabian Coast Holiday Homes" 
-                className="h-16 w-auto brightness-0 invert"
-                style={{ 
-                  filter: 'drop-shadow(0 0 0 transparent)',
-                  background: 'transparent'
-                }}
-              />
+            <div className="flex flex-col items-start space-y-2">
+              <div className="text-2xl font-thin italic text-gold-500 mb-1">
+                a~c
+              </div>
+              <div className="text-xl font-bold tracking-wider text-white">
+                ARABIAN COAST
+              </div>
+              <div className="text-sm font-medium tracking-widest text-gray-300 -mt-1">
+                HOLIDAY HOMES
+              </div>
             </div>
             <p className="text-gray-400 leading-relaxed">
               Luxury holiday homes along the stunning Arabian coastline, offering

@@ -39,16 +39,20 @@ const Navigation = () => {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link href="/">
-            <div className="flex items-center cursor-pointer group">
-              <img 
-                src={logoPath} 
-                alt="Arabian Coast Holiday Homes" 
-                className="h-12 w-auto transition-opacity group-hover:opacity-80"
-                style={{ 
-                  filter: 'drop-shadow(0 0 0 transparent)',
-                  background: 'transparent'
-                }}
-              />
+            <div className="flex flex-col items-start cursor-pointer group">
+              <div className="text-2xl font-thin italic text-gold-500 mb-1 transition-opacity group-hover:opacity-80">
+                a~c
+              </div>
+              <div className={`text-xl font-bold tracking-wider ${
+                isScrolled ? "text-gray-700" : "text-white"
+              }`}>
+                ARABIAN COAST
+              </div>
+              <div className={`text-sm font-medium tracking-widest -mt-1 ${
+                isScrolled ? "text-gray-500" : "text-gray-300"
+              }`}>
+                HOLIDAY HOMES
+              </div>
             </div>
           </Link>
 
