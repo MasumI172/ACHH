@@ -12,7 +12,11 @@ const Footer = () => {
               <img 
                 src="/logo.png" 
                 alt="Arabian Coast Holiday Homes" 
-                className="h-16 w-auto"
+                className="h-16 w-auto mix-blend-multiply dark:mix-blend-screen brightness-0 invert"
+                style={{ 
+                  filter: 'drop-shadow(0 0 0 transparent)',
+                  background: 'transparent'
+                }}
               />
             </div>
             <p className="text-gray-400 leading-relaxed">

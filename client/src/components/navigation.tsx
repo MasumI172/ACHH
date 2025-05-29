@@ -42,7 +42,11 @@ const Navigation = () => {
               <img 
                 src="/logo.png" 
                 alt="Arabian Coast Holiday Homes" 
-                className="h-12 w-auto transition-opacity group-hover:opacity-80"
+                className="h-12 w-auto transition-opacity group-hover:opacity-80 mix-blend-multiply dark:mix-blend-screen"
+                style={{ 
+                  filter: 'drop-shadow(0 0 0 transparent)',
+                  background: 'transparent'
+                }}
               />
             </div>
           </Link>
