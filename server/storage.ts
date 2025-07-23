@@ -118,9 +118,9 @@ export class MemStorage implements IStorage {
         pricePerNight: "0.00",
 
         bedrooms: 1,
-        bathrooms: 2,
+        bathrooms: 1,
         maxGuests: 4,
-        location: "Downtown Dubai Marina District",
+        location: "Downtown Dubai",
         amenities: ["Burj Khalifa Views", "Infinity Pool Access", "High-Speed WiFi (800 Mbps)", "2 Smart TVs with Netflix", "Fully Equipped Kitchen", "Modern Gym", "Kids Play Area", "Workspace Area", "Queen-Sized Bed", "Furnished Balcony"],
         images: [
           "/attached_assets/WhatsApp Image 2025-07-23 at 10.21.20_51cd866c_1753288433584.jpg",
