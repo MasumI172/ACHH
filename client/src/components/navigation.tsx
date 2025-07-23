@@ -43,7 +43,11 @@ const Navigation = () => {
               <img 
                 src={logoPath} 
                 alt="Arabian Coast Holiday Homes" 
-                className="h-12 md:h-14 lg:h-16 w-auto object-contain transition-all duration-300 hover:scale-105"
+                className="h-8 md:h-10 lg:h-12 w-auto object-contain transition-all duration-300 hover:scale-105"
+                style={{
+                  filter: 'drop-shadow(0 2px 4px rgba(60, 47, 31, 0.1))',
+                  opacity: '0.95'
+                }}
               />
             </div>
           </Link>
