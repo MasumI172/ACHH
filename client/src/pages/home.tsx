@@ -99,58 +99,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* About Section */}
-      <section className="luxury-section bg-gradient-to-br from-luxury-pearl via-luxury-cream to-luxury-champagne py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="space-y-8"
-            >
-              <h2 className="text-4xl md:text-5xl luxury-heading text-luxury-brown">
-                Exceptional <span className="luxury-accent">Service</span>, Premium Locations
-              </h2>
-              <p className="text-lg luxury-text leading-relaxed">
-                At Arabian Coast, we understand that finding the perfect holiday home is about more than just a place to stay. 
-                It's about creating memories that last a lifetime. Our carefully curated collection of premium properties 
-                ensures that every guest experiences the highest level of comfort and luxury.
-              </p>
-              <p className="text-lg luxury-text leading-relaxed">
-                From the moment you book with us, our dedicated team works tirelessly to exceed your expectations. 
-                We handle every detail so you can focus on what matters most - enjoying your perfect getaway.
-              </p>
-              
-              <div className="grid grid-cols-2 gap-8 pt-6">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-luxury-gold mb-2">500+</div>
-                  <div className="luxury-text">Premium Properties</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-luxury-gold mb-2">50K+</div>
-                  <div className="luxury-text">Happy Guests</div>
-                </div>
-              </div>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="space-y-4"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
-                alt="Luxury interior design"
-                className="rounded-2xl shadow-lg w-full"
-              />
-            </motion.div>
-          </div>
-        </div>
-      </section>
+
 
       {/* Testimonials Section */}
       <section className="luxury-section bg-luxury-white/50">
