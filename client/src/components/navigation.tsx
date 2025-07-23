@@ -31,18 +31,39 @@ const Navigation = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-        isScrolled ? "luxury-nav shadow-lg py-2" : "bg-transparent py-4"
+        isScrolled ? "luxury-nav shadow-lg py-3" : "bg-transparent py-6"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center">
-          {/* Logo */}
+        <div className="flex items-center justify-between">
+          {/* Left Navigation */}
+          <div className="hidden md:flex items-center space-x-12">
+            {navItems.slice(0, 2).map((item) => (
+              <Link key={item.href} href={item.href}>
+                <span
+                  className={`text-sm font-medium transition-all duration-300 hover:text-luxury-gold cursor-pointer uppercase tracking-wider luxury-serif relative ${
+                    location === item.href
+                      ? "text-luxury-gold after:w-full"
+                      : isScrolled
+                      ? "text-luxury-brown"
+                      : "text-luxury-brown"
+                  } after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:bg-luxury-gold after:transition-all after:duration-300 ${
+                    location === item.href ? "after:w-full" : "after:w-0 hover:after:w-full"
+                  }`}
+                >
+                  {item.label}
+                </span>
+              </Link>
+            ))}
+          </div>
+
+          {/* Centered Logo */}
           <Link href="/">
-            <div className="flex items-center cursor-pointer group">
+            <div className="flex items-center cursor-pointer group absolute left-1/2 transform -translate-x-1/2">
               <img 
                 src={logoPath} 
                 alt="Arabian Coast Holiday Homes" 
-                className="h-10 md:h-12 lg:h-14 w-auto object-contain transition-all duration-500 hover:scale-105"
+                className="h-8 md:h-10 lg:h-12 w-auto object-contain transition-all duration-500 hover:scale-105"
                 style={{
                   filter: 'sepia(100%) saturate(80%) hue-rotate(15deg) brightness(0.4) contrast(1.2) drop-shadow(0 2px 8px rgba(60, 47, 31, 0.15))',
                   opacity: '0.98'
@@ -51,9 +72,9 @@ const Navigation = () => {
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Right Navigation */}
           <div className="hidden md:flex items-center space-x-12">
-            {navItems.map((item) => (
+            {navItems.slice(2).map((item) => (
               <Link key={item.href} href={item.href}>
                 <span
                   className={`text-sm font-medium transition-all duration-300 hover:text-luxury-gold cursor-pointer uppercase tracking-wider luxury-serif relative ${
@@ -71,7 +92,7 @@ const Navigation = () => {
               </Link>
             ))}
             <Link href="/contact">
-              <Button className="luxury-button ml-4">
+              <Button className="luxury-button">
                 Private Inquiry
               </Button>
             </Link>
