@@ -1,6 +1,6 @@
 import { Home, Facebook, Instagram, Twitter, Linkedin, Mail, Phone, MapPin, Clock } from "lucide-react";
 import { Link } from "wouter";
-import logoPath from "@assets/ChatGPT Image May 29, 2025, 05_54_20 PM.png";
+import logoPath from "@assets/image_1753291044756.png";
 
 const Footer = () => {
   return (
