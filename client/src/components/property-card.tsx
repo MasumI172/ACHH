@@ -69,10 +69,6 @@ const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
           </div>
 
           <div className="flex items-center justify-between">
-            <div className="text-2xl font-bold text-luxury-gold">
-              ${property.pricePerNight}
-              <span className="text-base luxury-text font-normal">/night</span>
-            </div>
             <Link href={`/property/${property.id}`}>
               <Button className="luxury-button">
                 View Details

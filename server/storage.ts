@@ -115,7 +115,8 @@ export class MemStorage implements IStorage {
       {
         name: "Beautiful 1BR | Burj View from Infinity Pool",
         description: "This stunning 1-bedroom apartment offers comfort and cosy vibes, perfect for couples, families or solo travellers. Enjoy high-speed Wi-Fi (800 Mbps), a fully equipped kitchen, 2 smart TV's with FREE NETFLIX , furnished balcony, queen-sized bed, and a full bathroom. The building features an infinity pool with Burj Khalifa views, a modern gym, a workspace area and a kids' play area, making it an ideal retreat for all in the heart of Downtown, Dubai.\n\nThe space\nLiving Room & Balcony:\nThe spacious, open-plan living area is filled with natural light and features a comfortable sofa bed, a Smart TV with Netflix for entertainment, and a balcony that offers charming views of Dubai's cityscape—perfect for enjoying your morning coffee or unwinding in the evening.\n\nBedroom & Bathroom\nRelax in the cozy bedroom, featuring a queen-size bed, premium linens, and a Smart TV, ideal for enjoying Netflix nights.\n\nFully Equipped Kitchen:\nThe sleek, modern kitchen is fully stocked with stainless steel appliances, including a toaster, tea and coffee station, oven, refrigerator, and washing machine, along with cleaning essentials. Enjoy meals at the dining table for four.",
-        pricePerNight: "1200.00",
+        pricePerNight: "0.00",
+
         bedrooms: 1,
         bathrooms: 2,
         maxGuests: 4,

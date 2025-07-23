@@ -182,10 +182,10 @@ const PropertyDetail = () => {
             <Card className="sticky top-24 shadow-lg border-0">
               <CardContent className="p-6">
                 <div className="text-center mb-6">
-                  <div className="text-3xl font-bold text-gold-500 mb-1">
-                    ${property.pricePerNight}
+                  <div className="text-2xl font-bold text-luxury-gold mb-1">
+                    Contact for Pricing
                   </div>
-                  <div className="text-gray-600">per night</div>
+                  <div className="text-luxury-light-brown">Exclusive rates available</div>
                 </div>
 
                 <div className="space-y-4 mb-6">
@@ -228,19 +228,10 @@ const PropertyDetail = () => {
                 </div>
 
                 <div className="border-t pt-4 mt-6">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-gray-600">Base rate (1 night)</span>
-                    <span className="text-gray-900">${property.pricePerNight}</span>
-                  </div>
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-gray-600">Service fee</span>
-                    <span className="text-gray-900">$0</span>
-                  </div>
-                  <div className="border-t pt-2">
-                    <div className="flex justify-between items-center font-semibold">
-                      <span className="text-gray-900">Total</span>
-                      <span className="text-gold-500">${property.pricePerNight}</span>
-                    </div>
+                  <div className="text-center">
+                    <p className="text-luxury-light-brown text-sm">
+                      Premium rates • Flexible booking • No hidden fees
+                    </p>
                   </div>
                 </div>
               </CardContent>
