@@ -82,7 +82,7 @@ const Home = () => {
       <Hero />
 
       {/* Featured Properties */}
-      <section id="featured-properties" className="py-24 bg-white">
+      <section id="featured-properties" className="luxury-section luxury-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -91,11 +91,11 @@ const Home = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
-              Featured Properties
+            <h2 className="text-4xl md:text-5xl luxury-heading text-luxury-brown mb-6">
+              Featured <span className="luxury-accent">Properties</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Discover our handpicked collection of premium holiday homes designed for the modern traveler
+            <p className="text-xl luxury-text max-w-3xl mx-auto leading-relaxed">
+              Discover our handpicked collection of premium holiday homes designed for the discerning traveler
             </p>
           </motion.div>
 
@@ -128,10 +128,7 @@ const Home = () => {
             className="text-center mt-12"
           >
             <Link href="/properties">
-              <Button
-                size="lg"
-                className="bg-blue-600 text-white hover:bg-blue-700 transition-all duration-300 rounded-md px-8 py-3 text-lg font-medium"
-              >
+              <Button className="luxury-button text-lg px-12 py-4">
                 View All Properties
               </Button>
             </Link>
@@ -140,7 +137,7 @@ const Home = () => {
       </section>
 
       {/* About Section */}
-      <section className="py-24 bg-gray-50">
+      <section className="luxury-section bg-luxury-white/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -150,27 +147,27 @@ const Home = () => {
               transition={{ duration: 0.6 }}
               className="space-y-8"
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
-                Exceptional Service, Premium Locations
+              <h2 className="text-4xl md:text-5xl luxury-heading text-luxury-brown">
+                Exceptional <span className="luxury-accent">Service</span>, Premium Locations
               </h2>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                At ArabianCoast, we understand that finding the perfect holiday home is about more than just a place to stay. 
+              <p className="text-lg luxury-text leading-relaxed">
+                At Arabian Coast, we understand that finding the perfect holiday home is about more than just a place to stay. 
                 It's about creating memories that last a lifetime. Our carefully curated collection of premium properties 
                 ensures that every guest experiences the highest level of comfort and luxury.
               </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-lg luxury-text leading-relaxed">
                 From the moment you book with us, our dedicated team works tirelessly to exceed your expectations. 
                 We handle every detail so you can focus on what matters most - enjoying your perfect getaway.
               </p>
               
               <div className="grid grid-cols-2 gap-8 pt-6">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-gold-500 mb-2">500+</div>
-                  <div className="text-gray-600">Premium Properties</div>
+                  <div className="text-3xl font-bold text-luxury-gold mb-2">500+</div>
+                  <div className="luxury-text">Premium Properties</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-gold-500 mb-2">50K+</div>
-                  <div className="text-gray-600">Happy Guests</div>
+                  <div className="text-3xl font-bold text-luxury-gold mb-2">50K+</div>
+                  <div className="luxury-text">Happy Guests</div>
                 </div>
               </div>
             </motion.div>
@@ -193,7 +190,7 @@ const Home = () => {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="luxury-section luxury-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -202,10 +199,10 @@ const Home = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Our <span className="text-gold-500">Services</span>
+            <h2 className="text-4xl md:text-5xl luxury-heading text-luxury-brown mb-4">
+              Our <span className="luxury-accent">Services</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl luxury-text max-w-3xl mx-auto">
               We provide comprehensive services to ensure your vacation is seamless and extraordinary
             </p>
           </motion.div>
@@ -221,15 +218,15 @@ const Home = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                 >
-                  <Card className="bg-white p-8 text-center hover:shadow-xl transition-all duration-300 border-0 shadow-lg">
+                  <Card className="luxury-card p-8 text-center hover:shadow-xl transition-all duration-300 border-0 shadow-lg">
                     <CardContent className="p-0">
-                      <div className="text-gold-500 text-4xl mb-4 flex justify-center">
+                      <div className="text-luxury-gold text-4xl mb-4 flex justify-center">
                         <IconComponent className="w-10 h-10" />
                       </div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                      <h3 className="text-xl font-semibold text-luxury-brown mb-4">
                         {service.title}
                       </h3>
-                      <p className="text-gray-600 leading-relaxed">
+                      <p className="luxury-text leading-relaxed">
                         {service.description}
                       </p>
                     </CardContent>
@@ -242,7 +239,7 @@ const Home = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-white">
+      <section className="luxury-section bg-luxury-white/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -251,10 +248,10 @@ const Home = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              What Our <span className="text-gold-500">Guests Say</span>
+            <h2 className="text-4xl md:text-5xl luxury-heading text-luxury-brown mb-4">
+              What Our <span className="luxury-accent">Guests Say</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl luxury-text max-w-3xl mx-auto">
               Hear from our satisfied guests about their extraordinary experiences
             </p>
           </motion.div>
@@ -268,23 +265,23 @@ const Home = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card className="bg-gray-50 p-8 h-full">
+                <Card className="luxury-card p-8 h-full">
                   <CardContent className="p-0">
-                    <div className="flex items-center text-gold-500 mb-4">
+                    <div className="flex items-center text-luxury-gold mb-4">
                       {[...Array(5)].map((_, i) => (
                         <Star key={i} className="w-4 h-4 fill-current" />
                       ))}
                     </div>
-                    <p className="text-gray-600 mb-6 italic leading-relaxed">
+                    <p className="luxury-text mb-6 italic leading-relaxed">
                       "{testimonial.content}"
                     </p>
                     <div className="flex items-center">
-                      <div className="w-12 h-12 bg-gold-500 rounded-full flex items-center justify-center text-white font-semibold mr-4">
+                      <div className="w-12 h-12 bg-luxury-gold rounded-full flex items-center justify-center text-luxury-brown font-semibold mr-4">
                         {testimonial.initials}
                       </div>
                       <div>
-                        <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
-                        <p className="text-sm text-gray-600">{testimonial.location}</p>
+                        <h4 className="font-semibold text-luxury-brown">{testimonial.name}</h4>
+                        <p className="text-sm luxury-text">{testimonial.location}</p>
                       </div>
                     </div>
                   </CardContent>

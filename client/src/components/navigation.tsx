@@ -32,7 +32,7 @@ const Navigation = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-        isScrolled ? "nav-backdrop shadow-lg py-2" : "bg-transparent py-4"
+        isScrolled ? "luxury-nav shadow-lg py-2" : "bg-transparent py-4"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -40,10 +40,10 @@ const Navigation = () => {
           {/* Logo */}
           <Link href="/">
             <div className="flex items-center cursor-pointer group">
-              <div className={`text-2xl font-semibold transition-colors ${
-                isScrolled ? "text-gray-900" : "text-white"
-              }`} style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
-                Arabian<span className="font-light">Coast</span>
+              <div className={`text-2xl luxury-heading transition-colors ${
+                isScrolled ? "text-luxury-brown" : "text-white"
+              }`}>
+                Arabian<span className="font-light"> Coast</span>
               </div>
             </div>
           </Link>
@@ -53,11 +53,11 @@ const Navigation = () => {
             {navItems.map((item) => (
               <Link key={item.href} href={item.href}>
                 <span
-                  className={`text-sm font-medium transition-colors duration-200 hover:text-blue-600 cursor-pointer ${
+                  className={`text-sm font-medium transition-colors duration-200 hover:text-luxury-gold cursor-pointer ${
                     location === item.href
-                      ? "text-blue-600"
+                      ? "text-luxury-gold"
                       : isScrolled
-                      ? "text-gray-700"
+                      ? "text-luxury-brown"
                       : "text-white"
                   }`}
                 >
@@ -66,8 +66,8 @@ const Navigation = () => {
               </Link>
             ))}
             <Link href="/contact">
-              <Button className="bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-200 rounded-md px-6 py-2 font-medium">
-                Book Your Stay
+              <Button className="luxury-button">
+                Get in Touch
               </Button>
             </Link>
           </div>
@@ -80,8 +80,8 @@ const Navigation = () => {
                   variant="ghost"
                   size="icon"
                   className={`${
-                    isScrolled ? "text-gray-700" : "text-white"
-                  } hover:text-gold-500`}
+                    isScrolled ? "text-luxury-brown" : "text-white"
+                  } hover:text-luxury-gold`}
                 >
                   <Menu className="h-6 w-6" />
                 </Button>
@@ -91,8 +91,8 @@ const Navigation = () => {
                   {navItems.map((item) => (
                     <Link key={item.href} href={item.href}>
                       <span
-                        className={`text-lg font-medium transition-colors duration-200 hover:text-blue-600 cursor-pointer ${
-                          location === item.href ? "text-blue-600" : "text-gray-700"
+                        className={`text-lg font-medium transition-colors duration-200 hover:text-luxury-gold cursor-pointer ${
+                          location === item.href ? "text-luxury-gold" : "text-luxury-brown"
                         }`}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
@@ -102,10 +102,10 @@ const Navigation = () => {
                   ))}
                   <Link href="/contact">
                     <Button
-                      className="bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-200 rounded-md"
+                      className="luxury-button"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
-                      Book Your Stay
+                      Get in Touch
                     </Button>
                   </Link>
                 </div>
