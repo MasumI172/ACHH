@@ -31,27 +31,7 @@ const Hero = () => {
 
 
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.0, delay: 0.8 }}
-              className="flex flex-col sm:flex-row gap-8 justify-center items-center mt-16"
-            >
-              <Link href="/properties">
-                <Button className="luxury-button text-base px-16 py-5 font-medium">
-                  Explore Collection
-                </Button>
-              </Link>
-              
-              <Link href="/contact">
-                <Button
-                  variant="outline"
-                  className="border-2 border-luxury-gold/50 text-luxury-brown hover:bg-luxury-gold hover:text-luxury-brown transition-all duration-500 rounded-full px-16 py-5 text-base font-medium luxury-glass backdrop-blur-lg"
-                >
-                  Private Consultation
-                </Button>
-              </Link>
-            </motion.div>
+
           </motion.div>
 
         </div>
