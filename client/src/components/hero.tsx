@@ -37,23 +37,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-luxury-brown cursor-pointer"
-        onClick={scrollToProperties}
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="flex flex-col items-center"
-        >
-          <span className="text-sm mb-2 opacity-75">Scroll to explore</span>
-          <ChevronDown className="w-6 h-6" />
-        </motion.div>
-      </motion.div>
+
     </section>
   );
 };
