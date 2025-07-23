@@ -36,15 +36,7 @@ const Hero = () => {
               </motion.h1>
             </div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.0, delay: 0.6 }}
-              className="text-xl md:text-2xl luxury-text max-w-4xl mx-auto leading-relaxed luxury-serif font-light"
-            >
-              Where luxury meets the azure waters of the Arabian Gulf. Experience unparalleled sophistication 
-              in our meticulously curated collection of exclusive holiday properties.
-            </motion.p>
+
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
