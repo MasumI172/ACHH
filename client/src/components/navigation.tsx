@@ -45,9 +45,8 @@ const Navigation = () => {
                 alt="Arabian Coast Holiday Homes" 
                 className="h-8 md:h-10 lg:h-12 w-auto object-contain transition-all duration-300 hover:scale-105"
                 style={{
-                  filter: 'brightness(0) saturate(100%) invert(19%) sepia(8%) saturate(1447%) hue-rotate(356deg) brightness(91%) contrast(93%)',
-                  background: 'transparent',
-                  mixBlendMode: 'normal'
+                  filter: 'drop-shadow(0 1px 2px rgba(60, 47, 31, 0.1))',
+                  opacity: '0.98'
                 }}
               />
             </div>
