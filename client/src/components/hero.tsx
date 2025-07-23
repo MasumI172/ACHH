@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ChevronDown, Play } from "lucide-react";
+import logoPath from "@assets/image_1753289190698.png";
 
 const Hero = () => {
   const scrollToProperties = () => {
@@ -22,11 +23,27 @@ const Hero = () => {
             transition={{ duration: 1.2 }}
             className="space-y-8"
           >
-            <div className="space-y-4">
+            <div className="space-y-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.0, delay: 0.2 }}
+                className="flex justify-center mb-8"
+              >
+                <img 
+                  src={logoPath} 
+                  alt="Arabian Coast Holiday Homes" 
+                  className="h-32 md:h-40 lg:h-48 w-auto object-contain filter drop-shadow-2xl"
+                  style={{ 
+                    filter: 'drop-shadow(0 10px 20px rgba(60, 47, 31, 0.3))' 
+                  }}
+                />
+              </motion.div>
+              
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
                 className="text-sm uppercase tracking-[0.2em] text-luxury-light-brown font-medium"
               >
                 O U R &nbsp; W O R K
@@ -35,7 +52,7 @@ const Hero = () => {
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.0, delay: 0.3 }}
+                transition={{ duration: 1.0, delay: 0.5 }}
                 className="text-6xl md:text-7xl lg:text-8xl luxury-heading text-luxury-brown leading-tight"
               >
                 Our <span className="luxury-accent">Portfolio</span>
@@ -45,7 +62,7 @@ const Hero = () => {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
               className="text-lg md:text-xl luxury-text max-w-3xl mx-auto leading-relaxed"
             >
               Discover our latest projects showcasing luxury holiday homes and sophisticated property
@@ -55,7 +72,7 @@ const Hero = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
+              transition={{ duration: 0.8, delay: 0.9 }}
               className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-12"
             >
               <Link href="/properties">
