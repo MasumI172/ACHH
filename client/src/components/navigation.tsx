@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { motion } from "framer-motion";
-import logoPath from "@assets/image_1753289190698.png";
+import logoPath from "@assets/image_1753291078429.png";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
