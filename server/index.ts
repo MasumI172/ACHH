@@ -42,6 +42,10 @@ app.use((req, res, next) => {
   // Serve static files from public directory
   const publicPath = path.resolve(process.cwd(), "public");
   app.use(express.static(publicPath));
+  
+  // Serve static files from attached_assets directory
+  const assetsPath = path.resolve(process.cwd(), "attached_assets");
+  app.use("/attached_assets", express.static(assetsPath));
 
   // Seed the database with sample properties
   await seedDatabase();
