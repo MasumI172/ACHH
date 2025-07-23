@@ -152,11 +152,49 @@ const PropertyDetail = () => {
               </div>
             </div>
 
-            <div className="prose max-w-none mb-8">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">Description</h2>
-              <p className="text-gray-600 leading-relaxed text-lg">
-                {property.description}
-              </p>
+            <div className="mb-8">
+              <h2 className="text-2xl font-semibold text-luxury-brown mb-6">About This Property</h2>
+              <div className="space-y-6">
+                {/* Overview */}
+                <div className="bg-luxury-cream/30 p-6 rounded-xl border border-luxury-gold/20">
+                  <p className="text-luxury-brown leading-relaxed text-lg">
+                    This stunning 1-bedroom apartment offers comfort and cosy vibes, perfect for couples, families or solo travellers. Enjoy high-speed Wi-Fi (800 Mbps), a fully equipped kitchen, 2 smart TV's with FREE NETFLIX, furnished balcony, queen-sized bed, and a full bathroom.
+                  </p>
+                </div>
+
+                {/* Building Features */}
+                <div>
+                  <h3 className="text-xl font-semibold text-luxury-brown mb-3">Building Amenities</h3>
+                  <p className="text-luxury-light-brown leading-relaxed">
+                    The building features an infinity pool with Burj Khalifa views, a modern gym, a workspace area and a kids' play area, making it an ideal retreat for all in the heart of Downtown, Dubai.
+                  </p>
+                </div>
+
+                {/* Living Spaces */}
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <h3 className="text-xl font-semibold text-luxury-brown">Living Room & Balcony</h3>
+                    <p className="text-luxury-light-brown leading-relaxed">
+                      The spacious, open-plan living area is filled with natural light and features a comfortable sofa bed, a Smart TV with Netflix for entertainment, and a balcony that offers charming views of Dubai's cityscape—perfect for enjoying your morning coffee or unwinding in the evening.
+                    </p>
+                  </div>
+
+                  <div className="space-y-4">
+                    <h3 className="text-xl font-semibold text-luxury-brown">Bedroom & Bathroom</h3>
+                    <p className="text-luxury-light-brown leading-relaxed">
+                      Relax in the cozy bedroom, featuring a queen-size bed, premium linens, and a Smart TV, ideal for enjoying Netflix nights.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Kitchen */}
+                <div>
+                  <h3 className="text-xl font-semibold text-luxury-brown mb-3">Fully Equipped Kitchen</h3>
+                  <p className="text-luxury-light-brown leading-relaxed">
+                    The sleek, modern kitchen is fully stocked with stainless steel appliances, including a toaster, tea and coffee station, oven, refrigerator, and washing machine, along with cleaning essentials. Enjoy meals at the dining table for four.
+                  </p>
+                </div>
+              </div>
             </div>
 
             <div className="mb-8">
