@@ -6,12 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
 import { 
-  ConciergeBell, 
-  Car, 
-  Utensils, 
-  Ship, 
-  Bath, 
-  Shield,
   Star,
   CheckCircle
 } from "lucide-react";
@@ -21,39 +15,6 @@ const Home = () => {
   const { data: featuredProperties, isLoading } = useQuery<Property[]>({
     queryKey: ["/api/properties/featured"],
   });
-
-  const services = [
-    {
-      icon: ConciergeBell,
-      title: "24/7 ConciergeBell",
-      description: "Personal concierge service available around the clock to assist with dining reservations, activities, and special requests."
-    },
-    {
-      icon: Car,
-      title: "Luxury Transport",
-      description: "Premium airport transfers and luxury vehicle rentals to explore the coast in style and comfort."
-    },
-    {
-      icon: Utensils,
-      title: "Private Chef",
-      description: "World-class chefs available to create personalized dining experiences in the comfort of your villa."
-    },
-    {
-      icon: Ship,
-      title: "Yacht Charters",
-      description: "Exclusive yacht charters and water sports activities to explore the pristine Arabian waters."
-    },
-    {
-      icon: Bath,
-      title: "Bath Services",
-      description: "In-villa spa treatments and wellness services to rejuvenate your mind, body, and soul."
-    },
-    {
-      icon: Shield,
-      title: "Security & Privacy",
-      description: "Discreet security services and complete privacy protection for peace of mind during your stay."
-    }
-  ];
 
   const testimonials = [
     {
@@ -185,55 +146,6 @@ const Home = () => {
                 className="rounded-2xl shadow-lg w-full"
               />
             </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section className="luxury-section luxury-bg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl luxury-heading text-luxury-brown mb-4">
-              Our <span className="luxury-accent">Services</span>
-            </h2>
-            <p className="text-xl luxury-text max-w-3xl mx-auto">
-              We provide comprehensive services to ensure your vacation is seamless and extraordinary
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => {
-              const IconComponent = service.icon;
-              return (
-                <motion.div
-                  key={service.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card className="luxury-card p-8 text-center hover:shadow-xl transition-all duration-300 border-0 shadow-lg">
-                    <CardContent className="p-0">
-                      <div className="text-luxury-gold text-4xl mb-4 flex justify-center">
-                        <IconComponent className="w-10 h-10" />
-                      </div>
-                      <h3 className="text-xl font-semibold text-luxury-brown mb-4">
-                        {service.title}
-                      </h3>
-                      <p className="luxury-text leading-relaxed">
-                        {service.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              );
-            })}
           </div>
         </div>
       </section>

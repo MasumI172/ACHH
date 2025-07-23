@@ -82,41 +82,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Services */}
-          <div>
-            <h3 className="text-lg luxury-subheading mb-4 text-luxury-cream">Services</h3>
-            <ul className="space-y-2 text-luxury-beige">
-              <li>
-                <Link href="/services">
-                  <span className="hover:text-luxury-gold transition-colors duration-200 cursor-pointer">
-                    Concierge Service
-                  </span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/services">
-                  <span className="hover:text-luxury-gold transition-colors duration-200 cursor-pointer">
-                    Luxury Transport
-                  </span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/services">
-                  <span className="hover:text-luxury-gold transition-colors duration-200 cursor-pointer">
-                    Private Chef
-                  </span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/services">
-                  <span className="hover:text-luxury-gold transition-colors duration-200 cursor-pointer">
-                    Yacht Charters
-                  </span>
-                </Link>
-              </li>
-            </ul>
-          </div>
-
           {/* Contact */}
           <div>
             <h3 className="text-lg luxury-subheading mb-4 text-luxury-cream">Contact</h3>

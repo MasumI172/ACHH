@@ -7,7 +7,6 @@ import Home from "@/pages/home";
 import Properties from "@/pages/properties";
 import PropertyDetail from "@/pages/property-detail";
 import About from "@/pages/about";
-import Services from "@/pages/services";
 import Contact from "@/pages/contact";
 import NotFound from "@/pages/not-found";
 import Navigation from "@/components/navigation";
@@ -22,7 +21,6 @@ function Router() {
         <Route path="/properties" component={Properties} />
         <Route path="/property/:id" component={PropertyDetail} />
         <Route path="/about" component={About} />
-        <Route path="/services" component={Services} />
         <Route path="/contact" component={Contact} />
         <Route component={NotFound} />
       </Switch>
