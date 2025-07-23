@@ -31,7 +31,7 @@ const Navigation = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-        isScrolled ? "luxury-nav shadow-lg py-3" : "bg-transparent py-6"
+        isScrolled ? "luxury-nav shadow-lg py-4" : "bg-transparent py-8"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
