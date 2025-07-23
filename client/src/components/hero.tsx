@@ -24,18 +24,7 @@ const Hero = () => {
             className="space-y-8"
           >
             <div className="space-y-4">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="mb-8"
-              >
-                <div className="inline-block px-6 py-2 luxury-glass rounded-full border border-luxury-gold/30">
-                  <p className="text-xs uppercase tracking-[0.3em] text-luxury-bronze font-medium luxury-serif">
-                    E X C L U S I V E &nbsp; C O L L E C T I O N
-                  </p>
-                </div>
-              </motion.div>
+
               
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
