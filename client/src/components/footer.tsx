@@ -15,7 +15,7 @@ const Footer = () => {
                 alt="Arabian Coast Holiday Homes" 
                 className="h-14 w-auto object-contain"
                 style={{
-                  filter: 'sepia(100%) saturate(50%) hue-rotate(20deg) brightness(0.6) drop-shadow(0 2px 8px rgba(60, 47, 31, 0.15))',
+                  filter: 'sepia(100%) saturate(80%) hue-rotate(15deg) brightness(0.4) contrast(1.2) drop-shadow(0 2px 8px rgba(60, 47, 31, 0.15))',
                   opacity: '0.98'
                 }}
               />
