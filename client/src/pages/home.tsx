@@ -52,13 +52,7 @@ const Home = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-20"
           >
-            <div className="mb-8">
-              <div className="inline-block px-6 py-2 luxury-glass rounded-full border border-luxury-gold/30 mb-6">
-                <p className="text-xs uppercase tracking-[0.3em] text-luxury-bronze font-medium luxury-serif">
-                  C U R A T E D &nbsp; S E L E C T I O N
-                </p>
-              </div>
-            </div>
+
             <h2 className="text-5xl md:text-6xl lg:text-7xl luxury-heading text-luxury-brown mb-8 leading-tight">
               Featured <span className="luxury-accent italic luxury-serif">Collection</span>
             </h2>
