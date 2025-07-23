@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { motion } from "framer-motion";
-import logoPath from "@assets/ChatGPT Image May 29, 2025, 05_54_20 PM.png";
+import logoPath from "@assets/image_1753289190698.png";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -40,11 +40,11 @@ const Navigation = () => {
           {/* Logo */}
           <Link href="/">
             <div className="flex items-center cursor-pointer group">
-              <div className={`text-2xl luxury-heading transition-colors ${
-                isScrolled ? "text-luxury-brown" : "text-white"
-              }`}>
-                Arabian<span className="font-light"> Coast</span>
-              </div>
+              <img 
+                src={logoPath} 
+                alt="Arabian Coast Holiday Homes" 
+                className="h-12 md:h-14 lg:h-16 w-auto object-contain transition-all duration-300 hover:scale-105"
+              />
             </div>
           </Link>
 
