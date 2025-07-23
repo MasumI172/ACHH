@@ -39,19 +39,11 @@ const Navigation = () => {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link href="/">
-            <div className="flex flex-col items-start cursor-pointer group">
-              <div className="text-2xl font-thin italic text-gold-500 mb-1 transition-opacity group-hover:opacity-80">
-                a~c
-              </div>
-              <div className={`text-xl font-bold tracking-wider ${
-                isScrolled ? "text-gray-700" : "text-white"
-              }`}>
-                ARABIAN COAST
-              </div>
-              <div className={`text-sm font-medium tracking-widest -mt-1 ${
-                isScrolled ? "text-gray-500" : "text-gray-300"
-              }`}>
-                HOLIDAY HOMES
+            <div className="flex items-center cursor-pointer group">
+              <div className={`text-2xl font-semibold transition-colors ${
+                isScrolled ? "text-gray-900" : "text-white"
+              }`} style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                Arabian<span className="font-light">Coast</span>
               </div>
             </div>
           </Link>
@@ -60,22 +52,22 @@ const Navigation = () => {
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <Link key={item.href} href={item.href}>
-                <a
-                  className={`text-sm font-medium transition-colors duration-200 hover:text-gold-500 ${
+                <span
+                  className={`text-sm font-medium transition-colors duration-200 hover:text-blue-600 cursor-pointer ${
                     location === item.href
-                      ? "text-gold-500"
+                      ? "text-blue-600"
                       : isScrolled
                       ? "text-gray-700"
                       : "text-white"
                   }`}
                 >
                   {item.label}
-                </a>
+                </span>
               </Link>
             ))}
             <Link href="/contact">
-              <Button className="bg-gold-500 text-white hover:bg-gold-600 transition-colors duration-200 rounded-full px-6">
-                Contact
+              <Button className="bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-200 rounded-md px-6 py-2 font-medium">
+                Book Your Stay
               </Button>
             </Link>
           </div>
@@ -98,22 +90,22 @@ const Navigation = () => {
                 <div className="flex flex-col space-y-6 mt-6">
                   {navItems.map((item) => (
                     <Link key={item.href} href={item.href}>
-                      <a
-                        className={`text-lg font-medium transition-colors duration-200 hover:text-gold-500 ${
-                          location === item.href ? "text-gold-500" : "text-gray-700"
+                      <span
+                        className={`text-lg font-medium transition-colors duration-200 hover:text-blue-600 cursor-pointer ${
+                          location === item.href ? "text-blue-600" : "text-gray-700"
                         }`}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         {item.label}
-                      </a>
+                      </span>
                     </Link>
                   ))}
                   <Link href="/contact">
                     <Button
-                      className="bg-gold-500 text-white hover:bg-gold-600 transition-colors duration-200 rounded-full"
+                      className="bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-200 rounded-md"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
-                      Contact
+                      Book Your Stay
                     </Button>
                   </Link>
                 </div>

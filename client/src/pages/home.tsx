@@ -82,7 +82,7 @@ const Home = () => {
       <Hero />
 
       {/* Featured Properties */}
-      <section id="featured-properties" className="py-20 bg-gray-50">
+      <section id="featured-properties" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -91,11 +91,11 @@ const Home = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Featured <span className="text-gold-500">Properties</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+              Featured Properties
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Handpicked luxury homes offering unparalleled comfort and breathtaking views
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Discover our handpicked collection of premium holiday homes designed for the modern traveler
             </p>
           </motion.div>
 
@@ -130,7 +130,7 @@ const Home = () => {
             <Link href="/properties">
               <Button
                 size="lg"
-                className="bg-gold-500 text-white hover:bg-gold-600 transition-all duration-300 transform hover:scale-105 rounded-full px-8 py-3 text-lg font-semibold"
+                className="bg-blue-600 text-white hover:bg-blue-700 transition-all duration-300 rounded-md px-8 py-3 text-lg font-medium"
               >
                 View All Properties
               </Button>
@@ -140,29 +140,27 @@ const Home = () => {
       </section>
 
       {/* About Section */}
-      <section className="py-20 bg-white">
+      <section className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="space-y-6"
+              className="space-y-8"
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
-                About <span className="text-gold-500">Arabian Coast</span>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                Exceptional Service, Premium Locations
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
-                For over a decade, Arabian Coast Holiday Homes has been the premier provider
-                of luxury vacation rentals along the stunning Arabian coastline. We curate
-                exceptional properties that offer our guests unforgettable experiences in paradise.
+                At ArabianCoast, we understand that finding the perfect holiday home is about more than just a place to stay. 
+                It's about creating memories that last a lifetime. Our carefully curated collection of premium properties 
+                ensures that every guest experiences the highest level of comfort and luxury.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Our commitment to excellence ensures that every property in our collection
-                meets the highest standards of luxury, comfort, and service. From intimate
-                beachfront retreats to grand coastal mansions, we have the perfect home for
-                your dream vacation.
+                From the moment you book with us, our dedicated team works tirelessly to exceed your expectations. 
+                We handle every detail so you can focus on what matters most - enjoying your perfect getaway.
               </p>
               
               <div className="grid grid-cols-2 gap-8 pt-6">

@@ -9,15 +9,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <div className="flex flex-col items-start space-y-2">
-              <div className="text-2xl font-thin italic text-gold-500 mb-1">
-                a~c
-              </div>
-              <div className="text-xl font-bold tracking-wider text-white">
-                ARABIAN COAST
-              </div>
-              <div className="text-sm font-medium tracking-widest text-gray-300 -mt-1">
-                HOLIDAY HOMES
+            <div className="flex items-center">
+              <div className="text-2xl font-semibold text-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                Arabian<span className="font-light">Coast</span>
               </div>
             </div>
             <p className="text-gray-400 leading-relaxed">
@@ -59,30 +53,30 @@ const Footer = () => {
             <ul className="space-y-2 text-gray-400">
               <li>
                 <Link href="/properties">
-                  <a className="hover:text-gold-500 transition-colors duration-200">
+                  <span className="hover:text-blue-400 transition-colors duration-200 cursor-pointer">
                     Beachfront Villas
-                  </a>
+                  </span>
                 </Link>
               </li>
               <li>
                 <Link href="/properties">
-                  <a className="hover:text-gold-500 transition-colors duration-200">
+                  <span className="hover:text-blue-400 transition-colors duration-200 cursor-pointer">
                     Coastal Mansions
-                  </a>
+                  </span>
                 </Link>
               </li>
               <li>
                 <Link href="/properties">
-                  <a className="hover:text-gold-500 transition-colors duration-200">
+                  <span className="hover:text-blue-400 transition-colors duration-200 cursor-pointer">
                     Penthouse Suites
-                  </a>
+                  </span>
                 </Link>
               </li>
               <li>
                 <Link href="/properties">
-                  <a className="hover:text-gold-500 transition-colors duration-200">
+                  <span className="hover:text-blue-400 transition-colors duration-200 cursor-pointer">
                     Desert Retreats
-                  </a>
+                  </span>
                 </Link>
               </li>
             </ul>
@@ -94,30 +88,30 @@ const Footer = () => {
             <ul className="space-y-2 text-gray-400">
               <li>
                 <Link href="/services">
-                  <a className="hover:text-gold-500 transition-colors duration-200">
+                  <span className="hover:text-blue-400 transition-colors duration-200 cursor-pointer">
                     Concierge Service
-                  </a>
+                  </span>
                 </Link>
               </li>
               <li>
                 <Link href="/services">
-                  <a className="hover:text-gold-500 transition-colors duration-200">
+                  <span className="hover:text-blue-400 transition-colors duration-200 cursor-pointer">
                     Luxury Transport
-                  </a>
+                  </span>
                 </Link>
               </li>
               <li>
                 <Link href="/services">
-                  <a className="hover:text-gold-500 transition-colors duration-200">
+                  <span className="hover:text-blue-400 transition-colors duration-200 cursor-pointer">
                     Private Chef
-                  </a>
+                  </span>
                 </Link>
               </li>
               <li>
                 <Link href="/services">
-                  <a className="hover:text-gold-500 transition-colors duration-200">
+                  <span className="hover:text-blue-400 transition-colors duration-200 cursor-pointer">
                     Yacht Charters
-                  </a>
+                  </span>
                 </Link>
               </li>
             </ul>
@@ -153,11 +147,11 @@ const Footer = () => {
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
           <p>
             &copy; 2024 Arabian Coast Holiday Homes. All rights reserved. |{" "}
-            <a href="#" className="hover:text-gold-500 transition-colors">
+            <a href="#" className="hover:text-blue-400 transition-colors">
               Privacy Policy
             </a>{" "}
             |{" "}
-            <a href="#" className="hover:text-gold-500 transition-colors">
+            <a href="#" className="hover:text-blue-400 transition-colors">
               Terms of Service
             </a>
           </p>

@@ -12,64 +12,95 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080')`,
-        }}
-      >
-        <div className="absolute inset-0 hero-overlay"></div>
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-        <motion.h1
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
-        >
-          Discover Your{" "}
-          <span className="text-gold-400">Perfect</span>{" "}
-          Holiday Home
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto leading-relaxed"
-        >
-          Experience luxury coastal living with our curated collection of premium
-          holiday homes along the stunning Arabian Coast
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-        >
-          <Link href="/properties">
-            <Button
-              size="lg"
-              className="bg-gold-500 text-white hover:bg-gold-600 transition-all duration-300 transform hover:scale-105 rounded-full px-8 py-4 text-lg font-semibold"
-            >
-              Explore Properties
-            </Button>
-          </Link>
-          
-          <Button
-            variant="outline"
-            size="lg"
-            className="border-2 border-white text-white hover:bg-white hover:text-gray-900 transition-all duration-300 rounded-full px-8 py-4 text-lg font-semibold"
+    <section className="relative min-h-screen bg-gradient-to-br from-blue-50 to-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-screen flex items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
+          {/* Left Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="space-y-8"
           >
-            <Play className="w-5 h-5 mr-2" />
-            Watch Video Tour
-          </Button>
-        </motion.div>
+            <div className="space-y-6">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight"
+                style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+              >
+                Your #1 Home
+                <br />
+                <span className="text-gray-600">Rental Partner</span>
+              </motion.h1>
+              
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="text-2xl md:text-3xl font-medium text-gray-700"
+                style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+              >
+                Enjoy a hassle-free rental experience
+                <br />
+                with ArabianCoast
+              </motion.h2>
+            </div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-lg text-gray-600 max-w-lg leading-relaxed"
+            >
+              Welcome to ArabianCoast, the premier provider of corporate and short-term
+              housing for high-quality clients. Trust our unique approach to effortlessly fill
+              your vacancies and achieve your occupancy and income objectives today!
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="flex flex-col sm:flex-row gap-4"
+            >
+              <Link href="/properties">
+                <Button
+                  size="lg"
+                  className="bg-blue-600 text-white hover:bg-blue-700 transition-all duration-300 rounded-md px-8 py-3 text-lg font-medium"
+                >
+                  Book Your Stay
+                </Button>
+              </Link>
+              
+              <Link href="/about">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="border-2 border-gray-300 text-gray-700 hover:bg-gray-50 transition-all duration-300 rounded-md px-8 py-3 text-lg font-medium"
+                >
+                  Learn More
+                </Button>
+              </Link>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Image */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="relative h-[600px] rounded-2xl overflow-hidden"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+              alt="Luxury coastal property"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent"></div>
+          </motion.div>
+        </div>
       </div>
 
       {/* Scroll Indicator */}
