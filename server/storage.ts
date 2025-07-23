@@ -113,14 +113,14 @@ export class MemStorage implements IStorage {
   private initializeProperties() {
     const sampleProperties: InsertProperty[] = [
       {
-        name: "3114 Grande - Luxury Downtown Residence",
+        name: "Beautiful 1BR | Burj View from Infinity Pool",
         description: "Sophisticated urban retreat featuring contemporary design with warm wood finishes and modern amenities. This stunning residence offers an open-concept living space with a gourmet kitchen, elegant dining area, and breathtaking city skyline views from the private terrace.",
         pricePerNight: "1200.00",
-        bedrooms: 2,
+        bedrooms: 1,
         bathrooms: 2,
         maxGuests: 4,
         location: "Downtown Dubai Marina District",
-        amenities: ["City Skyline Views", "Private Terrace", "Gourmet Kitchen", "Modern Finishes", "WiFi", "Air Conditioning", "Premium Location", "Concierge Service"],
+        amenities: ["Burj Khalifa Views", "Infinity Pool Access", "Private Terrace", "Gourmet Kitchen", "Modern Finishes", "WiFi", "Air Conditioning", "Premium Location", "Concierge Service"],
         images: [
           "/attached_assets/WhatsApp Image 2025-07-23 at 10.21.20_51cd866c_1753288433584.jpg",
           "/attached_assets/WhatsApp Image 2025-07-23 at 10.21.19_9b8a1867_1753288413659.jpg",
