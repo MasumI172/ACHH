@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@200;300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -27,12 +27,16 @@
   --radius: 0.75rem;
   
   /* Custom luxury colors */
-  --luxury-cream: 43 36% 95%;
-  --luxury-beige: 38 25% 85%;
-  --luxury-gold: 38 45% 65%;
-  --luxury-brown: 32 20% 15%;
-  --luxury-light-brown: 32 15% 45%;
+  --luxury-cream: 43 38% 96%;
+  --luxury-beige: 38 28% 87%;
+  --luxury-gold: 38 55% 68%;
+  --luxury-dark-gold: 38 65% 58%;
+  --luxury-bronze: 30 40% 45%;
+  --luxury-brown: 32 25% 12%;
+  --luxury-light-brown: 32 18% 42%;
   --luxury-white: 0 0% 100%;
+  --luxury-pearl: 43 15% 92%;
+  --luxury-champagne: 45 35% 85%;
 }
 
 .dark {
@@ -65,15 +69,27 @@
   body {
     @apply font-sans antialiased text-foreground;
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, hsl(var(--luxury-cream)) 0%, hsl(var(--luxury-beige)) 100%);
+    background: linear-gradient(135deg, hsl(var(--luxury-cream)) 0%, hsl(var(--luxury-pearl)) 50%, hsl(var(--luxury-champagne)) 100%);
     min-height: 100vh;
+    font-weight: 300;
+    line-height: 1.6;
   }
   
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif;
     color: hsl(var(--luxury-brown));
     font-weight: 500;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  
+  h1 {
+    font-weight: 700;
+    letter-spacing: -0.04em;
+  }
+  
+  .luxury-serif {
+    font-family: 'Cormorant Garamond', serif;
   }
 
   html {
@@ -83,41 +99,80 @@
 
 @layer components {
   .luxury-button {
-    @apply px-8 py-3 rounded-full font-medium transition-all duration-300 hover:shadow-lg;
-    background-color: hsl(var(--luxury-gold));
+    @apply px-10 py-4 rounded-full font-medium transition-all duration-500 hover:shadow-2xl;
+    background: linear-gradient(135deg, hsl(var(--luxury-gold)) 0%, hsl(var(--luxury-dark-gold)) 100%);
     color: hsl(var(--luxury-brown));
-    border: 1px solid hsl(var(--luxury-gold));
+    border: 2px solid transparent;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.875rem;
+    font-weight: 500;
   }
   
   .luxury-button:hover {
-    background-color: hsl(var(--luxury-brown));
+    background: linear-gradient(135deg, hsl(var(--luxury-brown)) 0%, hsl(var(--luxury-bronze)) 100%);
     color: hsl(var(--luxury-cream));
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
   }
   
   .luxury-card {
-    @apply rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300;
-    background: rgba(255, 255, 255, 0.7);
-    border: 1px solid hsl(var(--luxury-beige));
-    backdrop-filter: blur(10px);
+    @apply rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+    border: 1px solid hsl(var(--luxury-gold) / 0.2);
+    backdrop-filter: blur(20px);
+  }
+  
+  .luxury-card:hover {
+    transform: translateY(-8px);
+    border-color: hsl(var(--luxury-gold) / 0.4);
   }
   
   .luxury-text {
     color: hsl(var(--luxury-light-brown));
+    line-height: 1.7;
   }
   
   .luxury-accent {
-    color: hsl(var(--luxury-gold));
+    background: linear-gradient(135deg, hsl(var(--luxury-gold)) 0%, hsl(var(--luxury-dark-gold)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
   
   .luxury-bg {
-    background: linear-gradient(135deg, hsl(var(--luxury-cream)) 0%, hsl(var(--luxury-beige)) 100%);
+    background: linear-gradient(135deg, hsl(var(--luxury-cream)) 0%, hsl(var(--luxury-pearl)) 50%, hsl(var(--luxury-champagne)) 100%);
   }
   
   .luxury-nav {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid hsl(var(--luxury-beige));
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid hsl(var(--luxury-gold) / 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+  
+  .luxury-heading {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+  
+  .luxury-subheading {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  
+  .luxury-glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .luxury-shadow {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   }
 }
 
@@ -125,20 +180,24 @@
   .text-luxury-cream { color: hsl(var(--luxury-cream)); }
   .text-luxury-beige { color: hsl(var(--luxury-beige)); }
   .text-luxury-gold { color: hsl(var(--luxury-gold)); }
+  .text-luxury-dark-gold { color: hsl(var(--luxury-dark-gold)); }
+  .text-luxury-bronze { color: hsl(var(--luxury-bronze)); }
   .text-luxury-brown { color: hsl(var(--luxury-brown)); }
   .text-luxury-light-brown { color: hsl(var(--luxury-light-brown)); }
+  .text-luxury-white { color: hsl(var(--luxury-white)); }
+  .text-luxury-pearl { color: hsl(var(--luxury-pearl)); }
+  .text-luxury-champagne { color: hsl(var(--luxury-champagne)); }
   
   .bg-luxury-cream { background-color: hsl(var(--luxury-cream)); }
   .bg-luxury-beige { background-color: hsl(var(--luxury-beige)); }
   .bg-luxury-gold { background-color: hsl(var(--luxury-gold)); }
+  .bg-luxury-dark-gold { background-color: hsl(var(--luxury-dark-gold)); }
+  .bg-luxury-bronze { background-color: hsl(var(--luxury-bronze)); }
   .bg-luxury-brown { background-color: hsl(var(--luxury-brown)); }
+  .bg-luxury-light-brown { background-color: hsl(var(--luxury-light-brown)); }
   .bg-luxury-white { background-color: hsl(var(--luxury-white)); }
-  
-  .border-luxury-beige { border-color: hsl(var(--luxury-beige)); }
-  .border-luxury-gold { border-color: hsl(var(--luxury-gold)); }
-  
-  .hover\\:text-luxury-gold:hover { color: hsl(var(--luxury-gold)); }
-  .hover\\:bg-luxury-gold:hover { background-color: hsl(var(--luxury-gold)); }
+  .bg-luxury-pearl { background-color: hsl(var(--luxury-pearl)); }
+  .bg-luxury-champagne { background-color: hsl(var(--luxury-champagne)); }
 }
 
 /* Custom animations */

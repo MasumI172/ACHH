@@ -49,14 +49,22 @@ const Home = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            transition={{ duration: 0.8 }}
+            className="text-center mb-20"
           >
-            <h2 className="text-4xl md:text-5xl luxury-heading text-luxury-brown mb-6">
-              Featured <span className="luxury-accent">Properties</span>
+            <div className="mb-8">
+              <div className="inline-block px-6 py-2 luxury-glass rounded-full border border-luxury-gold/30 mb-6">
+                <p className="text-xs uppercase tracking-[0.3em] text-luxury-bronze font-medium luxury-serif">
+                  C U R A T E D &nbsp; S E L E C T I O N
+                </p>
+              </div>
+            </div>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl luxury-heading text-luxury-brown mb-8 leading-tight">
+              Featured <span className="luxury-accent italic luxury-serif">Collection</span>
             </h2>
-            <p className="text-xl luxury-text max-w-3xl mx-auto leading-relaxed">
-              Discover our handpicked collection of premium holiday homes designed for the discerning traveler
+            <p className="text-xl md:text-2xl luxury-text max-w-4xl mx-auto leading-relaxed luxury-serif font-light">
+              Meticulously selected properties where architectural excellence meets uncompromising luxury. 
+              Each residence represents the pinnacle of Arabian hospitality.
             </p>
           </motion.div>
 
@@ -85,12 +93,12 @@ const Home = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-center mt-12"
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-center mt-16"
           >
             <Link href="/properties">
-              <Button className="luxury-button text-lg px-12 py-4">
-                View All Properties
+              <Button className="luxury-button text-base px-16 py-5">
+                Explore Complete Collection
               </Button>
             </Link>
           </motion.div>
@@ -98,9 +106,9 @@ const Home = () => {
       </section>
 
       {/* About Section */}
-      <section className="luxury-section bg-luxury-white/50">
+      <section className="luxury-section bg-gradient-to-br from-luxury-pearl via-luxury-cream to-luxury-champagne py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}

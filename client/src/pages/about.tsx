@@ -67,20 +67,28 @@ const About = () => {
   return (
     <div className="min-h-screen pt-20">
       {/* Hero Section */}
-      <section className="bg-gray-50 py-16">
+      <section className="luxury-bg py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
+            transition={{ duration: 0.8 }}
+            className="text-center max-w-5xl mx-auto"
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              About <span className="text-gold-500">Arabian Coast</span>
+            <div className="mb-8">
+              <div className="inline-block px-6 py-2 luxury-glass rounded-full border border-luxury-gold/30 mb-6">
+                <p className="text-xs uppercase tracking-[0.3em] text-luxury-bronze font-medium luxury-serif">
+                  O U R &nbsp; S T O R Y
+                </p>
+              </div>
+            </div>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl luxury-heading text-luxury-brown mb-12 leading-tight">
+              Arabian Coast<br />
+              <span className="luxury-accent italic luxury-serif font-light">Heritage</span>
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Pioneering luxury vacation rentals along the Arabian coastline for over a decade,
-              creating unforgettable experiences for discerning travelers worldwide.
+            <p className="text-xl md:text-2xl luxury-text leading-relaxed luxury-serif font-light max-w-4xl mx-auto">
+              We are the custodians of extraordinary experiences, crafting bespoke holiday journeys through our 
+              meticulously curated collection of luxury properties along the pristine Arabian coastline. Where tradition meets innovation.
             </p>
           </motion.div>
         </div>

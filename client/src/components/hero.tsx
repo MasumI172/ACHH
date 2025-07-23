@@ -24,53 +24,58 @@ const Hero = () => {
             className="space-y-8"
           >
             <div className="space-y-4">
-              <motion.p
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-sm uppercase tracking-[0.2em] text-luxury-light-brown font-medium"
+                className="mb-8"
               >
-                O U R &nbsp; W O R K
-              </motion.p>
+                <div className="inline-block px-6 py-2 luxury-glass rounded-full border border-luxury-gold/30">
+                  <p className="text-xs uppercase tracking-[0.3em] text-luxury-bronze font-medium luxury-serif">
+                    E X C L U S I V E &nbsp; C O L L E C T I O N
+                  </p>
+                </div>
+              </motion.div>
               
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.0, delay: 0.3 }}
-                className="text-6xl md:text-7xl lg:text-8xl luxury-heading text-luxury-brown leading-tight"
+                transition={{ duration: 1.2, delay: 0.4 }}
+                className="text-6xl md:text-7xl lg:text-9xl luxury-heading text-luxury-brown leading-none mb-8"
               >
-                Our <span className="luxury-accent">Portfolio</span>
+                Arabian Coast<br />
+                <span className="luxury-accent luxury-serif font-light italic">Holiday Homes</span>
               </motion.h1>
             </div>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="text-lg md:text-xl luxury-text max-w-3xl mx-auto leading-relaxed"
+              transition={{ duration: 1.0, delay: 0.6 }}
+              className="text-xl md:text-2xl luxury-text max-w-4xl mx-auto leading-relaxed luxury-serif font-light"
             >
-              Discover our latest projects showcasing luxury holiday homes and sophisticated property
-              experiences across the Arabian coastline
+              Where luxury meets the azure waters of the Arabian Gulf. Experience unparalleled sophistication 
+              in our meticulously curated collection of exclusive holiday properties.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
-              className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-12"
+              transition={{ duration: 1.0, delay: 0.8 }}
+              className="flex flex-col sm:flex-row gap-8 justify-center items-center mt-16"
             >
               <Link href="/properties">
-                <Button className="luxury-button text-lg px-12 py-4">
-                  View Our Portfolio
+                <Button className="luxury-button text-base px-16 py-5 font-medium">
+                  Explore Collection
                 </Button>
               </Link>
               
-              <Link href="/about">
+              <Link href="/contact">
                 <Button
                   variant="outline"
-                  className="border-2 border-luxury-gold text-luxury-brown hover:bg-luxury-gold hover:text-luxury-brown transition-all duration-300 rounded-full px-12 py-4 text-lg"
+                  className="border-2 border-luxury-gold/50 text-luxury-brown hover:bg-luxury-gold hover:text-luxury-brown transition-all duration-500 rounded-full px-16 py-5 text-base font-medium luxury-glass backdrop-blur-lg"
                 >
-                  Learn More
+                  Private Consultation
                 </Button>
               </Link>
             </motion.div>

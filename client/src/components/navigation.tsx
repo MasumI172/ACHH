@@ -42,9 +42,9 @@ const Navigation = () => {
               <img 
                 src={logoPath} 
                 alt="Arabian Coast Holiday Homes" 
-                className="h-8 md:h-10 lg:h-12 w-auto object-contain transition-all duration-300 hover:scale-105"
+                className="h-10 md:h-12 lg:h-14 w-auto object-contain transition-all duration-500 hover:scale-105"
                 style={{
-                  filter: 'drop-shadow(0 1px 2px rgba(60, 47, 31, 0.1))',
+                  filter: 'drop-shadow(0 2px 8px rgba(60, 47, 31, 0.15))',
                   opacity: '0.98'
                 }}
               />
@@ -52,16 +52,18 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-12">
             {navItems.map((item) => (
               <Link key={item.href} href={item.href}>
                 <span
-                  className={`text-sm font-medium transition-colors duration-200 hover:text-luxury-gold cursor-pointer ${
+                  className={`text-sm font-medium transition-all duration-300 hover:text-luxury-gold cursor-pointer uppercase tracking-wider luxury-serif relative ${
                     location === item.href
-                      ? "text-luxury-gold"
+                      ? "text-luxury-gold after:w-full"
                       : isScrolled
                       ? "text-luxury-brown"
-                      : "text-white"
+                      : "text-luxury-brown"
+                  } after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:bg-luxury-gold after:transition-all after:duration-300 ${
+                    location === item.href ? "after:w-full" : "after:w-0 hover:after:w-full"
                   }`}
                 >
                   {item.label}
@@ -69,8 +71,8 @@ const Navigation = () => {
               </Link>
             ))}
             <Link href="/contact">
-              <Button className="luxury-button">
-                Get in Touch
+              <Button className="luxury-button ml-4">
+                Private Inquiry
               </Button>
             </Link>
           </div>

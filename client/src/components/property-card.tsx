@@ -20,60 +20,68 @@ const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
       transition={{ duration: 0.6, delay: index * 0.1 }}
       className="property-card"
     >
-      <Card className="luxury-card overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
-        <div className="relative">
+      <Card className="luxury-card overflow-hidden luxury-shadow transition-all duration-700 group">
+        <div className="relative overflow-hidden">
           <img
             src={property.images[0]}
             alt={property.name}
-            className="w-full h-64 object-cover"
+            className="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
           />
-          <div className="absolute top-4 right-4">
-            <Badge className="bg-luxury-gold text-luxury-brown hover:bg-luxury-brown hover:text-luxury-cream">
-              <Star className="w-3 h-3 mr-1 fill-current" />
-              {property.rating}
-            </Badge>
+          <div className="absolute inset-0 bg-gradient-to-t from-luxury-brown/20 via-transparent to-transparent"></div>
+          <div className="absolute top-6 right-6">
+            <div className="luxury-glass px-3 py-2 rounded-full border border-luxury-gold/30">
+              <div className="flex items-center text-luxury-gold">
+                <Star className="w-4 h-4 mr-1 fill-current" />
+                <span className="text-sm font-medium">{property.rating}</span>
+              </div>
+            </div>
           </div>
           {property.featured && (
-            <div className="absolute top-4 left-4">
-              <Badge className="bg-luxury-white/90 text-luxury-brown hover:bg-luxury-white">
-                Featured
-              </Badge>
+            <div className="absolute top-6 left-6">
+              <div className="luxury-glass px-4 py-2 rounded-full border border-luxury-gold/30">
+                <span className="text-xs uppercase tracking-wider text-luxury-gold font-medium">Featured</span>
+              </div>
             </div>
           )}
         </div>
 
-        <CardContent className="p-6">
-          <div className="flex items-start justify-between mb-2">
-            <h3 className="text-xl luxury-subheading text-luxury-brown hover:text-luxury-gold transition-colors">
+        <CardContent className="p-8">
+          <div className="mb-4">
+            <h3 className="text-2xl luxury-subheading text-luxury-brown hover:text-luxury-gold transition-colors duration-300 leading-tight">
               {property.name}
             </h3>
+            <p className="text-luxury-bronze text-sm mt-2 luxury-serif">{property.location}</p>
           </div>
 
-          <p className="luxury-text mb-4 line-clamp-2">
-            {property.description}
+          <p className="luxury-text mb-6 line-clamp-3 leading-relaxed">
+            {property.description.split('.')[0]}.
           </p>
 
-          <div className="flex items-center gap-4 text-sm luxury-text mb-4">
+          <div className="flex items-center gap-6 text-sm luxury-text mb-6 py-4 border-t border-b border-luxury-gold/20">
             <div className="flex items-center">
-              <Bed className="w-4 h-4 mr-1" />
-              {property.bedrooms} bed
+              <Bed className="w-4 h-4 mr-2 text-luxury-gold" />
+              <span className="font-medium">{property.bedrooms} Bedroom{property.bedrooms > 1 ? 's' : ''}</span>
             </div>
             <div className="flex items-center">
-              <Bath className="w-4 h-4 mr-1" />
-              {property.bathrooms} bath
+              <Bath className="w-4 h-4 mr-2 text-luxury-gold" />
+              <span className="font-medium">{property.bathrooms} Bath</span>
             </div>
             <div className="flex items-center">
-              <Users className="w-4 h-4 mr-1" />
-              {property.maxGuests} guests
+              <Users className="w-4 h-4 mr-2 text-luxury-gold" />
+              <span className="font-medium">{property.maxGuests} Guests</span>
             </div>
           </div>
 
           <div className="flex items-center justify-between">
             <Link href={`/property/${property.id}`}>
-              <Button className="luxury-button">
+              <Button className="luxury-button group-hover:scale-105 transition-transform duration-300">
                 View Details
               </Button>
             </Link>
+            <div className="text-right">
+              <p className="text-xs uppercase tracking-wider text-luxury-bronze">Contact for</p>
+              <p className="text-sm font-medium text-luxury-gold">Exclusive Rates</p>
+            </div>
           </div>
         </CardContent>
       </Card>

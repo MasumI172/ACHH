@@ -4,78 +4,71 @@ import logoPath from "@assets/ChatGPT Image May 29, 2025, 05_54_20 PM.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-luxury-brown text-luxury-cream py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer className="luxury-bg border-t border-luxury-gold/20 mt-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
           {/* Company Info */}
-          <div className="space-y-4">
+          <div className="space-y-8">
             <div className="flex items-center">
-              <div className="text-2xl luxury-heading text-luxury-cream">
-                Arabian<span className="font-light"> Coast</span>
-              </div>
+              <img 
+                src={logoPath} 
+                alt="Arabian Coast Holiday Homes" 
+                className="h-14 w-auto object-contain"
+                style={{
+                  filter: 'drop-shadow(0 2px 8px rgba(60, 47, 31, 0.15))',
+                  opacity: '0.98'
+                }}
+              />
             </div>
-            <p className="text-luxury-beige leading-relaxed">
-              Luxury holiday homes along the stunning Arabian coastline, offering
-              unforgettable vacation experiences with premium amenities and
-              exceptional service.
+            <p className="luxury-text leading-relaxed max-w-md luxury-serif text-lg">
+              Curating extraordinary experiences through our exclusive collection of luxury holiday homes 
+              along the pristine Arabian coastline. Where unparalleled sophistication meets absolute tranquility.
             </p>
-            <div className="flex space-x-4">
-              <a
-                href="#"
-                className="text-luxury-beige hover:text-luxury-gold transition-colors duration-200"
-              >
-                <Facebook className="h-5 w-5" />
+            <div className="flex space-x-6 pt-4">
+              <a href="#" className="text-luxury-bronze hover:text-luxury-gold transition-all duration-300 hover:scale-110">
+                <Facebook className="h-6 w-6" />
               </a>
-              <a
-                href="#"
-                className="text-luxury-beige hover:text-luxury-gold transition-colors duration-200"
-              >
-                <Instagram className="h-5 w-5" />
+              <a href="#" className="text-luxury-bronze hover:text-luxury-gold transition-all duration-300 hover:scale-110">
+                <Instagram className="h-6 w-6" />
               </a>
-              <a
-                href="#"
-                className="text-luxury-beige hover:text-luxury-gold transition-colors duration-200"
-              >
-                <Twitter className="h-5 w-5" />
+              <a href="#" className="text-luxury-bronze hover:text-luxury-gold transition-all duration-300 hover:scale-110">
+                <Twitter className="h-6 w-6" />
               </a>
-              <a
-                href="#"
-                className="text-luxury-beige hover:text-luxury-gold transition-colors duration-200"
-              >
-                <Linkedin className="h-5 w-5" />
+              <a href="#" className="text-luxury-bronze hover:text-luxury-gold transition-all duration-300 hover:scale-110">
+                <Linkedin className="h-6 w-6" />
               </a>
             </div>
           </div>
 
           {/* Properties */}
           <div>
-            <h3 className="text-lg luxury-subheading mb-4 text-luxury-cream">Properties</h3>
-            <ul className="space-y-2 text-luxury-beige">
+            <h3 className="text-xl luxury-subheading mb-8 text-luxury-brown">Collection</h3>
+            <ul className="space-y-4 luxury-text">
               <li>
                 <Link href="/properties">
-                  <span className="hover:text-luxury-gold transition-colors duration-200 cursor-pointer">
-                    Beachfront Villas
+                  <span className="hover:text-luxury-gold transition-all duration-300 cursor-pointer luxury-serif">
+                    Featured Properties
                   </span>
                 </Link>
               </li>
               <li>
                 <Link href="/properties">
-                  <span className="hover:text-luxury-gold transition-colors duration-200 cursor-pointer">
-                    Coastal Mansions
+                  <span className="hover:text-luxury-gold transition-all duration-300 cursor-pointer luxury-serif">
+                    Exclusive Villas
                   </span>
                 </Link>
               </li>
               <li>
                 <Link href="/properties">
-                  <span className="hover:text-luxury-gold transition-colors duration-200 cursor-pointer">
-                    Penthouse Suites
+                  <span className="hover:text-luxury-gold transition-all duration-300 cursor-pointer luxury-serif">
+                    Premium Suites
                   </span>
                 </Link>
               </li>
               <li>
-                <Link href="/properties">
-                  <span className="hover:text-luxury-gold transition-colors duration-200 cursor-pointer">
-                    Desert Retreats
+                <Link href="/about">
+                  <span className="hover:text-luxury-gold transition-all duration-300 cursor-pointer luxury-serif">
+                    Our Story
                   </span>
                 </Link>
               </li>
