@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { motion } from "framer-motion";
-import logoPath from "@assets/image_1753291078429.png";
+import logoPath from "@assets/ChatGPT Image May 29, 2025, 05_54_20 PM.png";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -58,19 +58,21 @@ const Navigation = () => {
           </div>
 
           {/* Centered Logo */}
-          <Link href="/">
-            <div className="flex items-center cursor-pointer group absolute left-1/2 transform -translate-x-1/2">
-              <img 
-                src={logoPath} 
-                alt="Arabian Coast Holiday Homes" 
-                className="h-8 md:h-10 lg:h-12 w-auto object-contain transition-all duration-500 hover:scale-105"
+          <div className="absolute left-1/2 transform -translate-x-1/2">
+            <Link href="/">
+              <div className="flex items-center cursor-pointer group">
+                <img 
+                  src={logoPath} 
+                  alt="Arabian Coast Holiday Homes" 
+                  className="h-10 md:h-12 lg:h-14 w-auto object-contain transition-all duration-500 hover:scale-105"
                 style={{
-                  filter: 'sepia(100%) saturate(80%) hue-rotate(15deg) brightness(0.4) contrast(1.2) drop-shadow(0 2px 8px rgba(60, 47, 31, 0.15))',
+                  filter: 'drop-shadow(0 2px 8px rgba(60, 47, 31, 0.15))',
                   opacity: '0.98'
                 }}
-              />
-            </div>
-          </Link>
+                />
+              </div>
+            </Link>
+          </div>
 
           {/* Right Navigation */}
           <div className="hidden md:flex items-center space-x-12">
