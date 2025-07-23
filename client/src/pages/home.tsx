@@ -101,59 +101,7 @@ const Home = () => {
 
 
 
-      {/* Testimonials Section */}
-      <section className="luxury-section bg-luxury-white/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl luxury-heading text-luxury-brown mb-4">
-              What Our <span className="luxury-accent">Guests Say</span>
-            </h2>
-            <p className="text-xl luxury-text max-w-3xl mx-auto">
-              Hear from our satisfied guests about their extraordinary experiences
-            </p>
-          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={testimonial.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <Card className="luxury-card p-8 h-full">
-                  <CardContent className="p-0">
-                    <div className="flex items-center text-luxury-gold mb-4">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-current" />
-                      ))}
-                    </div>
-                    <p className="luxury-text mb-6 italic leading-relaxed">
-                      "{testimonial.content}"
-                    </p>
-                    <div className="flex items-center">
-                      <div className="w-12 h-12 bg-luxury-gold rounded-full flex items-center justify-center text-luxury-brown font-semibold mr-4">
-                        {testimonial.initials}
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-luxury-brown">{testimonial.name}</h4>
-                        <p className="text-sm luxury-text">{testimonial.location}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
     </div>
   );
 };
