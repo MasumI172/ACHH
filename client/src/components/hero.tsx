@@ -43,8 +43,7 @@ const Hero = () => {
                 transition={{ duration: 1.2, delay: 0.4 }}
                 className="text-6xl md:text-7xl lg:text-9xl luxury-heading text-luxury-brown leading-none mb-8"
               >
-                Arabian Coast<br />
-                <span className="luxury-accent luxury-serif font-light italic">Holiday Homes</span>
+                Arabian Coast
               </motion.h1>
             </div>
 
