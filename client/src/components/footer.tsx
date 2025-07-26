@@ -45,7 +45,7 @@ const Footer = () => {
             &copy; 2024 Arabian Coast Holiday Homes. All rights reserved.
           </p>
           <div className="mt-2 space-x-4">
-            <a href="#" className="hover:text-luxury-gold transition-colors text-black text-sm">
+            <a href="/terms" className="hover:text-luxury-gold transition-colors text-black text-sm">
               Terms and Conditions
             </a>
             <span className="text-black">|</span>
