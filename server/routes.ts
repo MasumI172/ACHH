@@ -108,22 +108,62 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       for (let k in events) {
         const event = events[k];
+        
         if (event.type === 'VEVENT') {
-          const startDate = new Date(event.start);
-          const endDate = new Date(event.end);
+          // Handle different date formats from iCal
+          let startDate, endDate;
+          
+          if (typeof event.start === 'string') {
+            // Handle DATE format (YYYYMMDD)
+            if (event.start.length === 8) {
+              const year = parseInt(event.start.substring(0, 4));
+              const month = parseInt(event.start.substring(4, 6)) - 1; // Month is 0-indexed
+              const day = parseInt(event.start.substring(6, 8));
+              startDate = new Date(year, month, day);
+            } else {
+              startDate = new Date(event.start);
+            }
+          } else {
+            startDate = new Date(event.start);
+          }
+          
+          if (typeof event.end === 'string') {
+            // Handle DATE format (YYYYMMDD)
+            if (event.end.length === 8) {
+              const year = parseInt(event.end.substring(0, 4));
+              const month = parseInt(event.end.substring(4, 6)) - 1; // Month is 0-indexed
+              const day = parseInt(event.end.substring(6, 8));
+              endDate = new Date(year, month, day);
+            } else {
+              endDate = new Date(event.end);
+            }
+          } else {
+            endDate = new Date(event.end);
+          }
+          
+          // Debug: log the booking period
+          if (event.summary && event.summary.includes('Kwadwo Tuffour')) {
+            console.log('Kwadwo Tuffour booking:', {
+              summary: event.summary,
+              startDate: startDate.toDateString(),
+              endDate: endDate.toDateString(),
+              todayDate: today.toDateString()
+            });
+          }
           
           // Only include future bookings
           if (endDate >= today) {
             bookings.push({
               id: event.uid,
               summary: event.summary || 'Booking',
-              start: event.start,
-              end: event.end,
+              start: startDate.toISOString(),
+              end: endDate.toISOString(),
               status: event.status || 'CONFIRMED'
             });
           }
         }
       }
+
       
       // Sort bookings by start date
       bookings.sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime());
@@ -131,7 +171,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json({
         propertyId,
         lastUpdated: new Date().toISOString(),
-        bookings
+        bookings,
+        debug: {
+          currentDate: today.toISOString(),
+          icalUrl: icalUrl,
+          totalEvents: Object.keys(events).length,
+          futureBookings: bookings.length
+        }
       });
     } catch (error) {
       console.error('Error fetching availability:', error);

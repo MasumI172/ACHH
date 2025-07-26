@@ -129,8 +129,14 @@ const BookingCalendar = ({ propertyId, maxGuests }: BookingCalendarProps) => {
           </div>
           <div className="text-luxury-light-brown">Real-time sync with Hostex calendar</div>
           {availabilityData && (
-            <div className="text-xs text-luxury-light-brown mt-1">
-              Last updated: {format(parseISO(availabilityData.lastUpdated), 'MMM d, h:mm a')}
+            <div className="text-xs text-luxury-light-brown mt-1 space-y-1">
+              <div>Last updated: {format(parseISO(availabilityData.lastUpdated), 'MMM d, h:mm a')}</div>
+              <div>Current bookings: {availabilityData.bookings?.length || 0}</div>
+              {(availabilityData as any).debug && (
+                <div className="text-xs text-red-600">
+                  Debug: Current date {format(parseISO((availabilityData as any).debug.currentDate), 'MMM d, yyyy')}
+                </div>
+              )}
             </div>
           )}
         </div>
