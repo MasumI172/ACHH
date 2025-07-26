@@ -12,9 +12,12 @@ import {
 import type { Property } from "@shared/schema";
 
 const Home = () => {
-  const { data: featuredProperties, isLoading } = useQuery<Property[]>({
-    queryKey: ["/api/properties/featured"],
+  const { data: allProperties, isLoading } = useQuery<Property[]>({
+    queryKey: ["/api/properties"],
   });
+
+  // Use all properties instead of just featured ones
+  const featuredProperties = allProperties;
 
   const testimonials = [
     {
