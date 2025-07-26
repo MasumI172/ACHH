@@ -356,33 +356,7 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Map Section (Placeholder) */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">
-              Visit Our <span className="text-gold-500">Office</span>
-            </h2>
-            <div className="bg-gray-200 h-64 md:h-96 rounded-2xl flex items-center justify-center">
-              <div className="text-center">
-                <Mail className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-600 text-lg">
-                  Interactive map will be displayed here
-                </p>
-                <p className="text-gray-500 text-sm">
-                  Marina District, Arabian Coast, UAE
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+
     </div>
   );
 };
