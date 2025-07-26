@@ -312,6 +312,36 @@
   .luxury-shadow {
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   }
+
+  .luxury-shadow-sm {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Enhanced Calendar Styles */
+  .luxury-calendar .rdp-caption {
+    @apply mb-6;
+  }
+
+  .luxury-calendar .rdp-caption_label {
+    @apply text-xl font-bold text-luxury-brown luxury-serif;
+  }
+
+  .luxury-calendar .rdp-nav_button {
+    @apply w-10 h-10 rounded-xl hover:bg-luxury-gold hover:text-white transition-all duration-300 flex items-center justify-center;
+    background-color: hsl(var(--luxury-gold) / 0.1);
+  }
+
+  .luxury-calendar .rdp-head_cell {
+    @apply text-sm font-semibold text-luxury-bronze uppercase tracking-wider py-4;
+  }
+
+  .luxury-calendar .rdp-table {
+    @apply w-full border-spacing-1;
+  }
+
+  .luxury-calendar .rdp-day {
+    @apply w-12 h-12 rounded-xl text-base font-medium;
+  }
 }
 
 @layer utilities {
