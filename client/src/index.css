@@ -330,12 +330,24 @@
   }
 
   .luxury-calendar .rdp-caption_label {
-    @apply text-xl font-bold text-luxury-brown luxury-serif;
+    @apply text-xl font-bold text-luxury-brown luxury-serif text-center;
+  }
+
+  .luxury-calendar .rdp-nav {
+    @apply flex items-center justify-between mb-4 relative;
   }
 
   .luxury-calendar .rdp-nav_button {
     @apply w-10 h-10 rounded-xl hover:bg-luxury-gold hover:text-white transition-all duration-300 flex items-center justify-center;
     background-color: hsl(var(--luxury-gold) / 0.1);
+  }
+
+  .luxury-calendar .rdp-nav_button[name="previous-month"] {
+    @apply absolute left-0;
+  }
+
+  .luxury-calendar .rdp-nav_button[name="next-month"] {
+    @apply absolute right-0;
   }
 
   .luxury-calendar .rdp-head_cell {
