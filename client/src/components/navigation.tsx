@@ -31,7 +31,7 @@ const Navigation = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-        isScrolled ? "luxury-nav shadow-lg py-8" : "bg-transparent py-16"
+        isScrolled ? "luxury-nav shadow-lg py-4" : "bg-transparent py-8"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -64,7 +64,7 @@ const Navigation = () => {
                 <img 
                   src={logoPath} 
                   alt="Arabian Coast Holiday Homes" 
-                  className="h-24 md:h-36 lg:h-40 w-auto object-contain transition-all duration-500 hover:scale-105"
+                  className="h-16 md:h-24 lg:h-28 w-auto object-contain transition-all duration-500 hover:scale-105"
                 style={{
                   filter: 'drop-shadow(0 2px 8px rgba(60, 47, 31, 0.15))',
                   opacity: '0.98'

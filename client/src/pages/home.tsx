@@ -38,19 +38,19 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pt-16">
       {/* Hero Section */}
       <Hero />
 
       {/* Date Selection Section */}
-      <section className="luxury-section luxury-bg py-12">
+      <section className="luxury-section luxury-bg py-6">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-8"
+            className="text-center mb-6"
           >
             <h2 className="text-3xl md:text-4xl luxury-heading text-luxury-brown mb-4">
               Find Your Perfect <span className="luxury-accent italic luxury-serif">Stay</span>
@@ -61,7 +61,7 @@ const Home = () => {
           </motion.div>
           
           {/* Date Selection Component - I'll create this */}
-          <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+          <div className="bg-white rounded-xl shadow-lg p-6 mb-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Check-in</label>

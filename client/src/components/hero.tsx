@@ -13,8 +13,8 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative h-96 luxury-bg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-96 flex items-center justify-center">
+    <section className="relative h-32 luxury-bg">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-32 flex items-center justify-center">
         <div className="text-center space-y-8 max-w-4xl">
           {/* Luxury Content */}
           <motion.div
