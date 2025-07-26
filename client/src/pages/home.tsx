@@ -56,7 +56,7 @@ const Home = () => {
             className="text-center mb-6"
           >
             <h2 className="text-3xl md:text-4xl luxury-heading text-luxury-brown mb-4">
-              Find Your Perfect <span className="luxury-accent italic luxury-serif">Stay</span>
+              Your home away from <span className="luxury-accent italic luxury-serif">home</span>
             </h2>
             <p className="text-lg luxury-text max-w-2xl mx-auto leading-relaxed luxury-serif">
               Select your dates to discover available luxury properties
