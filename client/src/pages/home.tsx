@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import Hero from "@/components/hero";
@@ -12,8 +13,23 @@ import {
 import type { Property } from "@shared/schema";
 
 const Home = () => {
+  const [checkInDate, setCheckInDate] = useState<string>("");
+  const [checkOutDate, setCheckOutDate] = useState<string>("");
+  
+  // Build query with date filtering
+  const queryParams = new URLSearchParams();
+  if (checkInDate) queryParams.append('checkIn', checkInDate);
+  if (checkOutDate) queryParams.append('checkOut', checkOutDate);
+  const queryString = queryParams.toString();
+  
   const { data: allProperties, isLoading } = useQuery<Property[]>({
-    queryKey: ["/api/properties"],
+    queryKey: ["/api/properties", queryString],
+    queryFn: async () => {
+      const url = `/api/properties${queryString ? `?${queryString}` : ''}`;
+      const response = await fetch(url);
+      if (!response.ok) throw new Error('Failed to fetch properties');
+      return response.json();
+    },
   });
 
   // Use all properties instead of just featured ones
@@ -70,6 +86,8 @@ const Home = () => {
                 <label className="block text-sm font-medium text-gray-700 mb-2">Check-in</label>
                 <input 
                   type="date" 
+                  value={checkInDate}
+                  onChange={(e) => setCheckInDate(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-luxury-gold"
                 />
               </div>
@@ -77,6 +95,8 @@ const Home = () => {
                 <label className="block text-sm font-medium text-gray-700 mb-2">Check-out</label>
                 <input 
                   type="date" 
+                  value={checkOutDate}
+                  onChange={(e) => setCheckOutDate(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-luxury-gold"
                 />
               </div>
