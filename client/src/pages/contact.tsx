@@ -378,7 +378,7 @@ const Contact = () => {
             </h2>
             <div className="bg-gray-200 h-64 md:h-96 rounded-2xl flex items-center justify-center">
               <div className="text-center">
-                <MapPin className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                <Phone className="w-12 h-12 text-gray-400 mx-auto mb-4" />
                 <p className="text-gray-600 text-lg">
                   Interactive map will be displayed here
                 </p>
