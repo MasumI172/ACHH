@@ -7,7 +7,6 @@ import { Badge } from "@/components/ui/badge";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import BookingCalendar from "@/components/booking-calendar";
 import { 
-  Star, 
   Users, 
   Bed, 
   Bath, 
@@ -135,12 +134,7 @@ const PropertyDetail = () => {
                   {property.location}
                 </div>
               </div>
-              <div className="flex items-center">
-                <Badge className="bg-gold-500 text-white hover:bg-gold-600">
-                  <Star className="w-3 h-3 mr-1 fill-current" />
-                  {property.rating}
-                </Badge>
-              </div>
+
             </div>
 
             <div className="flex items-center gap-6 text-gray-600 mb-6">

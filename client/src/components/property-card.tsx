@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Star, Users, Bed, Bath } from "lucide-react";
+import { Users, Bed, Bath } from "lucide-react";
 import { Link } from "wouter";
 import type { Property } from "@shared/schema";
 
@@ -32,21 +32,7 @@ const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-luxury-brown/20 via-transparent to-transparent"></div>
-          <div className="absolute top-6 right-6">
-            <div className="luxury-glass px-3 py-2 rounded-full border border-luxury-gold/30">
-              <div className="flex items-center text-luxury-gold">
-                <Star className="w-4 h-4 mr-1 fill-current" />
-                <span className="text-sm font-medium">{property.rating}</span>
-              </div>
-            </div>
-          </div>
-          {property.featured && (
-            <div className="absolute top-6 left-6">
-              <div className="luxury-glass px-4 py-2 rounded-full border border-luxury-gold/30">
-                <span className="text-xs uppercase tracking-wider text-luxury-gold font-medium">Featured</span>
-              </div>
-            </div>
-          )}
+
         </div>
 
         <CardContent className="p-8">
