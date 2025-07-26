@@ -11,6 +11,7 @@ import Contact from "@/pages/contact";
 import Terms from "@/pages/terms";
 import RefundPolicy from "@/pages/refund-policy";
 import HouseRules from "@/pages/house-rules";
+import PrivacyPolicy from "@/pages/privacy-policy";
 import NotFound from "@/pages/not-found";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
@@ -28,6 +29,7 @@ function Router() {
         <Route path="/terms" component={Terms} />
         <Route path="/refund-policy" component={RefundPolicy} />
         <Route path="/house-rules" component={HouseRules} />
+        <Route path="/privacy-policy" component={PrivacyPolicy} />
         <Route component={NotFound} />
       </Switch>
       <Footer />
