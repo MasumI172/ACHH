@@ -93,7 +93,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const timestamp = Date.now();
       let icalUrl: string;
       
-      if (propertyId === 8) {
+      if (propertyId === 2) {
         // Stunning 1BR | Burj View from Infinity Pool
         icalUrl = `https://hostex.io/web/ical/12104133.ics?t=0a9256ff71d4977ae9d3de94263d4173&ts=${timestamp}`;
       } else {
