@@ -4,6 +4,69 @@
 @tailwind components;
 @tailwind utilities;
 
+/* React Day Picker Styles */
+.rdp {
+  --rdp-cell-size: 40px;
+  --rdp-accent-color: hsl(38, 61%, 73%); /* luxury-gold */
+  --rdp-background-color: hsl(35, 24%, 90%); /* luxury-cream */
+  --rdp-accent-color-dark: hsl(28, 84%, 30%); /* luxury-bronze */
+  --rdp-background-color-dark: hsl(35, 24%, 90%);
+  --rdp-outline: 2px solid var(--rdp-accent-color);
+  --rdp-outline-selected: 3px solid var(--rdp-accent-color);
+  --rdp-background-color-selected: var(--rdp-accent-color);
+  
+  margin: 0;
+  font-family: inherit;
+}
+
+.rdp-day_selected {
+  background-color: var(--rdp-accent-color) !important;
+  color: white !important;
+}
+
+.rdp-day_today {
+  border: 2px solid var(--rdp-accent-color);
+}
+
+.rdp-day:hover:not(.rdp-day_selected):not(.rdp-day_disabled) {
+  background-color: var(--rdp-background-color);
+}
+
+.rdp-button:focus-visible {
+  outline: var(--rdp-outline);
+}
+
+.rdp-months {
+  display: flex;
+}
+
+.rdp-month {
+  margin: 0;
+}
+
+.rdp-table {
+  margin: 0;
+  max-width: none;
+}
+
+.rdp-with_weeknumber .rdp-table {
+  max-width: none;
+}
+
+.rdp-head_cell {
+  vertical-align: middle;
+  text-align: center;
+  height: 40px;
+  padding: 0;
+  font-weight: 500;
+  font-size: 0.75rem;
+  color: hsl(28, 84%, 30%); /* luxury-bronze */
+}
+
+.rdp-row {
+  border: none;
+}
+
 :root {
   --background: 43 36% 95%; /* Warm cream background */
   --foreground: 32 20% 15%; /* Dark brown text */

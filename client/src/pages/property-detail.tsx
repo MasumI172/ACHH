@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import BookingCalendar from "@/components/booking-calendar";
 import { 
   Star, 
   Users, 
@@ -210,70 +211,17 @@ const PropertyDetail = () => {
             </div>
           </motion.div>
 
-          {/* Booking Card */}
+          {/* Booking Calendar */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             className="lg:col-span-1"
           >
-            <Card className="sticky top-24 shadow-lg border-0">
-              <CardContent className="p-6">
-                <div className="text-center mb-6">
-                  <div className="text-2xl font-bold text-luxury-gold mb-1">
-                    Contact for Pricing
-                  </div>
-                  <div className="text-luxury-light-brown">Exclusive rates available</div>
-                </div>
-
-                <div className="space-y-4 mb-6">
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="border rounded-lg p-3">
-                      <label className="text-sm text-gray-600">Check-in</label>
-                      <div className="flex items-center mt-1">
-                        <Calendar className="w-4 h-4 text-gray-400 mr-2" />
-                        <span className="text-sm">Select date</span>
-                      </div>
-                    </div>
-                    <div className="border rounded-lg p-3">
-                      <label className="text-sm text-gray-600">Check-out</label>
-                      <div className="flex items-center mt-1">
-                        <Calendar className="w-4 h-4 text-gray-400 mr-2" />
-                        <span className="text-sm">Select date</span>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="border rounded-lg p-3">
-                    <label className="text-sm text-gray-600">Guests</label>
-                    <div className="flex items-center mt-1">
-                      <Users className="w-4 h-4 text-gray-400 mr-2" />
-                      <span className="text-sm">1 guest</span>
-                    </div>
-                  </div>
-                </div>
-
-                <Link href="/contact">
-                  <Button className="w-full bg-gold-500 text-white hover:bg-gold-600 transition-colors duration-200 text-lg py-6">
-                    Book Now
-                  </Button>
-                </Link>
-
-                <div className="text-center mt-4">
-                  <p className="text-sm text-gray-600">
-                    Free cancellation • No booking fees
-                  </p>
-                </div>
-
-                <div className="border-t pt-4 mt-6">
-                  <div className="text-center">
-                    <p className="text-luxury-light-brown text-sm">
-                      Premium rates • Flexible booking • No hidden fees
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            <BookingCalendar 
+              propertyId={property.id} 
+              maxGuests={property.maxGuests} 
+            />
           </motion.div>
         </div>
       </section>

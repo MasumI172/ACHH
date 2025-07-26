@@ -39,7 +39,7 @@ Design preference: Luxury and modern aesthetic with warm beige/cream tones and g
 - **Properties Table**: Stores property details including name, description, pricing, amenities, images, and ratings
 - **Users Table**: Basic user authentication structure
 - **Inquiries Table**: Customer inquiry management with property references
-- **Categories**: Properties are categorized (beachfront, villa, mansion, penthouse, retreat)
+- **Categories**: Properties are categorized (apartment only - simplified from previous beachfront, villa, mansion, penthouse, retreat)
 
 ### API Endpoints
 - `GET /api/properties` - Retrieve all properties
@@ -59,10 +59,11 @@ Design preference: Luxury and modern aesthetic with warm beige/cream tones and g
 ### UI Components
 - Property cards with rating displays and feature highlights
 - Image carousels for property galleries
-- Search and filter functionality
+- Search and filter functionality (simplified to "All Properties" and "Apartment" only)
 - Responsive navigation with mobile menu
 - Toast notifications for user feedback
 - Form components with validation
+- **Booking Calendar Component**: Interactive date picker with Hostex integration for real-time availability checking
 
 ## Data Flow
 
@@ -83,6 +84,7 @@ Design preference: Luxury and modern aesthetic with warm beige/cream tones and g
 - **Lucide React**: Icon library
 - **Date-fns**: Date manipulation utilities
 - **Embla Carousel**: Carousel component for image galleries
+- **React Day Picker**: Calendar component for booking date selection
 
 ### Development Tools
 - **Vite**: Frontend build tool and dev server
@@ -114,3 +116,14 @@ Design preference: Luxury and modern aesthetic with warm beige/cream tones and g
 - **Production**: Serves pre-built static files
 - **Database**: Requires `DATABASE_URL` environment variable
 - **Sessions**: PostgreSQL-backed session storage
+- **Hostex Integration**: Calendar component integrates with Hostex booking platform for real-time availability
+
+## Recent Changes (July 26, 2025)
+- **Property Filters**: Simplified category filter to only show "All Properties" and "Apartment" options
+- **Booking System**: Replaced static booking form with interactive calendar component
+- **Hostex Integration**: Added BookingCalendar component that:
+  - Provides interactive date selection for check-in/checkout
+  - Displays real-time availability through Hostex API integration
+  - Supports guest count selection with property max limits
+  - Opens Hostex booking page with pre-filled dates and guest count
+  - Maintains luxury aesthetic with branded styling

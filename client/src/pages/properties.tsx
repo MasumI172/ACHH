@@ -20,11 +20,7 @@ const Properties = () => {
 
   const categories = [
     { value: "all", label: "All Properties" },
-    { value: "beachfront", label: "Beachfront" },
-    { value: "villa", label: "Villa" },
-    { value: "mansion", label: "Mansion" },
-    { value: "penthouse", label: "Penthouse" },
-    { value: "retreat", label: "Retreat" },
+    { value: "apartment", label: "Apartment" },
   ];
 
   const priceRanges = [
