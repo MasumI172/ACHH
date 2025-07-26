@@ -53,7 +53,7 @@ const Footer = () => {
               Privacy Policy
             </a>
             <span className="text-black">|</span>
-            <a href="#" className="hover:text-luxury-gold transition-colors text-black text-sm">
+            <a href="/house-rules" className="hover:text-luxury-gold transition-colors text-black text-sm">
               House Rules
             </a>
             <span className="text-black">|</span>

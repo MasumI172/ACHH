@@ -10,6 +10,7 @@ import About from "@/pages/about";
 import Contact from "@/pages/contact";
 import Terms from "@/pages/terms";
 import RefundPolicy from "@/pages/refund-policy";
+import HouseRules from "@/pages/house-rules";
 import NotFound from "@/pages/not-found";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
@@ -26,6 +27,7 @@ function Router() {
         <Route path="/contact" component={Contact} />
         <Route path="/terms" component={Terms} />
         <Route path="/refund-policy" component={RefundPolicy} />
+        <Route path="/house-rules" component={HouseRules} />
         <Route component={NotFound} />
       </Switch>
       <Footer />
