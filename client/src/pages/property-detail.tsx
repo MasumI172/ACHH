@@ -218,14 +218,7 @@ const PropertyDetail = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="lg:col-span-1"
           >
-            <div className="mb-4 p-4 bg-luxury-cream/30 rounded-xl border border-luxury-gold/20">
-              <div className="text-center">
-                <h3 className="text-xl font-semibold text-luxury-brown mb-2">
-                  Check Availability
-                </h3>
-                <p className="text-sm text-luxury-light-brown">Select your preferred dates</p>
-              </div>
-            </div>
+
             <BookingCalendar 
               propertyId={property.id} 
               maxGuests={property.maxGuests}
