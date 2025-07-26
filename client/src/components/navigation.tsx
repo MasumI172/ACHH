@@ -16,7 +16,7 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="static w-full bg-white shadow-md border-b border-gray-100 py-4 z-50">
+    <nav className="fixed w-full top-0 bg-white shadow-md border-b border-gray-100 py-4 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Left Navigation */}
@@ -45,7 +45,7 @@ const Navigation = () => {
                 <img 
                   src={logoPath} 
                   alt="Arabian Coast Holiday Homes" 
-                  className="h-12 md:h-16 lg:h-20 w-auto object-contain transition-all duration-500 hover:scale-105"
+                  className="h-16 md:h-20 lg:h-24 w-auto object-contain transition-all duration-500 hover:scale-105"
                   style={{
                     filter: 'drop-shadow(0 2px 8px rgba(60, 47, 31, 0.15))',
                     opacity: '0.98'
