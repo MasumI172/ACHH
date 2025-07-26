@@ -411,6 +411,43 @@ img {
   filter: contrast(1.08) saturate(1.15) brightness(1.05);
 }
 
+/* Mobile responsive improvements for calendar */
+@media (max-width: 640px) {
+  .luxury-calendar {
+    font-size: 0.875rem;
+  }
+  
+  .luxury-calendar .rdp-table {
+    width: 100%;
+  }
+  
+  .luxury-calendar .rdp-day {
+    width: 2rem !important;
+    height: 2rem !important;
+    font-size: 0.75rem !important;
+  }
+  
+  .luxury-calendar .rdp-caption_label {
+    font-size: 1rem !important;
+  }
+  
+  .luxury-calendar .rdp-nav_button {
+    width: 2rem !important;
+    height: 2rem !important;
+  }
+}
+
+/* Mobile responsive improvements for navigation */
+@media (max-width: 768px) {
+  .property-card {
+    margin-bottom: 1rem;
+  }
+  
+  .luxury-card {
+    border-radius: 1rem;
+  }
+}
+
 @layer utilities {
   .text-luxury-cream { color: hsl(var(--luxury-cream)); }
   .text-luxury-beige { color: hsl(var(--luxury-beige)); }

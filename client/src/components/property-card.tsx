@@ -35,7 +35,7 @@ const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
 
         </div>
 
-        <CardContent className="p-8">
+        <CardContent className="p-4 sm:p-6 lg:p-8">
           <div className="mb-4">
             <h3 className="text-xl luxury-subheading text-luxury-brown hover:text-luxury-gold transition-colors duration-300 leading-tight">
               {property.name}
@@ -47,7 +47,7 @@ const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
             {property.description.split('.')[0]}.
           </p>
 
-          <div className="flex items-center gap-6 text-sm luxury-text mb-6 py-4 border-t border-b border-luxury-gold/20">
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-sm luxury-text mb-6 py-4 border-t border-b border-luxury-gold/20">
             <div className="flex items-center">
               <Bed className="w-4 h-4 mr-2 text-luxury-gold" />
               <span className="font-medium">{property.bedrooms} Bedroom{property.bedrooms > 1 ? 's' : ''}</span>

@@ -93,7 +93,7 @@ const PropertyDetail = () => {
             <CarouselContent>
               {property.images.map((image, index) => (
                 <CarouselItem key={index}>
-                  <div className="relative h-96 md:h-[500px] rounded-2xl overflow-hidden bg-luxury-cream/10">
+                  <div className="relative h-64 sm:h-80 md:h-96 lg:h-[500px] rounded-2xl overflow-hidden bg-luxury-cream/10">
                     <img
                       src={image}
                       alt={`${property.name} - Image ${index + 1}`}
@@ -137,7 +137,7 @@ const PropertyDetail = () => {
 
             </div>
 
-            <div className="flex items-center gap-6 text-gray-600 mb-6">
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-gray-600 mb-6">
               <div className="flex items-center">
                 <Bed className="w-5 h-5 mr-2" />
                 {property.bedrooms} Bedrooms

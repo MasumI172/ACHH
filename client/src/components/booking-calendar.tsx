@@ -136,7 +136,7 @@ Please let me know the availability and rates. Thank you!`;
     <Card className="sticky top-24 luxury-shadow border-0 luxury-card overflow-hidden">
       <div className="bg-gradient-to-br from-luxury-gold/5 to-luxury-cream/20 p-1">
         <div className="bg-white rounded-lg">
-          <CardContent className="p-8">
+          <CardContent className="p-4 sm:p-6 lg:p-8">
             <div className="text-center mb-8">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-luxury-gold/10 rounded-full mb-4">
                 <CalendarIcon className="w-8 h-8 text-luxury-gold" />
@@ -168,7 +168,7 @@ Please let me know the availability and rates. Thank you!`;
 
                 {/* Check-in Calendar - appears directly below */}
                 {showCalendar === 'checkin' && (
-                  <div className="mt-3 border-2 border-luxury-gold/20 rounded-2xl p-6 bg-gradient-to-br from-luxury-cream/20 to-white luxury-shadow-sm">
+                  <div className="mt-3 border-2 border-luxury-gold/20 rounded-2xl p-4 sm:p-6 bg-gradient-to-br from-luxury-cream/20 to-white luxury-shadow-sm">
                     <div className="mb-4 flex items-center">
                       <div className="w-8 h-8 bg-luxury-gold rounded-full flex items-center justify-center mr-3">
                         <CalendarIcon className="w-4 h-4 text-white" />
@@ -233,7 +233,7 @@ Please let me know the availability and rates. Thank you!`;
 
                 {/* Check-out Calendar - appears directly below */}
                 {showCalendar === 'checkout' && (
-                  <div className="mt-3 border-2 border-luxury-gold/20 rounded-2xl p-6 bg-gradient-to-br from-luxury-cream/20 to-white luxury-shadow-sm">
+                  <div className="mt-3 border-2 border-luxury-gold/20 rounded-2xl p-4 sm:p-6 bg-gradient-to-br from-luxury-cream/20 to-white luxury-shadow-sm">
                     <div className="mb-4 flex items-center">
                       <div className="w-8 h-8 bg-luxury-gold rounded-full flex items-center justify-center mr-3">
                         <CalendarIcon className="w-4 h-4 text-white" />
