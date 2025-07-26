@@ -339,30 +339,44 @@
   }
 
   .luxury-calendar .rdp-head_cell {
-    @apply text-sm font-semibold text-luxury-bronze uppercase tracking-wider py-4;
+    @apply text-sm font-semibold text-luxury-bronze uppercase tracking-wider py-3;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
   .luxury-calendar .rdp-table {
-    @apply w-full;
-    border-spacing: 4px;
+    @apply w-full table-fixed;
+    border-spacing: 2px;
+  }
+
+  .luxury-calendar .rdp-head_cell,
+  .luxury-calendar .rdp-cell {
+    width: 14.28%; /* 100% / 7 days */
+    text-align: center;
   }
 
   .luxury-calendar .rdp-day {
-    @apply w-10 h-10 rounded-lg text-sm font-medium;
-    min-width: 40px;
-    max-width: 40px;
+    @apply w-full h-9 rounded-lg text-sm font-medium mx-auto;
+    min-width: 36px;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   /* Responsive calendar sizing */
-  @media (max-width: 640px) {
+  @media (max-width: 480px) {
     .luxury-calendar .rdp-day {
-      @apply w-8 h-8 text-xs;
-      min-width: 32px;
-      max-width: 32px;
+      @apply h-8 text-xs;
+      min-width: 28px;
     }
     
     .luxury-calendar .rdp-table {
-      border-spacing: 2px;
+      border-spacing: 1px;
+    }
+    
+    .luxury-calendar .rdp-head_cell {
+      @apply text-xs py-2;
     }
   }
 }

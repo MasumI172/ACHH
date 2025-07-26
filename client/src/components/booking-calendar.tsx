@@ -183,6 +183,9 @@ const BookingCalendar = ({ propertyId, maxGuests }: BookingCalendarProps) => {
                         modifiersClassNames={{
                           booked: 'rdp-day_booked'
                         }}
+                        weekStartsOn={0}
+                        fixedWeeks={true}
+                        showOutsideDays={true}
                       />
                     </div>
                     
@@ -248,6 +251,9 @@ const BookingCalendar = ({ propertyId, maxGuests }: BookingCalendarProps) => {
                         modifiersClassNames={{
                           booked: 'rdp-day_booked'
                         }}
+                        weekStartsOn={0}
+                        fixedWeeks={true}
+                        showOutsideDays={true}
                       />
                     </div>
                     
