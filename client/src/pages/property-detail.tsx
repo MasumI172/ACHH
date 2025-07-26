@@ -181,7 +181,7 @@ const PropertyDetail = () => {
                   </div>
 
                   <div className="space-y-4">
-                    <h3 className="text-xl font-semibold text-luxury-brown">Bedroom & Bathroom</h3>
+                    <h3 className="text-xl font-semibold text-luxury-brown">Bedroom</h3>
                     <p className="text-luxury-light-brown leading-relaxed">
                       Relax in the cozy bedroom, featuring a queen-size bed, premium linens, and a Smart TV, ideal for enjoying Netflix nights.
                     </p>
