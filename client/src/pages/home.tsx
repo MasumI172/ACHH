@@ -26,10 +26,15 @@ const Home = () => {
     queryKey: ["/api/properties", queryString],
     queryFn: async () => {
       const url = `/api/properties${queryString ? `?${queryString}` : ''}`;
+      console.log('Fetching properties from:', url);
       const response = await fetch(url);
       if (!response.ok) throw new Error('Failed to fetch properties');
-      return response.json();
+      const data = await response.json();
+      console.log('Properties response:', data);
+      return data;
     },
+    staleTime: 0, // Always refetch when query key changes
+    cacheTime: 0, // Don't cache the results
   });
 
   // Use all properties instead of just featured ones
@@ -138,11 +143,25 @@ const Home = () => {
                 </div>
               ))}
             </div>
-          ) : (
+          ) : featuredProperties && featuredProperties.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {featuredProperties?.map((property, index) => (
+              {featuredProperties.map((property, index) => (
                 <PropertyCard key={property.id} property={property} index={index} />
               ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-lg text-gray-600 mb-4">No properties available for the selected dates.</p>
+              <p className="text-sm text-gray-500">Please try different dates or clear your search to see all properties.</p>
+              <Button 
+                onClick={() => {
+                  setCheckInDate("");
+                  setCheckOutDate("");
+                }}
+                className="mt-4 luxury-button"
+              >
+                Clear Dates
+              </Button>
             </div>
           )}
 
