@@ -1,60 +1,86 @@
-import { useState } from "react";
-import { DayPicker } from "react-day-picker";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { format } from "date-fns";
-import { Calendar as CalendarIcon, Users, ExternalLink } from "lucide-react";
+import { Calendar as CalendarIcon, Users } from "lucide-react";
+
+// Add TypeScript declarations for Calendly
+declare global {
+  interface Window {
+    Calendly: {
+      initPopupWidget: (options: {
+        url: string;
+        text: string;
+        color: string;
+        textColor: string;
+        branding: boolean;
+      }) => void;
+    };
+  }
+}
 
 interface BookingCalendarProps {
   propertyId: number;
   maxGuests: number;
+  calendlyUrl?: string; // Optional Calendly URL, can be set per property
 }
 
-const BookingCalendar = ({ propertyId, maxGuests }: BookingCalendarProps) => {
-  const [checkIn, setCheckIn] = useState<Date>();
-  const [checkOut, setCheckOut] = useState<Date>();
+const BookingCalendar = ({ propertyId, maxGuests, calendlyUrl }: BookingCalendarProps) => {
   const [guests, setGuests] = useState(1);
-  const [showCalendar, setShowCalendar] = useState<'checkin' | 'checkout' | null>(null);
+  const [isCalendlyLoaded, setIsCalendlyLoaded] = useState(false);
 
-  // Hostex integration - you'll need to replace with actual Hostex property ID
-  const hostexPropertyId = `hostex_${propertyId}`;
-  const hostexBookingUrl = `https://app.hostex.com/booking/${hostexPropertyId}`;
+  // Default Calendly URL - replace with your actual Calendly link
+  const defaultCalendlyUrl = calendlyUrl || "https://calendly.com/your-username/property-booking";
 
-  const handleDateSelect = (date: Date | undefined) => {
-    if (!date) return;
-
-    if (showCalendar === 'checkin') {
-      setCheckIn(date);
-      setCheckOut(undefined); // Reset checkout when checkin changes
-      setShowCalendar('checkout');
-    } else if (showCalendar === 'checkout') {
-      if (checkIn && date > checkIn) {
-        setCheckOut(date);
-        setShowCalendar(null);
-      }
-    }
-  };
-
-  const handleHostexBooking = () => {
-    // Redirect to Hostex booking page with selected dates if available
-    let url = hostexBookingUrl;
+  useEffect(() => {
+    // Load Calendly widget script if not already loaded
+    const existingScript = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]');
     
-    if (checkIn) {
-      url += `?checkin=${format(checkIn, 'yyyy-MM-dd')}`;
-      if (checkOut) {
-        url += `&checkout=${format(checkOut, 'yyyy-MM-dd')}`;
-      }
-      if (guests > 1) {
-        url += `&guests=${guests}`;
-      }
+    if (!existingScript) {
+      const script = document.createElement('script');
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.async = true;
+      script.onload = () => {
+        setIsCalendlyLoaded(true);
+        // Initialize the inline widget after script loads
+        if ((window as any).Calendly) {
+          (window as any).Calendly.initInlineWidget({
+            url: `${defaultCalendlyUrl}?embed_domain=${window.location.hostname}&embed_type=Inline&hide_gdpr_banner=1&primary_color=D4AF37`,
+            parentElement: document.querySelector('.calendly-inline-widget'),
+            prefill: {},
+            utm: {}
+          });
+        }
+      };
+      document.head.appendChild(script);
+    } else {
+      setIsCalendlyLoaded(true);
+      // If script already exists, initialize the widget
+      setTimeout(() => {
+        if ((window as any).Calendly) {
+          (window as any).Calendly.initInlineWidget({
+            url: `${defaultCalendlyUrl}?embed_domain=${window.location.hostname}&embed_type=Inline&hide_gdpr_banner=1&primary_color=D4AF37`,
+            parentElement: document.querySelector('.calendly-inline-widget'),
+            prefill: {},
+            utm: {}
+          });
+        }
+      }, 100);
     }
-    
-    window.open(url, '_blank');
-  };
+  }, [defaultCalendlyUrl]);
 
-  const disabledDays = {
-    before: new Date(), // Disable past dates
+  const openCalendlyPopup = () => {
+    if ((window as any).Calendly && isCalendlyLoaded) {
+      (window as any).Calendly.initPopupWidget({
+        url: `${defaultCalendlyUrl}?guests=${guests}&property=${propertyId}`,
+        text: 'Book Your Stay',
+        color: '#D4AF37', // luxury-gold color
+        textColor: '#FFFFFF',
+        branding: true
+      });
+    } else {
+      // Fallback: open in new tab
+      window.open(`${defaultCalendlyUrl}?guests=${guests}&property=${propertyId}`, '_blank');
+    }
   };
 
   return (
@@ -62,108 +88,77 @@ const BookingCalendar = ({ propertyId, maxGuests }: BookingCalendarProps) => {
       <CardContent className="p-6">
         <div className="text-center mb-6">
           <div className="text-2xl font-bold text-luxury-gold mb-1">
-            Check Availability
+            Book Your Stay
           </div>
           <div className="text-luxury-light-brown">Real-time availability via Hostex</div>
         </div>
 
-        <div className="space-y-4 mb-6">
-          {/* Date Selection */}
-          <div className="grid grid-cols-2 gap-3">
-            <button
-              onClick={() => setShowCalendar(showCalendar === 'checkin' ? null : 'checkin')}
-              className="border rounded-lg p-3 text-left hover:border-luxury-gold transition-colors"
-            >
-              <label className="text-sm text-gray-600">Check-in</label>
-              <div className="flex items-center mt-1">
-                <CalendarIcon className="w-4 h-4 text-gray-400 mr-2" />
-                <span className="text-sm">
-                  {checkIn ? format(checkIn, 'MMM d, yyyy') : 'Select date'}
-                </span>
-              </div>
-            </button>
-            
-            <button
-              onClick={() => setShowCalendar(showCalendar === 'checkout' ? null : 'checkout')}
-              className="border rounded-lg p-3 text-left hover:border-luxury-gold transition-colors"
-              disabled={!checkIn}
-            >
-              <label className="text-sm text-gray-600">Check-out</label>
-              <div className="flex items-center mt-1">
-                <CalendarIcon className="w-4 h-4 text-gray-400 mr-2" />
-                <span className="text-sm">
-                  {checkOut ? format(checkOut, 'MMM d, yyyy') : 'Select date'}
-                </span>
-              </div>
-            </button>
-          </div>
+        {/* Embedded Calendly Calendar */}
+        <div className="mb-6 bg-white rounded-xl border border-luxury-gold/30 p-2">
+          <div 
+            className="calendly-inline-widget" 
+            data-url={`${defaultCalendlyUrl}?embed_domain=${window.location.hostname}&embed_type=Inline&hide_gdpr_banner=1&primary_color=D4AF37`}
+            style={{ 
+              minWidth: '100%', 
+              height: '500px',
+              borderRadius: '8px',
+              overflow: 'hidden'
+            }}
+          />
+        </div>
 
-          {/* Calendar */}
-          {showCalendar && (
-            <div className="border rounded-lg p-4 bg-luxury-cream/30">
-              <div className="mb-3">
-                <Badge variant="outline" className="text-luxury-bronze">
-                  {showCalendar === 'checkin' ? 'Select Check-in Date' : 'Select Check-out Date'}
-                </Badge>
-              </div>
-              <DayPicker
-                mode="single"
-                selected={showCalendar === 'checkin' ? checkIn : checkOut}
-                onSelect={handleDateSelect}
-                disabled={disabledDays}
-                className="rounded-md border-0"
-              />
+        {/* Guests Selection */}
+        <div className="border rounded-lg p-4 mb-6 bg-luxury-cream/20">
+          <label className="text-sm text-luxury-bronze font-medium mb-3 block">Number of Guests</label>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <Users className="w-5 h-5 text-luxury-gold mr-3" />
+              <span className="text-lg font-medium text-luxury-brown">
+                {guests} guest{guests > 1 ? 's' : ''}
+              </span>
             </div>
-          )}
-          
-          {/* Guests Selection */}
-          <div className="border rounded-lg p-3">
-            <label className="text-sm text-gray-600">Guests</label>
-            <div className="flex items-center justify-between mt-1">
-              <div className="flex items-center">
-                <Users className="w-4 h-4 text-gray-400 mr-2" />
-                <span className="text-sm">{guests} guest{guests > 1 ? 's' : ''}</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setGuests(Math.max(1, guests - 1))}
-                  disabled={guests <= 1}
-                  className="h-8 w-8 p-0"
-                >
-                  -
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setGuests(Math.min(maxGuests, guests + 1))}
-                  disabled={guests >= maxGuests}
-                  className="h-8 w-8 p-0"
-                >
-                  +
-                </Button>
-              </div>
+            <div className="flex items-center space-x-3">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setGuests(Math.max(1, guests - 1))}
+                disabled={guests <= 1}
+                className="h-9 w-9 p-0 border-luxury-gold text-luxury-bronze hover:bg-luxury-gold hover:text-white"
+              >
+                -
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setGuests(Math.min(maxGuests, guests + 1))}
+                disabled={guests >= maxGuests}
+                className="h-9 w-9 p-0 border-luxury-gold text-luxury-bronze hover:bg-luxury-gold hover:text-white"
+              >
+                +
+              </Button>
             </div>
+          </div>
+          <div className="text-xs text-luxury-light-brown mt-2">
+            Maximum {maxGuests} guests allowed
           </div>
         </div>
 
-        {/* Booking Button */}
+        {/* Alternative Booking Button */}
         <Button 
-          onClick={handleHostexBooking}
+          onClick={openCalendlyPopup}
           className="w-full luxury-button text-lg py-6 mb-4"
         >
-          <ExternalLink className="w-4 h-4 mr-2" />
-          Check Availability & Book
+          <CalendarIcon className="w-5 h-5 mr-2" />
+          Open Booking Calendar
         </Button>
 
         <div className="text-center mb-4">
-          <p className="text-sm text-gray-600">
-            Powered by Hostex • Real-time availability
+          <p className="text-sm text-luxury-light-brown">
+            Synced with Hostex • Real-time availability
           </p>
         </div>
 
-        <div className="border-t pt-4">
+        <div className="border-t border-luxury-gold/20 pt-4">
           <div className="text-center">
             <p className="text-luxury-light-brown text-sm">
               Instant booking • Secure payment • Free cancellation

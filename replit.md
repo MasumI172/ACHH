@@ -121,9 +121,10 @@ Design preference: Luxury and modern aesthetic with warm beige/cream tones and g
 ## Recent Changes (July 26, 2025)
 - **Property Filters**: Simplified category filter to only show "All Properties" and "Apartment" options
 - **Booking System**: Replaced static booking form with interactive calendar component
-- **Hostex Integration**: Added BookingCalendar component that:
-  - Provides interactive date selection for check-in/checkout
-  - Displays real-time availability through Hostex API integration
-  - Supports guest count selection with property max limits
-  - Opens Hostex booking page with pre-filled dates and guest count
-  - Maintains luxury aesthetic with branded styling
+- **Calendly Integration**: Added BookingCalendar component that:
+  - Embeds Calendly widget directly in the property detail page
+  - Shows real-time availability synced with Hostex calendar through Calendly
+  - Includes guest count selection with property max limits
+  - Provides both inline calendar and popup booking options
+  - Maintains luxury aesthetic with custom styling and gold accent colors
+  - Auto-loads Calendly script and initializes widget programmatically
