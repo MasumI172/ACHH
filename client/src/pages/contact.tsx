@@ -46,6 +46,7 @@ const Contact = () => {
 
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
+    mode: "onChange", // Enable real-time validation
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -364,7 +365,7 @@ const Contact = () => {
 
                     <Button
                       type="submit"
-                      disabled={isSubmitting || submitInquiry.isPending || !form.formState.isValid}
+                      disabled={isSubmitting || submitInquiry.isPending || Object.keys(form.formState.errors).length > 0 || !form.watch("firstName") || !form.watch("lastName") || !form.watch("email") || !form.watch("phone") || !form.watch("checkInDate") || !form.watch("checkOutDate") || !form.watch("message")}
                       className="w-full bg-luxury-gold text-black hover:bg-luxury-dark-gold hover:text-white transition-colors duration-200 py-3 text-lg font-bold rounded-lg border-2 border-luxury-gold shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isSubmitting || submitInquiry.isPending ? (
@@ -380,6 +381,11 @@ const Contact = () => {
                       )}
                     </Button>
 
+                    {Object.keys(form.formState.errors).length > 0 && (
+                      <div className="text-sm text-red-500 text-center bg-red-50 p-3 rounded-lg">
+                        Please fill all fields correctly. Check that your email address is valid.
+                      </div>
+                    )}
                     <p className="text-sm text-gray-600 text-center">
                       We typically respond within 24 hours.
                     </p>
