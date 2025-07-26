@@ -176,7 +176,7 @@ const Contact = () => {
 
               <div className="bg-gold-50 p-6 rounded-xl">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                  Why Choose Arabian Coast?
+                  Arabian Coast Holiday Homes
                 </h3>
                 <div className="space-y-2">
                   {[
