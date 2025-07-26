@@ -13,7 +13,6 @@ import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { insertInquirySchema } from "@shared/schema";
 import { 
-  Phone, 
   Mail, 
   Clock,
   Send,
@@ -86,14 +85,9 @@ const Contact = () => {
 
   const contactInfo = [
     {
-      icon: Phone,
-      title: "Phone",
-      details: ["+971 4 123 4567", "+971 50 123 4567"],
-    },
-    {
       icon: Mail,
       title: "Email",
-      details: ["info@arabiancoasthomes.com", "reservations@arabiancoasthomes.com"],
+      details: ["info@arabiancoastholidayhomes.com"],
     },
     {
       icon: Clock,
@@ -352,8 +346,7 @@ const Contact = () => {
                     </Button>
 
                     <p className="text-sm text-gray-600 text-center">
-                      We typically respond within 24 hours. For urgent inquiries,
-                      please call us directly at +971 4 123 4567.
+                      We typically respond within 24 hours.
                     </p>
                   </form>
                 </CardContent>
@@ -378,7 +371,7 @@ const Contact = () => {
             </h2>
             <div className="bg-gray-200 h-64 md:h-96 rounded-2xl flex items-center justify-center">
               <div className="text-center">
-                <Phone className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                <Mail className="w-12 h-12 text-gray-400 mx-auto mb-4" />
                 <p className="text-gray-600 text-lg">
                   Interactive map will be displayed here
                 </p>
