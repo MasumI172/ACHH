@@ -246,19 +246,9 @@ const BookingCalendar = ({ propertyId, maxGuests }: BookingCalendarProps) => {
           {checkIn && checkOut ? 'Send Booking Inquiry' : 'Select Dates to Continue'}
         </Button>
 
-        <div className="text-center mb-4">
-          <p className="text-sm text-luxury-light-brown">
-            Synced with Hostex • Real-time availability
-          </p>
-        </div>
 
-        <div className="border-t border-luxury-gold/20 pt-4">
-          <div className="text-center">
-            <p className="text-luxury-light-brown text-sm">
-              Contact us for pricing • Flexible booking • Free cancellation
-            </p>
-          </div>
-        </div>
+
+
       </CardContent>
     </Card>
   );
