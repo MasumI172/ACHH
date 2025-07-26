@@ -23,7 +23,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
             const timestamp = Date.now();
             let icalUrl: string;
             
-            if (property.id === 2) {
+            if (property.name === "Stunning 1BR | Burj View from Infinity Pool") {
               // Stunning 1BR | Burj View from Infinity Pool
               icalUrl = `https://hostex.io/web/ical/12104133.ics?t=0a9256ff71d4977ae9d3de94263d4173&ts=${timestamp}`;
             } else {
@@ -182,7 +182,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const timestamp = Date.now();
       let icalUrl: string;
       
-      if (propertyId === 2) {
+      // Get property name to determine correct iCal URL
+      const property = await storage.getProperty(propertyId);
+      if (!property) {
+        return res.status(404).json({ message: "Property not found" });
+      }
+      
+      if (property.name === "Stunning 1BR | Burj View from Infinity Pool") {
         // Stunning 1BR | Burj View from Infinity Pool
         icalUrl = `https://hostex.io/web/ical/12104133.ics?t=0a9256ff71d4977ae9d3de94263d4173&ts=${timestamp}`;
       } else {
