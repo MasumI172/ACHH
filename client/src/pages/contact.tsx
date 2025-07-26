@@ -16,7 +16,8 @@ import {
   Mail, 
   Clock,
   Send,
-  CheckCircle
+  CheckCircle,
+  MessageCircle
 } from "lucide-react";
 
 const contactFormSchema = insertInquirySchema.extend({
@@ -88,6 +89,11 @@ const Contact = () => {
       icon: Mail,
       title: "Email",
       details: ["info@arabiancoastholidayhomes.com"],
+    },
+    {
+      icon: MessageCircle,
+      title: "WhatsApp",
+      details: ["+971 55 816 6062"],
     },
     {
       icon: Clock,
