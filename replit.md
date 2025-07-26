@@ -142,3 +142,5 @@ Design preference: Luxury and modern aesthetic with warm beige/cream tones and g
 - **Price Display**: Added AED pricing on property detail pages and property cards
 - **Property Cards**: Removed "Contact for Exclusive Rates" text, replaced with actual AED pricing
 - **Navigation**: Added Instagram icon to both desktop and mobile navigation menus
+- **Header Enhancement**: Made header fixed with larger logo (h-20/28/32) and white background with shadow
+- **Property Addition**: Added "Stunning apartment" as new featured property in Our Properties section
