@@ -25,9 +25,10 @@ interface AvailabilityData {
 interface BookingCalendarProps {
   propertyId: number;
   maxGuests: number;
+  propertyName: string;
 }
 
-const BookingCalendar = ({ propertyId, maxGuests }: BookingCalendarProps) => {
+const BookingCalendar = ({ propertyId, maxGuests, propertyName }: BookingCalendarProps) => {
   const [guests, setGuests] = useState(1);
   const [checkIn, setCheckIn] = useState<Date>();
   const [checkOut, setCheckOut] = useState<Date>();
@@ -96,7 +97,6 @@ const BookingCalendar = ({ propertyId, maxGuests }: BookingCalendarProps) => {
     if (!checkIn || !checkOut) return;
     
     // Create WhatsApp message with booking details
-    const propertyName = "Arabian Coast Holiday Home";
     const checkInDate = format(checkIn, 'EEEE, MMMM d, yyyy');
     const checkOutDate = format(checkOut, 'EEEE, MMMM d, yyyy');
     

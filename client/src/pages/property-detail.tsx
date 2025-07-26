@@ -222,6 +222,7 @@ const PropertyDetail = () => {
             <BookingCalendar 
               propertyId={property.id} 
               maxGuests={property.maxGuests}
+              propertyName={property.name}
             />
           </motion.div>
         </div>
