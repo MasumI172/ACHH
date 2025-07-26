@@ -122,134 +122,181 @@ const BookingCalendar = ({ propertyId, maxGuests }: BookingCalendarProps) => {
   }
 
   return (
-    <Card className="sticky top-24 shadow-lg border-0 luxury-card">
-      <CardContent className="p-6">
-        <div className="text-center mb-6">
-          <div className="text-2xl font-bold text-luxury-gold mb-1">
-            Check Availability
-          </div>
-          <div className="text-luxury-light-brown">Select your dates to check availability</div>
+    <Card className="sticky top-24 luxury-shadow border-0 luxury-card overflow-hidden">
+      <div className="bg-gradient-to-br from-luxury-gold/5 to-luxury-cream/20 p-1">
+        <div className="bg-white rounded-lg">
+          <CardContent className="p-8">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-luxury-gold/10 rounded-full mb-4">
+                <CalendarIcon className="w-8 h-8 text-luxury-gold" />
+              </div>
+              <div className="text-2xl font-bold text-luxury-brown mb-2 luxury-serif">
+                Check Availability
+              </div>
+              <div className="text-luxury-light-brown text-sm">Select your preferred dates to book your luxury stay</div>
+            </div>
+
+            {/* Date Selection */}
+            <div className="space-y-6 mb-8">
+              <div className="grid grid-cols-1 gap-4">
+                <button
+                  onClick={() => setShowCalendar(showCalendar === 'checkin' ? null : 'checkin')}
+                  className="group relative border-2 border-luxury-cream rounded-xl p-4 text-left hover:border-luxury-gold hover:bg-luxury-gold/5 transition-all duration-300 luxury-shadow-sm"
+                >
+                  <label className="text-sm text-luxury-bronze font-medium uppercase tracking-wide">Check-in Date</label>
+                  <div className="flex items-center justify-between mt-2">
+                    <div className="flex items-center">
+                      <div className="w-10 h-10 bg-luxury-gold/10 rounded-lg flex items-center justify-center mr-3 group-hover:bg-luxury-gold group-hover:text-white transition-all duration-300">
+                        <CalendarIcon className="w-5 h-5 text-luxury-gold group-hover:text-white" />
+                      </div>
+                      <span className="text-luxury-brown font-semibold">
+                        {checkIn ? format(checkIn, 'EEEE, MMMM d, yyyy') : 'Select your arrival date'}
+                      </span>
+                    </div>
+                  </div>
+                </button>
+                
+                <button
+                  onClick={() => setShowCalendar(showCalendar === 'checkout' ? null : 'checkout')}
+                  className="group relative border-2 border-luxury-cream rounded-xl p-4 text-left hover:border-luxury-gold hover:bg-luxury-gold/5 transition-all duration-300 luxury-shadow-sm disabled:opacity-50 disabled:hover:border-luxury-cream disabled:hover:bg-transparent"
+                  disabled={!checkIn}
+                >
+                  <label className="text-sm text-luxury-bronze font-medium uppercase tracking-wide">Check-out Date</label>
+                  <div className="flex items-center justify-between mt-2">
+                    <div className="flex items-center">
+                      <div className="w-10 h-10 bg-luxury-gold/10 rounded-lg flex items-center justify-center mr-3 group-hover:bg-luxury-gold group-hover:text-white transition-all duration-300">
+                        <CalendarIcon className="w-5 h-5 text-luxury-gold group-hover:text-white" />
+                      </div>
+                      <span className="text-luxury-brown font-semibold">
+                        {checkOut ? format(checkOut, 'EEEE, MMMM d, yyyy') : 'Select your departure date'}
+                      </span>
+                    </div>
+                  </div>
+                </button>
+              </div>
+
+              {/* Calendar */}
+              {showCalendar && (
+                <div className="mt-6 border-2 border-luxury-gold/20 rounded-2xl p-6 bg-gradient-to-br from-luxury-cream/30 to-white luxury-shadow-sm">
+                  <div className="mb-6 flex items-center justify-between">
+                    <div className="flex items-center">
+                      <div className="w-8 h-8 bg-luxury-gold rounded-full flex items-center justify-center mr-3">
+                        <CalendarIcon className="w-4 h-4 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-luxury-brown">
+                          {showCalendar === 'checkin' ? 'Select Check-in Date' : 'Select Check-out Date'}
+                        </h3>
+                        <p className="text-xs text-luxury-light-brown">
+                          {availabilityData?.bookings?.length || 0} existing booking(s) found
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="calendar-wrapper">
+                    <DayPicker
+                      mode="single"
+                      selected={showCalendar === 'checkin' ? checkIn : checkOut}
+                      onSelect={handleDateSelect}
+                      disabled={disabledDays}
+                      className="luxury-calendar"
+                      modifiers={{
+                        booked: (date) => isDateBooked(date)
+                      }}
+                      modifiersClassNames={{
+                        booked: 'rdp-day_booked'
+                      }}
+                    />
+                  </div>
+                  
+                  <div className="mt-6 p-4 bg-white rounded-xl border border-luxury-gold/10">
+                    <div className="space-y-3 text-sm">
+                      <div className="flex items-center text-luxury-brown">
+                        <span className="inline-block w-4 h-4 bg-luxury-gold rounded mr-3"></span>
+                        <span className="font-medium">Available for booking</span>
+                      </div>
+                      <div className="flex items-center text-luxury-brown">
+                        <span className="inline-block w-4 h-4 bg-red-500 rounded mr-3"></span>
+                        <span className="font-medium">Already booked (unavailable)</span>
+                      </div>
+                      <div className="flex items-center text-luxury-light-brown">
+                        <span className="inline-block w-4 h-4 bg-gray-200 rounded mr-3"></span>
+                        <span className="font-medium">Past dates (unavailable)</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
         </div>
 
-        {/* Date Selection */}
-        <div className="space-y-4 mb-6">
-          <div className="grid grid-cols-2 gap-3">
-            <button
-              onClick={() => setShowCalendar(showCalendar === 'checkin' ? null : 'checkin')}
-              className="border rounded-lg p-3 text-left hover:border-luxury-gold transition-colors"
-            >
-              <label className="text-sm text-gray-600">Check-in</label>
-              <div className="flex items-center mt-1">
-                <CalendarIcon className="w-4 h-4 text-gray-400 mr-2" />
-                <span className="text-sm">
-                  {checkIn ? format(checkIn, 'MMM d, yyyy') : 'Select date'}
-                </span>
+            {/* Guests Selection */}
+            <div className="border-2 border-luxury-cream rounded-xl p-6 mb-8 bg-gradient-to-r from-luxury-cream/20 to-luxury-gold/5 luxury-shadow-sm">
+              <div className="flex items-center mb-4">
+                <div className="w-10 h-10 bg-luxury-gold/10 rounded-lg flex items-center justify-center mr-3">
+                  <Users className="w-5 h-5 text-luxury-gold" />
+                </div>
+                <div>
+                  <label className="text-sm text-luxury-bronze font-medium uppercase tracking-wide block">Number of Guests</label>
+                  <p className="text-xs text-luxury-light-brown">Maximum {maxGuests} guests allowed</p>
+                </div>
               </div>
-            </button>
+              
+              <div className="flex items-center justify-between">
+                <div className="flex items-center">
+                  <span className="text-2xl font-bold text-luxury-brown mr-2">
+                    {guests}
+                  </span>
+                  <span className="text-luxury-bronze font-medium">
+                    guest{guests > 1 ? 's' : ''}
+                  </span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setGuests(Math.max(1, guests - 1))}
+                    disabled={guests <= 1}
+                    className="h-10 w-10 p-0 border-2 border-luxury-gold text-luxury-gold hover:bg-luxury-gold hover:text-white font-bold text-lg transition-all duration-300 rounded-xl"
+                  >
+                    −
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setGuests(Math.min(maxGuests, guests + 1))}
+                    disabled={guests >= maxGuests}
+                    className="h-10 w-10 p-0 border-2 border-luxury-gold text-luxury-gold hover:bg-luxury-gold hover:text-white font-bold text-lg transition-all duration-300 rounded-xl"
+                  >
+                    +
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            {/* Booking Button */}
+            <div className="pt-4 border-t-2 border-luxury-gold/10">
+              <Button 
+                onClick={handleBookingInquiry}
+                disabled={!checkIn || !checkOut}
+                className="w-full luxury-button text-lg py-6 disabled:opacity-50 bg-gradient-to-r from-luxury-gold to-luxury-bronze hover:from-luxury-bronze hover:to-luxury-gold transition-all duration-500 shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
+              >
+                <ExternalLink className="w-5 h-5 mr-3" />
+                {checkIn && checkOut ? 'Send Luxury Booking Inquiry' : 'Select Dates to Continue'}
+              </Button>
+              
+              {availabilityData?.lastUpdated && (
+                <div className="mt-4 text-center">
+                  <p className="text-xs text-luxury-light-brown">
+                    Last updated: {format(parseISO(availabilityData.lastUpdated), 'MMM d, yyyy h:mm a')}
+                  </p>
+                </div>
+              )}
+            </div>
             
-            <button
-              onClick={() => setShowCalendar(showCalendar === 'checkout' ? null : 'checkout')}
-              className="border rounded-lg p-3 text-left hover:border-luxury-gold transition-colors"
-              disabled={!checkIn}
-            >
-              <label className="text-sm text-gray-600">Check-out</label>
-              <div className="flex items-center mt-1">
-                <CalendarIcon className="w-4 h-4 text-gray-400 mr-2" />
-                <span className="text-sm">
-                  {checkOut ? format(checkOut, 'MMM d, yyyy') : 'Select date'}
-                </span>
-              </div>
-            </button>
-          </div>
-
-          {/* Calendar */}
-          {showCalendar && (
-            <div className="border rounded-lg p-4 bg-luxury-cream/30">
-              <div className="mb-3 flex items-center justify-between">
-                <Badge variant="outline" className="text-luxury-bronze">
-                  {showCalendar === 'checkin' ? 'Select Check-in Date' : 'Select Check-out Date'}
-                </Badge>
-                <div className="text-xs text-luxury-light-brown">
-                  {availabilityData?.bookings?.length || 0} booking(s) found
-                </div>
-              </div>
-              <DayPicker
-                mode="single"
-                selected={showCalendar === 'checkin' ? checkIn : checkOut}
-                onSelect={handleDateSelect}
-                disabled={disabledDays}
-                className="rounded-md border-0"
-                modifiers={{
-                  booked: (date) => isDateBooked(date)
-                }}
-                modifiersClassNames={{
-                  booked: 'rdp-day_booked'
-                }}
-              />
-              <div className="mt-3 space-y-1 text-xs">
-                <div className="flex items-center text-luxury-light-brown">
-                  <span className="inline-block w-3 h-3 bg-green-500 rounded mr-2"></span>
-                  Green = Available for booking
-                </div>
-                <div className="flex items-center text-luxury-light-brown">
-                  <span className="inline-block w-3 h-3 bg-red-500 rounded mr-2"></span>
-                  Red = Already booked (unavailable)
-                </div>
-              </div>
-            </div>
-          )}
+          </CardContent>
         </div>
-
-        {/* Guests Selection */}
-        <div className="border rounded-lg p-4 mb-6 bg-luxury-cream/20">
-          <label className="text-sm text-luxury-bronze font-medium mb-3 block">Number of Guests</label>
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <Users className="w-5 h-5 text-luxury-gold mr-3" />
-              <span className="text-lg font-medium text-luxury-brown">
-                {guests} guest{guests > 1 ? 's' : ''}
-              </span>
-            </div>
-            <div className="flex items-center space-x-3">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setGuests(Math.max(1, guests - 1))}
-                disabled={guests <= 1}
-                className="h-9 w-9 p-0 border-luxury-gold text-luxury-bronze hover:bg-luxury-gold hover:text-white"
-              >
-                -
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setGuests(Math.min(maxGuests, guests + 1))}
-                disabled={guests >= maxGuests}
-                className="h-9 w-9 p-0 border-luxury-gold text-luxury-bronze hover:bg-luxury-gold hover:text-white"
-              >
-                +
-              </Button>
-            </div>
-          </div>
-          <div className="text-xs text-luxury-light-brown mt-2">
-            Maximum {maxGuests} guests allowed
-          </div>
-        </div>
-
-        {/* Booking Button */}
-        <Button 
-          onClick={handleBookingInquiry}
-          disabled={!checkIn || !checkOut}
-          className="w-full luxury-button text-lg py-6 mb-4 disabled:opacity-50"
-        >
-          <ExternalLink className="w-5 h-5 mr-2" />
-          {checkIn && checkOut ? 'Send Booking Inquiry' : 'Select Dates to Continue'}
-        </Button>
-
-
-
-
-      </CardContent>
+      </div>
     </Card>
   );
 };

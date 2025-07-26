@@ -51,22 +51,49 @@
   background-color: hsl(142, 76%, 85%) !important; /* green hover for available dates */
 }
 
+/* Premium Calendar Styles */
+.luxury-calendar .rdp-day {
+  @apply w-10 h-10 rounded-lg border-0 text-sm font-medium transition-all duration-300;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  color: hsl(var(--luxury-bronze));
+  border: 2px solid transparent !important;
+}
+
+.luxury-calendar .rdp-day:hover:not(.rdp-day_selected):not(.rdp-day_disabled):not(.rdp-day_booked) {
+  background: linear-gradient(135deg, hsl(var(--luxury-gold)) 0%, hsl(var(--luxury-dark-gold)) 100%) !important;
+  color: white !important;
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(218, 165, 32, 0.3);
+}
+
+.luxury-calendar .rdp-day_selected {
+  background: linear-gradient(135deg, hsl(var(--luxury-gold)) 0%, hsl(var(--luxury-dark-gold)) 100%) !important;
+  color: white !important;
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(218, 165, 32, 0.4);
+}
+
 /* Available dates styling */
 .rdp-day:not(.rdp-day_disabled):not(.rdp-day_booked) {
-  background-color: hsl(142, 76%, 90%) !important; /* light green for available dates */
-  color: hsl(142, 76%, 20%) !important; /* dark green text */
-  border: 1px solid hsl(142, 76%, 60%) !important;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%) !important;
+  color: hsl(var(--luxury-bronze)) !important;
+  border: 1px solid hsl(var(--luxury-cream)) !important;
+  border-radius: 8px;
+  transition: all 0.3s ease;
 }
 
 /* Booked dates styling */
 .rdp-day_booked {
-  background-color: hsl(0, 84%, 60%) !important; /* red for booked dates */
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
   color: white !important;
-  border: 1px solid hsl(0, 84%, 50%) !important;
+  border: 1px solid #dc2626 !important;
+  border-radius: 8px;
+  cursor: not-allowed;
 }
 
 .rdp-day_booked:hover {
-  background-color: hsl(0, 84%, 50%) !important; /* darker red on hover */
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%) !important;
+  transform: none;
 }
 
 .rdp-button:focus-visible {
