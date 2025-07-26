@@ -91,7 +91,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Your Hostex iCal URL with cache-busting parameter
       const timestamp = Date.now();
-      const icalUrl = `https://hostex.io/web/ical/12104133.ics?t=0a9256ff71d4977ae9d3de94263d4173&ts=${timestamp}`;
+      const icalUrl = `https://hostex.io/web/ical/12282085.ics?t=b3ae9a3ed6a7f783df91cbff5f17d611&ts=${timestamp}`;
       
       // Fetch iCal data with no cache headers
       const response = await fetch(icalUrl, {
