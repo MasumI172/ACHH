@@ -16,9 +16,9 @@ import {
   Mail, 
   Clock,
   Send,
-  CheckCircle,
-  MessageCircle
+  CheckCircle
 } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 
 const contactFormSchema = insertInquirySchema.extend({
   checkInDate: z.string().min(1, "Check-in date is required"),
@@ -91,7 +91,7 @@ const Contact = () => {
       details: ["info@arabiancoastholidayhomes.com"],
     },
     {
-      icon: MessageCircle,
+      icon: FaWhatsapp,
       title: "WhatsApp",
       details: ["+971 55 816 6062"],
     },
@@ -156,7 +156,7 @@ const Contact = () => {
                       transition={{ duration: 0.6, delay: index * 0.1 + 0.2 }}
                       className="flex items-start space-x-4"
                     >
-                      <div className="bg-gold-500 text-white p-3 rounded-full">
+                      <div className="bg-black text-white p-3 rounded-full">
                         <IconComponent className="w-5 h-5" />
                       </div>
                       <div>
