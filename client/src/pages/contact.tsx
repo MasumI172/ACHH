@@ -60,7 +60,7 @@ const Contact = () => {
     onSuccess: () => {
       toast({
         title: "Inquiry Sent Successfully!",
-        description: "Thank you for your interest. We'll contact you within 24 hours.",
+        description: "Your inquiry has been sent via WhatsApp. We'll contact you within 24 hours.",
       });
       form.reset();
       queryClient.invalidateQueries({ queryKey: ["/api/inquiries"] });
@@ -78,6 +78,23 @@ const Contact = () => {
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
     try {
+      // Format the message for WhatsApp
+      const whatsappMessage = `*New Inquiry from Website*\n\n` +
+        `*Name:* ${data.firstName} ${data.lastName}\n` +
+        `*Email:* ${data.email}\n` +
+        `*Phone:* ${data.phone}\n` +
+        `*Check-in Date:* ${data.checkInDate}\n` +
+        `*Check-out Date:* ${data.checkOutDate}\n` +
+        `*Message:* ${data.message}\n\n` +
+        `_Sent from Arabian Coast Holiday Homes website_`;
+
+      // Send to WhatsApp
+      const whatsappUrl = `https://wa.me/971558166062?text=${encodeURIComponent(whatsappMessage)}`;
+      
+      // Open WhatsApp in a new window
+      window.open(whatsappUrl, '_blank');
+
+      // Also submit to our backend for record keeping
       await submitInquiry.mutateAsync(data);
     } finally {
       setIsSubmitting(false);
@@ -345,7 +362,7 @@ const Contact = () => {
                         </div>
                       ) : (
                         <div className="flex items-center justify-center">
-                          <Send className="w-4 h-4 mr-2" />
+                          <FaWhatsapp className="w-5 h-5 mr-2" />
                           Send Inquiry
                         </div>
                       )}
