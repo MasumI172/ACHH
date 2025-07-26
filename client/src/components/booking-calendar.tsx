@@ -33,9 +33,10 @@ const BookingCalendar = ({ propertyId, maxGuests }: BookingCalendarProps) => {
   const [showCalendar, setShowCalendar] = useState<'checkin' | 'checkout' | null>(null);
 
   // Fetch availability data from Hostex iCal
-  const { data: availabilityData, isLoading: isLoadingAvailability } = useQuery<AvailabilityData>({
+  const { data: availabilityData, isLoading: isLoadingAvailability, refetch } = useQuery<AvailabilityData>({
     queryKey: [`/api/properties/${propertyId}/availability`],
-    refetchInterval: 5 * 60 * 1000, // Refetch every 5 minutes
+    refetchInterval: 2 * 60 * 1000, // Refetch every 2 minutes (more frequent)
+    staleTime: 30 * 1000, // Consider data stale after 30 seconds
   });
 
   // Create function to check if a date is booked
@@ -130,11 +131,19 @@ const BookingCalendar = ({ propertyId, maxGuests }: BookingCalendarProps) => {
           <div className="text-luxury-light-brown">Real-time sync with Hostex calendar</div>
           {availabilityData && (
             <div className="text-xs text-luxury-light-brown mt-1 space-y-1">
-              <div>Last updated: {format(parseISO(availabilityData.lastUpdated), 'MMM d, h:mm a')}</div>
+              <div className="flex items-center justify-between">
+                <span>Last updated: {format(parseISO(availabilityData.lastUpdated), 'MMM d, h:mm a')}</span>
+                <button 
+                  onClick={() => refetch()}
+                  className="text-luxury-gold hover:text-luxury-bronze text-xs underline"
+                >
+                  Refresh
+                </button>
+              </div>
               <div>Current bookings: {availabilityData.bookings?.length || 0}</div>
               {(availabilityData as any).debug && (
-                <div className="text-xs text-red-600">
-                  Debug: Current date {format(parseISO((availabilityData as any).debug.currentDate), 'MMM d, yyyy')}
+                <div className="text-xs text-orange-600">
+                  Note: If dates show incorrectly, the iCal feed may need time to update from Hostex changes
                 </div>
               )}
             </div>
