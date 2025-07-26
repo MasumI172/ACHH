@@ -72,16 +72,7 @@ const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
             </div>
           </div>
 
-          <div className="flex items-center justify-between">
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-2xl luxury-heading text-luxury-brown">
-                  AED {Math.round(parseFloat(property.pricePerNight) * 3.67)}
-                </span>
-                <span className="text-sm luxury-text">/ night</span>
-              </div>
-              <p className="text-xs luxury-text uppercase tracking-wider">Starting from</p>
-            </div>
+          <div className="flex items-center justify-end">
             <Link href={`/properties/${property.id}`}>
               <Button className="luxury-button group">
                 <span className="group-hover:translate-x-1 transition-transform duration-300">View Details</span>

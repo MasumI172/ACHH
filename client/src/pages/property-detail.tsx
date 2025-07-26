@@ -220,10 +220,10 @@ const PropertyDetail = () => {
           >
             <div className="mb-4 p-4 bg-luxury-cream/30 rounded-xl border border-luxury-gold/20">
               <div className="text-center">
-                <div className="text-3xl font-bold text-luxury-brown mb-2">
-                  AED {Math.round(parseFloat(property.pricePerNight) * 3.67)}
-                </div>
-                <div className="text-luxury-light-brown">per night</div>
+                <h3 className="text-xl font-semibold text-luxury-brown mb-2">
+                  Check Availability
+                </h3>
+                <p className="text-sm text-luxury-light-brown">Select your preferred dates</p>
               </div>
             </div>
             <BookingCalendar 

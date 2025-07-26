@@ -144,3 +144,4 @@ Design preference: Luxury and modern aesthetic with warm beige/cream tones and g
 - **Navigation**: Added Instagram icon to both desktop and mobile navigation menus
 - **Header Enhancement**: Made header fixed with larger logo (h-20/28/32) and white background with shadow
 - **Property Addition**: Added "Stunning apartment" as new featured property in Our Properties section
+- **Price Removal**: Removed all price displays from property cards and detail pages per user request

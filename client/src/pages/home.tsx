@@ -56,7 +56,7 @@ const Home = () => {
               Find Your Perfect <span className="luxury-accent italic luxury-serif">Stay</span>
             </h2>
             <p className="text-lg luxury-text max-w-2xl mx-auto leading-relaxed luxury-serif">
-              Select your dates to discover available luxury properties with live pricing
+              Select your dates to discover available luxury properties
             </p>
           </motion.div>
           
