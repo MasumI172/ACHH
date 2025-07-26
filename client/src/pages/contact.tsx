@@ -92,7 +92,7 @@ const Contact = () => {
     {
       icon: Clock,
       title: "Hours",
-      details: ["24/7", "Office: 9:00 AM - 6:00 PM GST"],
+      details: ["24/7"],
     },
   ];
 
