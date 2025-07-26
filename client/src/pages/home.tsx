@@ -16,29 +16,33 @@ const Home = () => {
   const [checkInDate, setCheckInDate] = useState<string>("");
   const [checkOutDate, setCheckOutDate] = useState<string>("");
   
-  // Build query with date filtering
-  const queryParams = new URLSearchParams();
-  if (checkInDate) queryParams.append('checkIn', checkInDate);
-  if (checkOutDate) queryParams.append('checkOut', checkOutDate);
-  const queryString = queryParams.toString();
-  
+  // Always fetch all properties for the "Our Properties" section (no date filtering)
   const { data: allProperties, isLoading } = useQuery<Property[]>({
-    queryKey: ["/api/properties", queryString],
+    queryKey: ["/api/properties"],
     queryFn: async () => {
-      const url = `/api/properties${queryString ? `?${queryString}` : ''}`;
-      console.log('Fetching properties from:', url);
-      const response = await fetch(url);
+      const response = await fetch('/api/properties');
       if (!response.ok) throw new Error('Failed to fetch properties');
-      const data = await response.json();
-      console.log('Properties response:', data);
-      return data;
+      return response.json();
     },
-    staleTime: 0, // Always refetch when query key changes
-    cacheTime: 0, // Don't cache the results
   });
 
-  // Use all properties instead of just featured ones
+  // Use all properties for the "Our Properties" section
   const featuredProperties = allProperties;
+  
+  // Function to handle search with date filtering
+  const handleSearch = () => {
+    if (checkInDate && checkOutDate) {
+      // Navigate to properties page with date parameters
+      const searchParams = new URLSearchParams({
+        checkIn: checkInDate,
+        checkOut: checkOutDate
+      });
+      window.location.href = `/properties?${searchParams.toString()}`;
+    } else {
+      // Navigate to properties page without filters
+      window.location.href = '/properties';
+    }
+  };
 
   const testimonials = [
     {
@@ -105,11 +109,12 @@ const Home = () => {
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-luxury-gold"
                 />
               </div>
-              <Link href="/properties">
-                <Button className="w-full luxury-button">
-                  Search Properties
-                </Button>
-              </Link>
+              <Button 
+                onClick={handleSearch}
+                className="w-full luxury-button"
+              >
+                Search Properties
+              </Button>
             </div>
           </div>
         </div>
@@ -143,25 +148,11 @@ const Home = () => {
                 </div>
               ))}
             </div>
-          ) : featuredProperties && featuredProperties.length > 0 ? (
+          ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {featuredProperties.map((property, index) => (
+              {featuredProperties?.map((property, index) => (
                 <PropertyCard key={property.id} property={property} index={index} />
               ))}
-            </div>
-          ) : (
-            <div className="text-center py-12">
-              <p className="text-lg text-gray-600 mb-4">No properties available for the selected dates.</p>
-              <p className="text-sm text-gray-500">Please try different dates or clear your search to see all properties.</p>
-              <Button 
-                onClick={() => {
-                  setCheckInDate("");
-                  setCheckOutDate("");
-                }}
-                className="mt-4 luxury-button"
-              >
-                Clear Dates
-              </Button>
             </div>
           )}
 

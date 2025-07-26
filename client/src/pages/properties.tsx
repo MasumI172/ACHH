@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import PropertyCard from "@/components/property-card";
@@ -13,9 +13,33 @@ const Properties = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [priceRange, setPriceRange] = useState<string>("all");
+  const [checkInDate, setCheckInDate] = useState<string>("");
+  const [checkOutDate, setCheckOutDate] = useState<string>("");
+
+  // Check for URL parameters on component mount
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const checkIn = urlParams.get('checkIn');
+    const checkOut = urlParams.get('checkOut');
+    
+    if (checkIn) setCheckInDate(checkIn);
+    if (checkOut) setCheckOutDate(checkOut);
+  }, []);
+
+  // Build query with date filtering if dates are present
+  const queryParams = new URLSearchParams();
+  if (checkInDate) queryParams.append('checkIn', checkInDate);
+  if (checkOutDate) queryParams.append('checkOut', checkOutDate);
+  const queryString = queryParams.toString();
 
   const { data: properties, isLoading } = useQuery<Property[]>({
-    queryKey: ["/api/properties"],
+    queryKey: ["/api/properties", queryString],
+    queryFn: async () => {
+      const url = `/api/properties${queryString ? `?${queryString}` : ''}`;
+      const response = await fetch(url);
+      if (!response.ok) throw new Error('Failed to fetch properties');
+      return response.json();
+    },
   });
 
   const categories = [
