@@ -72,7 +72,7 @@ const Navigation = () => {
                 </span>
               </Link>
             ))}
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-luxury-bronze hover:text-luxury-gold transition-all duration-300 hover:scale-110">
+            <a href="https://www.instagram.com/arabiancoastholidayhomes/profilecard/?igsh=dDdpYXk1Nzhnc254" target="_blank" rel="noopener noreferrer" className="text-luxury-bronze hover:text-luxury-gold transition-all duration-300 hover:scale-110">
               <Instagram className="h-5 w-5" />
             </a>
             <Link href="/contact">
@@ -108,7 +108,7 @@ const Navigation = () => {
                       </span>
                     </Link>
                   ))}
-                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-luxury-bronze hover:text-luxury-gold transition-all duration-300 hover:scale-110 mb-4">
+                  <a href="https://www.instagram.com/arabiancoastholidayhomes/profilecard/?igsh=dDdpYXk1Nzhnc254" target="_blank" rel="noopener noreferrer" className="text-luxury-bronze hover:text-luxury-gold transition-all duration-300 hover:scale-110 mb-4">
                     <Instagram className="h-6 w-6" />
                   </a>
                   <Link href="/contact">
