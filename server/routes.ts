@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertInquirySchema } from "@shared/schema";
 import { z } from "zod";
+import ical from "node-ical";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   
@@ -77,6 +78,64 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(inquiries);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch inquiries" });
+    }
+  });
+
+  // Get property availability from Hostex iCal
+  app.get("/api/properties/:id/availability", async (req, res) => {
+    try {
+      const propertyId = parseInt(req.params.id);
+      if (isNaN(propertyId)) {
+        return res.status(400).json({ message: "Invalid property ID" });
+      }
+
+      // Your Hostex iCal URL
+      const icalUrl = "https://hostex.io/web/ical/12104133.ics?t=0a9256ff71d4977ae9d3de94263d4173";
+      
+      // Fetch iCal data
+      const response = await fetch(icalUrl);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch iCal: ${response.statusText}`);
+      }
+      
+      const icalData = await response.text();
+      const events = ical.parseICS(icalData);
+      
+      // Process events to extract booking information
+      const bookings = [];
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      
+      for (let k in events) {
+        const event = events[k];
+        if (event.type === 'VEVENT') {
+          const startDate = new Date(event.start);
+          const endDate = new Date(event.end);
+          
+          // Only include future bookings
+          if (endDate >= today) {
+            bookings.push({
+              id: event.uid,
+              summary: event.summary || 'Booking',
+              start: event.start,
+              end: event.end,
+              status: event.status || 'CONFIRMED'
+            });
+          }
+        }
+      }
+      
+      // Sort bookings by start date
+      bookings.sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime());
+      
+      res.json({
+        propertyId,
+        lastUpdated: new Date().toISOString(),
+        bookings
+      });
+    } catch (error) {
+      console.error('Error fetching availability:', error);
+      res.status(500).json({ message: "Failed to fetch availability data" });
     }
   });
 

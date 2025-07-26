@@ -221,7 +221,6 @@ const PropertyDetail = () => {
             <BookingCalendar 
               propertyId={property.id} 
               maxGuests={property.maxGuests}
-              calendlyUrl="https://calendly.com/your-username/property-booking"
             />
           </motion.div>
         </div>
