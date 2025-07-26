@@ -94,12 +94,17 @@ const PropertyDetail = () => {
             <CarouselContent>
               {property.images.map((image, index) => (
                 <CarouselItem key={index}>
-                  <div className="relative h-96 md:h-[500px] rounded-2xl overflow-hidden">
+                  <div className="relative h-96 md:h-[500px] rounded-2xl overflow-hidden bg-luxury-cream/10">
                     <img
                       src={image}
                       alt={`${property.name} - Image ${index + 1}`}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                      loading={index === 0 ? "eager" : "lazy"}
+                      style={{
+                        filter: "contrast(1.05) saturate(1.1) brightness(1.02)"
+                      }}
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
                 </CarouselItem>
               ))}

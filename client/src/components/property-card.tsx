@@ -26,6 +26,10 @@ const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
             src={property.images[0]}
             alt={property.name}
             className="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
+            loading="lazy"
+            style={{
+              filter: "contrast(1.08) saturate(1.15) brightness(1.03)"
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-luxury-brown/20 via-transparent to-transparent"></div>
           <div className="absolute top-6 right-6">

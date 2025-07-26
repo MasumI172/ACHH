@@ -393,6 +393,24 @@
   }
 }
 
+/* Enhanced image quality settings */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.property-image {
+  image-rendering: -webkit-optimize-contrast;
+  filter: contrast(1.05) saturate(1.1) brightness(1.02);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.property-image:hover {
+  filter: contrast(1.08) saturate(1.15) brightness(1.05);
+}
+
 @layer utilities {
   .text-luxury-cream { color: hsl(var(--luxury-cream)); }
   .text-luxury-beige { color: hsl(var(--luxury-beige)); }
