@@ -21,8 +21,13 @@ import {
 import { FaWhatsapp } from "react-icons/fa";
 
 const contactFormSchema = insertInquirySchema.extend({
+  firstName: z.string().min(1, "First name is required"),
+  lastName: z.string().min(1, "Last name is required"),
+  email: z.string().email("Valid email is required"),
+  phone: z.string().min(1, "Phone number is required"),
   checkInDate: z.string().min(1, "Check-in date is required"),
   checkOutDate: z.string().min(1, "Check-out date is required"),
+  message: z.string().min(1, "Message is required"),
 });
 
 type ContactFormData = z.infer<typeof contactFormSchema>;
@@ -234,6 +239,7 @@ const Contact = () => {
                           {...form.register("firstName")}
                           placeholder="John"
                           className="mt-1"
+                          required
                         />
                         {form.formState.errors.firstName && (
                           <p className="text-red-500 text-sm mt-1">
@@ -251,6 +257,7 @@ const Contact = () => {
                           {...form.register("lastName")}
                           placeholder="Doe"
                           className="mt-1"
+                          required
                         />
                         {form.formState.errors.lastName && (
                           <p className="text-red-500 text-sm mt-1">
@@ -270,6 +277,7 @@ const Contact = () => {
                         {...form.register("email")}
                         placeholder="john@example.com"
                         className="mt-1"
+                        required
                       />
                       {form.formState.errors.email && (
                         <p className="text-red-500 text-sm mt-1">
@@ -288,6 +296,7 @@ const Contact = () => {
                         {...form.register("phone")}
                         placeholder="+1 (555) 123-4567"
                         className="mt-1"
+                        required
                       />
                       {form.formState.errors.phone && (
                         <p className="text-red-500 text-sm mt-1">
@@ -306,6 +315,7 @@ const Contact = () => {
                           type="date"
                           {...form.register("checkInDate")}
                           className="mt-1"
+                          required
                         />
                         {form.formState.errors.checkInDate && (
                           <p className="text-red-500 text-sm mt-1">
@@ -323,6 +333,7 @@ const Contact = () => {
                           type="date"
                           {...form.register("checkOutDate")}
                           className="mt-1"
+                          required
                         />
                         {form.formState.errors.checkOutDate && (
                           <p className="text-red-500 text-sm mt-1">
@@ -342,6 +353,7 @@ const Contact = () => {
                         placeholder="Tell us about your perfect vacation, special requirements, or any questions you have..."
                         rows={5}
                         className="mt-1"
+                        required
                       />
                       {form.formState.errors.message && (
                         <p className="text-red-500 text-sm mt-1">
@@ -352,8 +364,8 @@ const Contact = () => {
 
                     <Button
                       type="submit"
-                      disabled={isSubmitting || submitInquiry.isPending}
-                      className="w-full bg-luxury-gold text-black hover:bg-luxury-dark-gold hover:text-white transition-colors duration-200 py-3 text-lg font-bold rounded-lg border-2 border-luxury-gold shadow-lg"
+                      disabled={isSubmitting || submitInquiry.isPending || !form.formState.isValid}
+                      className="w-full bg-luxury-gold text-black hover:bg-luxury-dark-gold hover:text-white transition-colors duration-200 py-3 text-lg font-bold rounded-lg border-2 border-luxury-gold shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isSubmitting || submitInquiry.isPending ? (
                         <div className="flex items-center">
