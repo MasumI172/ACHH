@@ -7,10 +7,10 @@
 /* React Day Picker Styles */
 .rdp {
   --rdp-cell-size: 40px;
-  --rdp-accent-color: hsl(38, 61%, 73%); /* luxury-gold */
-  --rdp-background-color: hsl(35, 24%, 90%); /* luxury-cream */
-  --rdp-accent-color-dark: hsl(28, 84%, 30%); /* luxury-bronze */
-  --rdp-background-color-dark: hsl(35, 24%, 90%);
+  --rdp-accent-color: hsl(142, 76%, 36%); /* green for available dates */
+  --rdp-background-color: hsl(142, 76%, 95%); /* light green background */
+  --rdp-accent-color-dark: hsl(142, 76%, 26%); /* darker green */
+  --rdp-background-color-dark: hsl(142, 76%, 95%);
   --rdp-outline: 2px solid var(--rdp-accent-color);
   --rdp-outline-selected: 3px solid var(--rdp-accent-color);
   --rdp-background-color-selected: var(--rdp-accent-color);
@@ -25,11 +25,30 @@
 }
 
 .rdp-day_today {
-  border: 2px solid var(--rdp-accent-color);
+  border: 2px solid hsl(38, 61%, 73%); /* gold border for today */
+  background-color: hsl(142, 76%, 90%) !important; /* light green for today */
 }
 
-.rdp-day:hover:not(.rdp-day_selected):not(.rdp-day_disabled) {
-  background-color: var(--rdp-background-color);
+.rdp-day:hover:not(.rdp-day_selected):not(.rdp-day_disabled):not(.rdp-day_booked) {
+  background-color: hsl(142, 76%, 85%) !important; /* green hover for available dates */
+}
+
+/* Available dates styling */
+.rdp-day:not(.rdp-day_disabled):not(.rdp-day_booked) {
+  background-color: hsl(142, 76%, 90%) !important; /* light green for available dates */
+  color: hsl(142, 76%, 20%) !important; /* dark green text */
+  border: 1px solid hsl(142, 76%, 60%) !important;
+}
+
+/* Booked dates styling */
+.rdp-day_booked {
+  background-color: hsl(0, 84%, 60%) !important; /* red for booked dates */
+  color: white !important;
+  border: 1px solid hsl(0, 84%, 50%) !important;
+}
+
+.rdp-day_booked:hover {
+  background-color: hsl(0, 84%, 50%) !important; /* darker red on hover */
 }
 
 .rdp-button:focus-visible {

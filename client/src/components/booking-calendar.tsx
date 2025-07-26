@@ -186,17 +186,19 @@ const BookingCalendar = ({ propertyId, maxGuests }: BookingCalendarProps) => {
                 modifiers={{
                   booked: (date) => isDateBooked(date)
                 }}
-                modifiersStyles={{
-                  booked: { 
-                    backgroundColor: '#ef4444', 
-                    color: 'white',
-                    fontWeight: 'bold'
-                  }
+                modifiersClassNames={{
+                  booked: 'rdp-day_booked'
                 }}
               />
-              <div className="mt-2 text-xs text-luxury-light-brown">
-                <span className="inline-block w-3 h-3 bg-red-500 rounded mr-2"></span>
-                Booked dates are shown in red
+              <div className="mt-3 space-y-1 text-xs">
+                <div className="flex items-center text-luxury-light-brown">
+                  <span className="inline-block w-3 h-3 bg-green-500 rounded mr-2"></span>
+                  Green = Available for booking
+                </div>
+                <div className="flex items-center text-luxury-light-brown">
+                  <span className="inline-block w-3 h-3 bg-red-500 rounded mr-2"></span>
+                  Red = Already booked (unavailable)
+                </div>
               </div>
             </div>
           )}
