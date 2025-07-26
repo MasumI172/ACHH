@@ -122,10 +122,11 @@ Design preference: Luxury and modern aesthetic with warm beige/cream tones and g
 - **Property Filters**: Simplified category filter to only show "All Properties" and "Apartment" options
 - **Booking System**: Replaced static booking form with interactive calendar component
 - **iCal Integration**: Added BookingCalendar component that:
-  - Fetches real-time availability from Hostex iCal feed every 5 minutes
+  - Fetches real-time availability from Hostex iCal feed every 2 minutes
   - Displays interactive calendar with booked dates highlighted in red  
   - Prevents booking conflicts by disabling unavailable date ranges
   - Includes guest count selection with property max limits
   - Shows last updated timestamp and booking count
   - Redirects to contact form with pre-filled booking details
   - Maintains luxury aesthetic with custom styling and gold accent colors
+- **Critical iCal Fix**: Updated to correct Hostex property iCal URL (ID: 12282085) to ensure accurate availability data matching the dashboard
