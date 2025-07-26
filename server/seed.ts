@@ -30,11 +30,11 @@ const sampleProperties: InsertProperty[] = [
     location: "Downtown Dubai",
     amenities: ["Burj Khalifa Views", "Infinity Pool Access", "High-Speed WiFi (800 Mbps)", "2 Smart TVs with Netflix", "Fully Equipped Kitchen", "Modern Gym", "Kids Play Area", "Workspace Area", "Queen-Sized Bed", "Furnished Balcony"],
     images: [
-      "/attached_assets/image_1753290137804.png",
-      "/attached_assets/image_1753290144736.png",
-      "/attached_assets/image_1753290150408.png",
-      "/attached_assets/image_1753290161945.png",
-      "/attached_assets/image_1753290176499.png"
+      "/attached_assets/5ced0677-b175-4c12-a40b-a75e5fb291ad_1753570231688.webp",
+      "/attached_assets/70dbb49c-e2b1-4b39-9364-c5b161834efa_1753570231689.webp",
+      "/attached_assets/404425fc-27ca-45d6-9326-85280c92e5d3_1753570231689.webp",
+      "/attached_assets/6dc502c2-2821-4b33-8782-45b3ba528142_1753570231688.avif",
+      "/attached_assets/8e8aedd6-64b3-46b3-98e1-df0ed642dd2b_1753570231688.jpeg"
     ],
     rating: "4.9",
     featured: false,
