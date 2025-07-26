@@ -57,7 +57,7 @@ const Footer = () => {
               House Rules
             </a>
             <span className="text-black">|</span>
-            <a href="#" className="hover:text-luxury-gold transition-colors text-black text-sm">
+            <a href="/refund-policy" className="hover:text-luxury-gold transition-colors text-black text-sm">
               Refund Policy
             </a>
           </div>
