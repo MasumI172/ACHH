@@ -160,11 +160,11 @@ const Contact = () => {
                         <IconComponent className="w-5 h-5" />
                       </div>
                       <div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                        <h3 className="text-lg font-semibold text-black mb-2">
                           {info.title}
                         </h3>
                         {info.details.map((detail, detailIndex) => (
-                          <p key={detailIndex} className="text-gray-600">
+                          <p key={detailIndex} className="text-black">
                             {detail}
                           </p>
                         ))}
@@ -175,7 +175,7 @@ const Contact = () => {
               </div>
 
               <div className="bg-gold-50 p-6 rounded-xl">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                <h3 className="text-lg font-semibold text-black mb-3">
                   Arabian Coast Holiday Homes
                 </h3>
                 <div className="space-y-2">
@@ -187,7 +187,7 @@ const Contact = () => {
                   ].map((feature, index) => (
                     <div key={index} className="flex items-center">
                       <CheckCircle className="w-4 h-4 text-gold-500 mr-2" />
-                      <span className="text-gray-700 text-sm">{feature}</span>
+                      <span className="text-black text-sm">{feature}</span>
                     </div>
                   ))}
                 </div>
