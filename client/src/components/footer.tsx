@@ -26,28 +26,28 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h3 className="text-lg luxury-subheading mb-3 text-luxury-cream font-semibold">Contact</h3>
+            <h3 className="text-lg luxury-subheading mb-3 text-black font-semibold">Contact</h3>
             <ul className="space-y-3">
               <li className="flex items-center space-x-3">
                 <FaWhatsapp className="h-5 w-5 text-luxury-gold" />
-                <span className="text-base text-luxury-cream font-medium">+971 4 123 4567</span>
+                <span className="text-base text-black font-medium">+971 4 123 4567</span>
               </li>
               <li className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-luxury-gold" />
-                <span className="text-base text-luxury-cream font-medium">info@arabiancoasthomes.com</span>
+                <span className="text-base text-black font-medium">info@arabiancoasthomes.com</span>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-luxury-beige/30 mt-6 pt-4 text-center">
-          <p className="text-sm text-luxury-cream font-medium">
+          <p className="text-sm text-black font-medium">
             &copy; 2024 Arabian Coast Holiday Homes. All rights reserved. |{" "}
-            <a href="#" className="hover:text-luxury-gold transition-colors">
+            <a href="#" className="hover:text-luxury-gold transition-colors text-black">
               Privacy Policy
             </a>{" "}
             |{" "}
-            <a href="#" className="hover:text-luxury-gold transition-colors">
+            <a href="#" className="hover:text-luxury-gold transition-colors text-black">
               Terms of Service
             </a>
           </p>
