@@ -19,7 +19,7 @@ function Router() {
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/properties" component={Properties} />
-        <Route path="/property/:id" component={PropertyDetail} />
+        <Route path="/properties/:id" component={PropertyDetail} />
         <Route path="/about" component={About} />
         <Route path="/contact" component={Contact} />
         <Route component={NotFound} />
