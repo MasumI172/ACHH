@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar as CalendarIcon, Users, ExternalLink } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { format, parseISO, isWithinInterval, startOfDay, endOfDay } from "date-fns";
 
 interface Booking {
@@ -323,10 +324,10 @@ const BookingCalendar = ({ propertyId, maxGuests }: BookingCalendarProps) => {
               <Button 
                 onClick={handleBookingInquiry}
                 disabled={!checkIn || !checkOut}
-                className="w-full luxury-button text-lg py-6 disabled:opacity-50 bg-gradient-to-r from-luxury-gold to-luxury-bronze hover:from-luxury-bronze hover:to-luxury-gold transition-all duration-500 shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
+                className="w-full luxury-button text-lg py-6 disabled:opacity-50 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 transition-all duration-500 shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
               >
-                <ExternalLink className="w-5 h-5 mr-3" />
-                {checkIn && checkOut ? 'Send Luxury Booking Inquiry' : 'Select Dates to Continue'}
+                <FaWhatsapp className="w-5 h-5 mr-3" />
+                {checkIn && checkOut ? 'Book via WhatsApp' : 'Select Dates to Continue'}
               </Button>
               
               {availabilityData?.lastUpdated && (
