@@ -336,7 +336,7 @@ const Contact = () => {
                     <Button
                       type="submit"
                       disabled={isSubmitting || submitInquiry.isPending}
-                      className="w-full bg-gold-500 text-white hover:bg-gold-600 transition-colors duration-200 py-3 text-lg font-semibold rounded-lg"
+                      className="w-full bg-luxury-gold text-black hover:bg-luxury-dark-gold hover:text-white transition-colors duration-200 py-3 text-lg font-bold rounded-lg border-2 border-luxury-gold shadow-lg"
                     >
                       {isSubmitting || submitInquiry.isPending ? (
                         <div className="flex items-center">
