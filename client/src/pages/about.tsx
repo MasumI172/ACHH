@@ -82,13 +82,8 @@ const About = () => {
                 </p>
               </div>
             </div>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl luxury-heading text-luxury-brown mb-12 leading-tight">
-              Arabian Coast<br />
-              <span className="luxury-accent italic luxury-serif font-light">Heritage</span>
-            </h1>
             <p className="text-xl md:text-2xl luxury-text leading-relaxed luxury-serif font-light max-w-4xl mx-auto">
-              We are the custodians of extraordinary experiences, crafting bespoke holiday journeys through our 
-              meticulously curated collection of luxury properties along the pristine Arabian coastline. Where tradition meets innovation.
+              We're your gateway to a perfect Dubai escape, blending luxury and comfort. Whether you're here for the skyline, the beaches, or the desert adventures, we've got you covered with stunning stays that feel just like home—but better.
             </p>
           </motion.div>
         </div>
