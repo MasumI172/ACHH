@@ -328,7 +328,7 @@ const BookingCalendar = ({ propertyId, maxGuests }: BookingCalendarProps) => {
               >
                 <FaWhatsapp className="w-4 h-4 mr-2 flex-shrink-0" />
                 <span className="truncate">
-                  {checkIn && checkOut ? 'Book via WhatsApp' : 'Select Dates to Continue'}
+                  {checkIn && checkOut ? 'Book via WhatsApp' : 'SELECT DATES'}
                 </span>
               </Button>
             </div>
