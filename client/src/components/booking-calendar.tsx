@@ -175,9 +175,6 @@ Please let me know the availability and rates. Thank you!`;
                       </div>
                       <div>
                         <h3 className="font-semibold text-luxury-brown text-lg luxury-serif">Select Check-in Date</h3>
-                        <p className="text-xs text-luxury-light-brown">
-                          {availabilityData?.bookings?.length || 0} existing booking(s) found
-                        </p>
                       </div>
                     </div>
                     
@@ -243,9 +240,6 @@ Please let me know the availability and rates. Thank you!`;
                       </div>
                       <div>
                         <h3 className="font-semibold text-luxury-brown text-lg luxury-serif">Select Check-out Date</h3>
-                        <p className="text-xs text-luxury-light-brown">
-                          Must be after {checkIn ? format(checkIn, 'MMM d') : 'check-in date'}
-                        </p>
                       </div>
                     </div>
                     
