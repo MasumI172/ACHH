@@ -170,13 +170,13 @@ const BookingCalendar = ({ propertyId, maxGuests }: BookingCalendarProps) => {
                       </div>
                     </div>
                     
-                    <div className="calendar-wrapper mb-4">
+                    <div className="calendar-wrapper mb-4 overflow-hidden">
                       <DayPicker
                         mode="single"
                         selected={checkIn}
                         onSelect={handleDateSelect}
                         disabled={disabledDays}
-                        className="luxury-calendar"
+                        className="luxury-calendar w-full"
                         modifiers={{
                           booked: (date) => isDateBooked(date)
                         }}
@@ -189,7 +189,7 @@ const BookingCalendar = ({ propertyId, maxGuests }: BookingCalendarProps) => {
                     <div className="p-4 bg-white rounded-xl border border-luxury-gold/10">
                       <div className="grid grid-cols-1 gap-2 text-sm">
                         <div className="flex items-center text-luxury-brown">
-                          <span className="inline-block w-4 h-4 bg-luxury-gold rounded mr-3"></span>
+                          <span className="inline-block w-4 h-4 bg-green-500 rounded mr-3"></span>
                           <span className="font-medium">Available for booking</span>
                         </div>
                         <div className="flex items-center text-luxury-brown">
@@ -235,13 +235,13 @@ const BookingCalendar = ({ propertyId, maxGuests }: BookingCalendarProps) => {
                       </div>
                     </div>
                     
-                    <div className="calendar-wrapper mb-4">
+                    <div className="calendar-wrapper mb-4 overflow-hidden">
                       <DayPicker
                         mode="single"
                         selected={checkOut}
                         onSelect={handleDateSelect}
                         disabled={disabledDays}
-                        className="luxury-calendar"
+                        className="luxury-calendar w-full"
                         modifiers={{
                           booked: (date) => isDateBooked(date)
                         }}
@@ -254,7 +254,7 @@ const BookingCalendar = ({ propertyId, maxGuests }: BookingCalendarProps) => {
                     <div className="p-4 bg-white rounded-xl border border-luxury-gold/10">
                       <div className="grid grid-cols-1 gap-2 text-sm">
                         <div className="flex items-center text-luxury-brown">
-                          <span className="inline-block w-4 h-4 bg-luxury-gold rounded mr-3"></span>
+                          <span className="inline-block w-4 h-4 bg-green-500 rounded mr-3"></span>
                           <span className="font-medium">Available for booking</span>
                         </div>
                         <div className="flex items-center text-luxury-brown">

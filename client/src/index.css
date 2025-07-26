@@ -73,13 +73,20 @@
   box-shadow: 0 8px 25px rgba(218, 165, 32, 0.4);
 }
 
-/* Available dates styling */
+/* Available dates styling - Green theme */
 .rdp-day:not(.rdp-day_disabled):not(.rdp-day_booked) {
-  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%) !important;
-  color: hsl(var(--luxury-bronze)) !important;
-  border: 1px solid hsl(var(--luxury-cream)) !important;
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%) !important;
+  color: #166534 !important;
+  border: 1px solid #22c55e !important;
   border-radius: 8px;
   transition: all 0.3s ease;
+}
+
+.rdp-day:hover:not(.rdp-day_selected):not(.rdp-day_disabled):not(.rdp-day_booked) {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%) !important;
+  color: white !important;
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
 }
 
 /* Booked dates styling */
@@ -336,11 +343,27 @@
   }
 
   .luxury-calendar .rdp-table {
-    @apply w-full border-spacing-1;
+    @apply w-full;
+    border-spacing: 4px;
   }
 
   .luxury-calendar .rdp-day {
-    @apply w-12 h-12 rounded-xl text-base font-medium;
+    @apply w-10 h-10 rounded-lg text-sm font-medium;
+    min-width: 40px;
+    max-width: 40px;
+  }
+
+  /* Responsive calendar sizing */
+  @media (max-width: 640px) {
+    .luxury-calendar .rdp-day {
+      @apply w-8 h-8 text-xs;
+      min-width: 32px;
+      max-width: 32px;
+    }
+    
+    .luxury-calendar .rdp-table {
+      border-spacing: 2px;
+    }
   }
 }
 
