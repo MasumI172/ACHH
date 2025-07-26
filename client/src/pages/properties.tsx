@@ -25,10 +25,10 @@ const Properties = () => {
 
   const priceRanges = [
     { value: "all", label: "All Prices" },
-    { value: "0-500", label: "Under $500" },
-    { value: "500-1000", label: "$500 - $1,000" },
-    { value: "1000-1500", label: "$1,000 - $1,500" },
-    { value: "1500+", label: "$1,500+" },
+    { value: "0-1800", label: "Under AED 1,800" },
+    { value: "1800-3600", label: "AED 1,800 - AED 3,600" },
+    { value: "3600-5500", label: "AED 3,600 - AED 5,500" },
+    { value: "5500+", label: "AED 5,500+" },
   ];
 
   const filteredProperties = properties?.filter((property) => {
@@ -43,17 +43,17 @@ const Properties = () => {
     
     if (priceRange !== "all") {
       switch (priceRange) {
-        case "0-500":
-          matchesPrice = price < 500;
+        case "0-1800":
+          matchesPrice = price < 1800;
           break;
-        case "500-1000":
-          matchesPrice = price >= 500 && price <= 1000;
+        case "1800-3600":
+          matchesPrice = price >= 1800 && price <= 3600;
           break;
-        case "1000-1500":
-          matchesPrice = price >= 1000 && price <= 1500;
+        case "3600-5500":
+          matchesPrice = price >= 3600 && price <= 5500;
           break;
-        case "1500+":
-          matchesPrice = price > 1500;
+        case "5500+":
+          matchesPrice = price > 5500;
           break;
       }
     }
@@ -64,7 +64,7 @@ const Properties = () => {
   return (
     <div className="min-h-screen pt-20">
       {/* Header */}
-      <section className="bg-gray-50 py-16">
+      <section className="bg-gray-50 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -72,19 +72,18 @@ const Properties = () => {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
               Our <span className="text-gold-500">Properties</span>
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Discover our complete collection of luxury holiday homes, each offering
-              unique experiences and world-class amenities
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Discover our complete collection of luxury holiday homes
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Filters */}
-      <section className="py-8 bg-white border-b">
+      <section className="py-6 bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -134,10 +133,10 @@ const Properties = () => {
       </section>
 
       {/* Properties Grid */}
-      <section className="py-16">
+      <section className="py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {isLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[...Array(9)].map((_, i) => (
                 <div key={i} className="bg-white rounded-2xl shadow-lg h-96 animate-pulse">
                   <div className="bg-gray-300 h-64 rounded-t-2xl"></div>
@@ -155,14 +154,14 @@ const Properties = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="mb-8"
+                className="mb-4"
               >
                 <p className="text-gray-600">
                   Showing {filteredProperties.length} of {properties?.length || 0} properties
                 </p>
               </motion.div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredProperties.map((property, index) => (
                   <PropertyCard key={property.id} property={property} index={index} />
                 ))}

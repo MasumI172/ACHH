@@ -130,3 +130,15 @@ Design preference: Luxury and modern aesthetic with warm beige/cream tones and g
   - Redirects to contact form with pre-filled booking details
   - Maintains luxury aesthetic with custom styling and gold accent colors
 - **Critical iCal Fix**: Updated to correct Hostex property iCal URL (ID: 12282085) to ensure accurate availability data matching the dashboard
+
+## Latest UI/UX Improvements (July 26, 2025)
+- **Social Media Updates**: Removed TikTok and moved Instagram to header navigation for better visibility
+- **Home Page Enhancement**: Added check-in/check-out date selection section with property search functionality
+- **Currency Conversion**: Updated all pricing displays to AED currency (conversion rate: USD to AED × 3.67)
+- **Contact Updates**: Changed "Private Inquiry" to "Get in Touch" throughout the site
+- **Footer Improvements**: Removed cluttered text, improved logo styling, enhanced text readability
+- **Spacing Optimization**: Reduced gaps and blank spaces throughout the website for better UI density
+- **Featured Collection**: Removed "Featured Collection" section to streamline homepage layout
+- **Price Display**: Added AED pricing on property detail pages and property cards
+- **Property Cards**: Removed "Contact for Exclusive Rates" text, replaced with actual AED pricing
+- **Navigation**: Added Instagram icon to both desktop and mobile navigation menus

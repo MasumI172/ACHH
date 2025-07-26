@@ -218,6 +218,14 @@ const PropertyDetail = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="lg:col-span-1"
           >
+            <div className="mb-4 p-4 bg-luxury-cream/30 rounded-xl border border-luxury-gold/20">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-luxury-brown mb-2">
+                  AED {Math.round(parseFloat(property.pricePerNight) * 3.67)}
+                </div>
+                <div className="text-luxury-light-brown">per night</div>
+              </div>
+            </div>
             <BookingCalendar 
               propertyId={property.id} 
               maxGuests={property.maxGuests}

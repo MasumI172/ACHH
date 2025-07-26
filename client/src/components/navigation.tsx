@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
+import { Menu, Instagram } from "lucide-react";
 import { motion } from "framer-motion";
 import logoPath from "@assets/ChatGPT Image May 29, 2025, 05_54_20 PM.png";
 
@@ -93,9 +93,12 @@ const Navigation = () => {
                 </span>
               </Link>
             ))}
+            <a href="#" className="text-luxury-bronze hover:text-luxury-gold transition-all duration-300 hover:scale-110">
+              <Instagram className="h-5 w-5" />
+            </a>
             <Link href="/contact">
               <Button className="luxury-button">
-                Private Inquiry
+                Get in Touch
               </Button>
             </Link>
           </div>
@@ -128,6 +131,9 @@ const Navigation = () => {
                       </span>
                     </Link>
                   ))}
+                  <a href="#" className="text-luxury-bronze hover:text-luxury-gold transition-all duration-300 hover:scale-110 mb-4">
+                    <Instagram className="h-6 w-6" />
+                  </a>
                   <Link href="/contact">
                     <Button
                       className="luxury-button"

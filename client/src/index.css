@@ -4,6 +4,24 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom Spacing Utilities */
+.luxury-section {
+  padding-top: 2rem !important;
+  padding-bottom: 2rem !important;
+}
+
+.luxury-gap-small {
+  gap: 1rem !important;
+}
+
+.luxury-gap-medium {
+  gap: 1.5rem !important;
+}
+
+.luxury-padding-reduced {
+  padding: 1rem !important;
+}
+
 /* React Day Picker Styles */
 .rdp {
   --rdp-cell-size: 40px;

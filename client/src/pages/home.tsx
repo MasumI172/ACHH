@@ -42,28 +42,68 @@ const Home = () => {
       {/* Hero Section */}
       <Hero />
 
-      {/* Featured Properties */}
-      <section id="featured-properties" className="luxury-section luxury-bg">
+      {/* Date Selection Section */}
+      <section className="luxury-section luxury-bg py-12">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-8"
+          >
+            <h2 className="text-3xl md:text-4xl luxury-heading text-luxury-brown mb-4">
+              Find Your Perfect <span className="luxury-accent italic luxury-serif">Stay</span>
+            </h2>
+            <p className="text-lg luxury-text max-w-2xl mx-auto leading-relaxed luxury-serif">
+              Select your dates to discover available luxury properties with live pricing
+            </p>
+          </motion.div>
+          
+          {/* Date Selection Component - I'll create this */}
+          <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Check-in</label>
+                <input 
+                  type="date" 
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-luxury-gold"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Check-out</label>
+                <input 
+                  type="date" 
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-luxury-gold"
+                />
+              </div>
+              <Link href="/properties">
+                <Button className="w-full luxury-button">
+                  Search Properties
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Properties Section */}
+      <section className="luxury-section luxury-bg py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-20"
+            className="text-center mb-12"
           >
-
-            <h2 className="text-5xl md:text-6xl lg:text-7xl luxury-heading text-luxury-brown mb-8 leading-tight">
-              Featured <span className="luxury-accent italic luxury-serif">Collection</span>
+            <h2 className="text-3xl md:text-4xl luxury-heading text-luxury-brown mb-4">
+              Our <span className="luxury-accent italic luxury-serif">Properties</span>
             </h2>
-            <p className="text-xl md:text-2xl luxury-text max-w-4xl mx-auto leading-relaxed luxury-serif font-light">
-              Meticulously selected properties where architectural excellence meets uncompromising luxury. 
-              Each residence represents the pinnacle of Arabian hospitality.
-            </p>
           </motion.div>
 
           {isLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[...Array(6)].map((_, i) => (
                 <div key={i} className="bg-white rounded-2xl shadow-lg h-96 animate-pulse">
                   <div className="bg-gray-300 h-64 rounded-t-2xl"></div>
@@ -76,7 +116,7 @@ const Home = () => {
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {featuredProperties?.map((property, index) => (
                 <PropertyCard key={property.id} property={property} index={index} />
               ))}
@@ -88,20 +128,16 @@ const Home = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-center mt-16"
+            className="text-center mt-8"
           >
             <Link href="/properties">
-              <Button className="luxury-button text-base px-16 py-5">
-                Explore Complete Collection
+              <Button className="luxury-button text-base px-12 py-4">
+                View All Properties
               </Button>
             </Link>
           </motion.div>
         </div>
       </section>
-
-
-
-
     </div>
   );
 };
