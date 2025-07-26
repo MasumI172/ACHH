@@ -13,7 +13,6 @@ import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { insertInquirySchema } from "@shared/schema";
 import { 
-  MapPin, 
   Phone, 
   Mail, 
   Clock,
@@ -86,11 +85,6 @@ const Contact = () => {
   };
 
   const contactInfo = [
-    {
-      icon: MapPin,
-      title: "Location",
-      details: ["Marina District, Arabian Coast", "PO Box 12345, UAE"],
-    },
     {
       icon: Phone,
       title: "Phone",
