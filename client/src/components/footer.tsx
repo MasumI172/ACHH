@@ -30,7 +30,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-center space-x-3">
                 <FaWhatsapp className="h-5 w-5 text-luxury-gold" />
-                <span className="text-base text-black font-medium">+971 4 123 4567</span>
+                <span className="text-base text-black font-medium">+971 55 816 6062</span>
               </li>
               <li className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-luxury-gold" />
@@ -42,15 +42,25 @@ const Footer = () => {
 
         <div className="border-t border-luxury-beige/30 mt-6 pt-4 text-center">
           <p className="text-sm text-black font-medium">
-            &copy; 2024 Arabian Coast Holiday Homes. All rights reserved. |{" "}
-            <a href="#" className="hover:text-luxury-gold transition-colors text-black">
-              Privacy Policy
-            </a>{" "}
-            |{" "}
-            <a href="#" className="hover:text-luxury-gold transition-colors text-black">
-              Terms of Service
-            </a>
+            &copy; 2024 Arabian Coast Holiday Homes. All rights reserved.
           </p>
+          <div className="mt-2 space-x-4">
+            <a href="#" className="hover:text-luxury-gold transition-colors text-black text-sm">
+              Terms and Conditions
+            </a>
+            <span className="text-black">|</span>
+            <a href="#" className="hover:text-luxury-gold transition-colors text-black text-sm">
+              Privacy Policy
+            </a>
+            <span className="text-black">|</span>
+            <a href="#" className="hover:text-luxury-gold transition-colors text-black text-sm">
+              House Rules
+            </a>
+            <span className="text-black">|</span>
+            <a href="#" className="hover:text-luxury-gold transition-colors text-black text-sm">
+              Refund Policy
+            </a>
+          </div>
         </div>
       </div>
     </footer>
