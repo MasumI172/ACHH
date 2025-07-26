@@ -366,7 +366,7 @@ const Contact = () => {
                     <Button
                       type="submit"
                       disabled={isSubmitting || submitInquiry.isPending || Object.keys(form.formState.errors).length > 0 || !form.watch("firstName") || !form.watch("lastName") || !form.watch("email") || !form.watch("phone") || !form.watch("checkInDate") || !form.watch("checkOutDate") || !form.watch("message")}
-                      className="w-full bg-luxury-gold text-black hover:bg-luxury-dark-gold hover:text-white transition-colors duration-200 py-3 text-lg font-bold rounded-lg border-2 border-luxury-gold shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full bg-green-500 text-white hover:bg-green-600 transition-colors duration-200 py-3 text-lg font-bold rounded-lg border-2 border-green-500 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isSubmitting || submitInquiry.isPending ? (
                         <div className="flex items-center">
