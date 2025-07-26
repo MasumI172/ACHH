@@ -140,17 +140,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
               const month = parseInt(event.end.substring(4, 6)) - 1; // Month is 0-indexed
               const day = parseInt(event.end.substring(6, 8));
               endDate = new Date(year, month, day);
+              // Subtract one day because checkout date should be available for new bookings
+              endDate.setDate(endDate.getDate() - 1);
             } else {
               endDate = new Date(event.end);
+              // For other formats, also subtract one day for checkout logic
+              endDate.setDate(endDate.getDate() - 1);
             }
           } else {
             endDate = new Date(event.end);
+            // Subtract one day for checkout logic
+            endDate.setDate(endDate.getDate() - 1);
           }
           
-          // Debug: log the booking period
-          if (event.summary && event.summary.includes('Kwadwo Tuffour')) {
-            console.log('Kwadwo Tuffour booking:', {
+          // Debug: log the booking period for Ali Mohammed
+          if (event.summary && event.summary.includes('Ali Mohammed')) {
+            console.log('Ali Mohammed booking:', {
               summary: event.summary,
+              originalEnd: event.end,
               startDate: startDate.toDateString(),
               endDate: endDate.toDateString(),
               todayDate: today.toDateString()
