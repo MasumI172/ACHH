@@ -93,18 +93,28 @@ const BookingCalendar = ({ propertyId, maxGuests }: BookingCalendarProps) => {
   ];
 
   const handleBookingInquiry = () => {
-    const checkInStr = checkIn ? format(checkIn, 'yyyy-MM-dd') : '';
-    const checkOutStr = checkOut ? format(checkOut, 'yyyy-MM-dd') : '';
+    if (!checkIn || !checkOut) return;
     
-    // Redirect to contact page with booking details
-    const params = new URLSearchParams({
-      propertyId: propertyId.toString(),
-      guests: guests.toString(),
-      ...(checkInStr && { checkIn: checkInStr }),
-      ...(checkOutStr && { checkOut: checkOutStr })
-    });
+    // Create WhatsApp message with booking details
+    const propertyName = "Arabian Coast Holiday Home";
+    const checkInDate = format(checkIn, 'EEEE, MMMM d, yyyy');
+    const checkOutDate = format(checkOut, 'EEEE, MMMM d, yyyy');
     
-    window.location.href = `/contact?${params.toString()}`;
+    const message = `Hello! I would like to book ${propertyName} for the following dates:
+
+📅 Check-in: ${checkInDate}
+📅 Check-out: ${checkOutDate}
+👥 Guests: ${guests}
+
+Please let me know the availability and rates. Thank you!`;
+    
+    // WhatsApp API URL
+    const whatsappNumber = "971558166062"; // +971 55 816 6062 without + and spaces
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    
+    // Open WhatsApp
+    window.open(whatsappUrl, '_blank');
   };
 
   if (isLoadingAvailability) {
