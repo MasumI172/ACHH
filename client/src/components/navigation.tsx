@@ -1,24 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, Instagram } from "lucide-react";
-import { motion } from "framer-motion";
 import logoPath from "@assets/ChatGPT Image May 29, 2025, 05_54_20 PM.png";
 
 const Navigation = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [location] = useLocation();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const navItems = [
     { href: "/", label: "Home" },
@@ -27,25 +16,17 @@ const Navigation = () => {
   ];
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-        isScrolled ? "luxury-nav shadow-lg py-4" : "bg-transparent py-8"
-      }`}
-    >
+    <nav className="static w-full bg-white shadow-md border-b border-gray-100 py-4 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Left Navigation */}
-          <div className="hidden md:flex items-center space-x-12">
+          <div className="hidden md:flex items-center space-x-8">
             {navItems.slice(0, 2).map((item) => (
               <Link key={item.href} href={item.href}>
                 <span
                   className={`text-sm font-medium transition-all duration-300 hover:text-luxury-gold cursor-pointer uppercase tracking-wider luxury-serif relative ${
                     location === item.href
                       ? "text-luxury-gold after:w-full"
-                      : isScrolled
-                      ? "text-luxury-brown"
                       : "text-luxury-brown"
                   } after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:bg-luxury-gold after:transition-all after:duration-300 ${
                     location === item.href ? "after:w-full" : "after:w-0 hover:after:w-full"
@@ -64,26 +45,24 @@ const Navigation = () => {
                 <img 
                   src={logoPath} 
                   alt="Arabian Coast Holiday Homes" 
-                  className="h-16 md:h-24 lg:h-28 w-auto object-contain transition-all duration-500 hover:scale-105"
-                style={{
-                  filter: 'drop-shadow(0 2px 8px rgba(60, 47, 31, 0.15))',
-                  opacity: '0.98'
-                }}
+                  className="h-12 md:h-16 lg:h-20 w-auto object-contain transition-all duration-500 hover:scale-105"
+                  style={{
+                    filter: 'drop-shadow(0 2px 8px rgba(60, 47, 31, 0.15))',
+                    opacity: '0.98'
+                  }}
                 />
               </div>
             </Link>
           </div>
 
           {/* Right Navigation */}
-          <div className="hidden md:flex items-center space-x-12">
+          <div className="hidden md:flex items-center space-x-8">
             {navItems.slice(2).map((item) => (
               <Link key={item.href} href={item.href}>
                 <span
                   className={`text-sm font-medium transition-all duration-300 hover:text-luxury-gold cursor-pointer uppercase tracking-wider luxury-serif relative ${
                     location === item.href
                       ? "text-luxury-gold after:w-full"
-                      : isScrolled
-                      ? "text-luxury-brown"
                       : "text-luxury-brown"
                   } after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:bg-luxury-gold after:transition-all after:duration-300 ${
                     location === item.href ? "after:w-full" : "after:w-0 hover:after:w-full"
@@ -93,7 +72,7 @@ const Navigation = () => {
                 </span>
               </Link>
             ))}
-            <a href="#" className="text-luxury-bronze hover:text-luxury-gold transition-all duration-300 hover:scale-110">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-luxury-bronze hover:text-luxury-gold transition-all duration-300 hover:scale-110">
               <Instagram className="h-5 w-5" />
             </a>
             <Link href="/contact">
@@ -110,9 +89,7 @@ const Navigation = () => {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className={`${
-                    isScrolled ? "text-luxury-brown" : "text-white"
-                  } hover:text-luxury-gold`}
+                  className="text-luxury-brown hover:text-luxury-gold"
                 >
                   <Menu className="h-6 w-6" />
                 </Button>
@@ -131,7 +108,7 @@ const Navigation = () => {
                       </span>
                     </Link>
                   ))}
-                  <a href="#" className="text-luxury-bronze hover:text-luxury-gold transition-all duration-300 hover:scale-110 mb-4">
+                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-luxury-bronze hover:text-luxury-gold transition-all duration-300 hover:scale-110 mb-4">
                     <Instagram className="h-6 w-6" />
                   </a>
                   <Link href="/contact">
@@ -148,7 +125,7 @@ const Navigation = () => {
           </div>
         </div>
       </div>
-    </motion.nav>
+    </nav>
   );
 };
 

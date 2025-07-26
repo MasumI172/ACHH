@@ -32,7 +32,7 @@ const PropertyDetail = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen pt-16">
+      <div className="min-h-screen">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="animate-pulse">
             <div className="bg-gray-300 h-96 rounded-2xl mb-8"></div>
@@ -71,7 +71,7 @@ const PropertyDetail = () => {
   }
 
   return (
-    <div className="min-h-screen pt-16">
+    <div className="min-h-screen">
       {/* Back Button */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <Link href="/properties">
