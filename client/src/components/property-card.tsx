@@ -47,7 +47,7 @@ const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
 
         <CardContent className="p-8">
           <div className="mb-4">
-            <h3 className="text-2xl luxury-subheading text-luxury-brown hover:text-luxury-gold transition-colors duration-300 leading-tight">
+            <h3 className="text-xl luxury-subheading text-luxury-brown hover:text-luxury-gold transition-colors duration-300 leading-tight">
               {property.name}
             </h3>
             <p className="text-luxury-bronze text-sm mt-2 luxury-serif">{property.location}</p>

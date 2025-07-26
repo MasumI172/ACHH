@@ -122,7 +122,7 @@ const PropertyDetail = () => {
           >
             <div className="flex items-start justify-between mb-6">
               <div>
-                <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
                   {property.name}
                 </h1>
                 <div className="flex items-center text-gray-600 mb-4">
