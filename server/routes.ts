@@ -153,16 +153,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
             endDate.setDate(endDate.getDate() - 1);
           }
           
-          // Debug: log the booking period for Ali Mohammed
-          if (event.summary && event.summary.includes('Ali Mohammed')) {
-            console.log('Ali Mohammed booking:', {
-              summary: event.summary,
-              originalEnd: event.end,
-              startDate: startDate.toDateString(),
-              endDate: endDate.toDateString(),
-              todayDate: today.toDateString()
-            });
-          }
+
           
           // Only include future bookings
           if (endDate >= today) {
@@ -184,13 +175,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json({
         propertyId,
         lastUpdated: new Date().toISOString(),
-        bookings,
-        debug: {
-          currentDate: today.toISOString(),
-          icalUrl: icalUrl,
-          totalEvents: Object.keys(events).length,
-          futureBookings: bookings.length
-        }
+        bookings
       });
     } catch (error) {
       console.error('Error fetching availability:', error);

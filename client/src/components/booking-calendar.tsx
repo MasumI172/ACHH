@@ -128,26 +128,7 @@ const BookingCalendar = ({ propertyId, maxGuests }: BookingCalendarProps) => {
           <div className="text-2xl font-bold text-luxury-gold mb-1">
             Check Availability
           </div>
-          <div className="text-luxury-light-brown">Real-time sync with Hostex calendar</div>
-          {availabilityData && (
-            <div className="text-xs text-luxury-light-brown mt-1 space-y-1">
-              <div className="flex items-center justify-between">
-                <span>Last updated: {format(parseISO(availabilityData.lastUpdated), 'MMM d, h:mm a')}</span>
-                <button 
-                  onClick={() => refetch()}
-                  className="text-luxury-gold hover:text-luxury-bronze text-xs underline"
-                >
-                  Refresh
-                </button>
-              </div>
-              <div>Current bookings: {availabilityData.bookings?.length || 0}</div>
-              {(availabilityData as any).debug && (
-                <div className="text-xs text-orange-600">
-                  Note: If dates show incorrectly, the iCal feed may need time to update from Hostex changes
-                </div>
-              )}
-            </div>
-          )}
+          <div className="text-luxury-light-brown">Select your dates to check availability</div>
         </div>
 
         {/* Date Selection */}
