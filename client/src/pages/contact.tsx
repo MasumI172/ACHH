@@ -33,6 +33,13 @@ const Contact = () => {
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
+  // Get URL parameters for pre-filling form
+  const urlParams = new URLSearchParams(window.location.search);
+  const checkInParam = urlParams.get('checkIn') || '';
+  const checkOutParam = urlParams.get('checkOut') || '';
+  const propertyIdParam = urlParams.get('propertyId');
+  const guestsParam = urlParams.get('guests');
+
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
@@ -40,10 +47,10 @@ const Contact = () => {
       lastName: "",
       email: "",
       phone: "",
-      checkInDate: "",
-      checkOutDate: "",
-      message: "",
-      propertyId: null,
+      checkInDate: checkInParam,
+      checkOutDate: checkOutParam,
+      message: guestsParam ? `I'm interested in booking for ${guestsParam} guest${parseInt(guestsParam) > 1 ? 's' : ''}.` : "",
+      propertyId: propertyIdParam ? parseInt(propertyIdParam) : null,
     },
   });
 
