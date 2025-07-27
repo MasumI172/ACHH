@@ -65,9 +65,9 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-16">
+    <div className="pt-16">
       {/* Hero Section */}
-      <section className="luxury-bg py-8">
+      <section className="luxury-bg py-8 pb-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
