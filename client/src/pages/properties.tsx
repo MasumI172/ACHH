@@ -77,7 +77,7 @@ const Properties = () => {
               <div className="space-y-2">
                 <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium">
                   <CheckCircle className="w-4 h-4" />
-                  Available for {new Date(checkInDate).toLocaleDateString()} - {new Date(checkOutDate).toLocaleDateString()}
+                  Available {new Date(checkInDate).toLocaleDateString('en-GB')} - {new Date(checkOutDate).toLocaleDateString('en-GB')}
                 </div>
                 <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                   Showing properties available for your selected dates
