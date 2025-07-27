@@ -62,7 +62,8 @@ const Terms = () => {
               <ul className="list-disc list-inside space-y-2">
                 <li>You agree to our Reservation Terms & Conditions and Guest House Rules, provided during the booking process.</li>
                 <li>You are responsible for ensuring the accuracy of all guest details provided.</li>
-                <li>All guests must present a valid Emirates ID or passport at check-in, in accordance with Dubai Tourism regulations.</li>
+                <li>All guests and visitors must be pre-registered with Arabian Coast Holiday Homes at least 24 hours in advance.</li>
+                <li>Upon arrival, all guests are required to present a valid ID to the building concierge for verification.</li>
               </ul>
             </section>
 
