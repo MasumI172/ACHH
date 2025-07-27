@@ -12,6 +12,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { insertInquirySchema } from "@shared/schema";
+import { format, parseISO } from "date-fns";
 import { 
   Mail, 
   Clock,
@@ -84,13 +85,17 @@ const Contact = () => {
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
     try {
+      // Format dates to be user-friendly
+      const checkInFormatted = format(parseISO(data.checkInDate), 'EEEE, MMMM d, yyyy');
+      const checkOutFormatted = format(parseISO(data.checkOutDate), 'EEEE, MMMM d, yyyy');
+      
       // Format the message for WhatsApp
       const whatsappMessage = `*New Inquiry from Website*\n\n` +
         `*Name:* ${data.firstName} ${data.lastName}\n` +
         `*Email:* ${data.email}\n` +
         `*Phone:* ${data.phone}\n` +
-        `*Check-in Date:* ${data.checkInDate}\n` +
-        `*Check-out Date:* ${data.checkOutDate}\n` +
+        `*Check-in Date:* ${checkInFormatted}\n` +
+        `*Check-out Date:* ${checkOutFormatted}\n` +
         `*Message:* ${data.message}\n\n` +
         `_Sent from Arabian Coast Holiday Homes website_`;
 
