@@ -75,13 +75,7 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="text-center max-w-5xl mx-auto"
           >
-            <div className="mb-8">
-              <div className="inline-block px-6 py-2 luxury-glass rounded-full border border-luxury-gold/30 mb-6">
-                <p className="text-xs uppercase tracking-[0.3em] text-luxury-bronze font-medium luxury-serif">
-                  O U R &nbsp; S T O R Y
-                </p>
-              </div>
-            </div>
+
             <p className="text-xl md:text-2xl luxury-text leading-relaxed luxury-serif font-light max-w-4xl mx-auto">
               We're your gateway to a perfect Dubai escape, blending luxury and comfort. Whether you're here for the skyline, the beaches, or the desert adventures, we've got you covered with stunning stays that feel just like home—but better.
             </p>
