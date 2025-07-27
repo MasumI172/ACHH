@@ -70,7 +70,7 @@ const Terms = () => {
               <h2 className="text-2xl font-semibold text-luxury-gold mb-4">5. Payments & Security Deposit</h2>
               <ul className="list-disc list-inside space-y-2">
                 <li>Full payment is required prior to check-in, unless agreed otherwise in writing.</li>
-                <li>A refundable security deposit may be required at check-in. This will be returned after property inspection, subject to no damages or violations of rules.</li>
+                <li>2000 AED deposit required for all bookings.</li>
                 <li>All payments are processed securely. We do not store or share card details.</li>
               </ul>
             </section>
