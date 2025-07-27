@@ -333,15 +333,19 @@ const Contact = () => {
                         value={form.watch("propertyName")}
                         onValueChange={(value) => form.setValue("propertyName", value)}
                       >
-                        <SelectTrigger className="mt-1 h-10">
+                        <SelectTrigger className="mt-1 h-10 min-w-0">
                           <SelectValue placeholder="Select a property" />
                         </SelectTrigger>
-                        <SelectContent className="max-h-60 overflow-auto">
+                        <SelectContent 
+                          className="max-h-60 overflow-auto z-50 min-w-[var(--radix-select-trigger-width)] max-w-[400px]"
+                          position="popper"
+                          sideOffset={4}
+                        >
                           {properties.map((property) => (
-                            <SelectItem key={property.id} value={property.name}>
-                              <div className="flex items-center py-1">
+                            <SelectItem key={property.id} value={property.name} className="cursor-pointer">
+                              <div className="flex items-center py-1 w-full">
                                 <Home className="w-4 h-4 mr-2 text-gray-500 flex-shrink-0" />
-                                <span className="truncate">{property.name}</span>
+                                <span className="truncate text-left">{property.name}</span>
                               </div>
                             </SelectItem>
                           ))}
@@ -435,7 +439,7 @@ const Contact = () => {
                       </div>
                     )}
                     <p className="text-sm text-gray-600 text-center">
-                      We typically respond within 24 hours.
+                      We typically respond within a few minutes.
                     </p>
                   </form>
                 </CardContent>
