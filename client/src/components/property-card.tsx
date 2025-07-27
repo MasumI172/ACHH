@@ -21,25 +21,28 @@ const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
       className="property-card"
     >
       <Card className="luxury-card overflow-hidden luxury-shadow transition-all duration-700 group">
-        <div className="relative overflow-hidden">
-          <img
-            src={property.images[0]}
-            alt={property.name}
-            className="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
-            loading="lazy"
-            style={{
-              filter: "contrast(1.08) saturate(1.15) brightness(1.03)"
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-luxury-brown/20 via-transparent to-transparent"></div>
-
-        </div>
+        <Link href={`/properties/${property.id}`}>
+          <div className="relative overflow-hidden cursor-pointer">
+            <img
+              src={property.images[0]}
+              alt={property.name}
+              className="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
+              loading="lazy"
+              style={{
+                filter: "contrast(1.08) saturate(1.15) brightness(1.03)"
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-luxury-brown/20 via-transparent to-transparent"></div>
+          </div>
+        </Link>
 
         <CardContent className="p-4 sm:p-6 lg:p-8">
           <div className="mb-4">
-            <h3 className="text-xl luxury-subheading text-luxury-brown hover:text-luxury-gold transition-colors duration-300 leading-tight">
-              {property.name}
-            </h3>
+            <Link href={`/properties/${property.id}`}>
+              <h3 className="text-xl luxury-subheading text-luxury-brown hover:text-luxury-gold transition-colors duration-300 leading-tight cursor-pointer">
+                {property.name}
+              </h3>
+            </Link>
             <p className="text-luxury-bronze text-sm mt-2 luxury-serif">{property.location}</p>
           </div>
 
