@@ -8,11 +8,13 @@ const HouseRules = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="bg-white rounded-lg shadow-lg p-8 md:p-12"
+          className="bg-white rounded-lg shadow-lg p-4 sm:p-6 md:p-8 lg:p-12 overflow-hidden"
         >
-          <h1 className="text-4xl font-bold text-luxury-brown mb-8">House Rules</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-luxury-brown mb-6 sm:mb-8 leading-tight break-words">
+            House Rules
+          </h1>
           
-          <div className="prose prose-lg max-w-none text-luxury-brown space-y-6">
+          <div className="prose prose-sm sm:prose-base lg:prose-lg max-w-none text-luxury-brown space-y-4 sm:space-y-6 break-words overflow-wrap-anywhere">
             <p>
               By booking with Arabian Coast Holiday Homes, all Guests and Visitors agree to the following rules. These are in place to maintain community standards, ensure safety, and comply with Dubai Tourism and building regulations.
             </p>
