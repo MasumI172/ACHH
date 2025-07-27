@@ -12,7 +12,7 @@ import type { Property } from "@shared/schema";
 const Properties = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
-  const [priceRange, setPriceRange] = useState<string>("all");
+
   const [checkInDate, setCheckInDate] = useState<string>("");
   const [checkOutDate, setCheckOutDate] = useState<string>("");
 
@@ -47,13 +47,7 @@ const Properties = () => {
     { value: "apartment", label: "Apartment" },
   ];
 
-  const priceRanges = [
-    { value: "all", label: "All Prices" },
-    { value: "0-1800", label: "Under AED 1,800" },
-    { value: "1800-3600", label: "AED 1,800 - AED 3,600" },
-    { value: "3600-5500", label: "AED 3,600 - AED 5,500" },
-    { value: "5500+", label: "AED 5,500+" },
-  ];
+
 
   const filteredProperties = properties?.filter((property) => {
     const matchesSearch = property.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -62,27 +56,7 @@ const Properties = () => {
     
     const matchesCategory = selectedCategory === "all" || property.category === selectedCategory;
     
-    const price = parseFloat(property.pricePerNight);
-    let matchesPrice = true;
-    
-    if (priceRange !== "all") {
-      switch (priceRange) {
-        case "0-1800":
-          matchesPrice = price < 1800;
-          break;
-        case "1800-3600":
-          matchesPrice = price >= 1800 && price <= 3600;
-          break;
-        case "3600-5500":
-          matchesPrice = price >= 3600 && price <= 5500;
-          break;
-        case "5500+":
-          matchesPrice = price > 5500;
-          break;
-      }
-    }
-    
-    return matchesSearch && matchesCategory && matchesPrice;
+    return matchesSearch && matchesCategory;
   });
 
   return (
@@ -139,18 +113,7 @@ const Properties = () => {
                 </SelectContent>
               </Select>
 
-              <Select value={priceRange} onValueChange={setPriceRange}>
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Price Range" />
-                </SelectTrigger>
-                <SelectContent>
-                  {priceRanges.map((range) => (
-                    <SelectItem key={range.value} value={range.value}>
-                      {range.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+
             </div>
           </motion.div>
         </div>
@@ -211,7 +174,6 @@ const Properties = () => {
                     onClick={() => {
                       setSearchTerm("");
                       setSelectedCategory("all");
-                      setPriceRange("all");
                     }}
                     className="bg-gold-500 text-white hover:bg-gold-600"
                   >

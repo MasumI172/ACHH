@@ -113,8 +113,8 @@ Please let me know the availability and rates. Thank you!`;
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
     
-    // Open WhatsApp
-    window.open(whatsappUrl, '_blank');
+    // Open WhatsApp in same window
+    window.location.href = whatsappUrl;
   };
 
   if (isLoadingAvailability) {

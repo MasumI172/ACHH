@@ -34,7 +34,7 @@ const HouseRules = () => {
                 <li>All Guests and Visitors must be pre-registered at least 24 hours in advance, with valid ID provided to Arabian Coast Holiday Homes and, if required, to building security.</li>
                 <li>Guests are fully responsible for their visitors' conduct.</li>
                 <li>Unregistered visitors may be denied access by community management.</li>
-                <li><strong>Visiting hours:</strong> 8:00 AM to 10:00 PM</li>
+
                 <li>Overnight stays by unregistered visitors are not permitted without prior written approval.</li>
                 <li>Visitor access to facilities like the pool or gym may be restricted by building rules.</li>
               </ul>
@@ -43,7 +43,7 @@ const HouseRules = () => {
             <section>
               <h2 className="text-2xl font-semibold text-luxury-gold mb-4">3. Check-In / Check-Out</h2>
               <ul className="list-disc list-inside space-y-2">
-                <li><strong>Check-in time:</strong> 3:00 PM</li>
+                <li><strong>Check-in time:</strong> From 3PM</li>
                 <li><strong>Check-out time:</strong> 11:00 AM</li>
                 <li>Late check-out without prior written approval will result in a full-night charge.</li>
                 <li>Guests must inspect the apartment on arrival and report issues within 24 hours.</li>

@@ -116,8 +116,8 @@ const Contact = () => {
       // Send to WhatsApp
       const whatsappUrl = `https://wa.me/971558166062?text=${encodeURIComponent(whatsappMessage)}`;
       
-      // Open WhatsApp in a new window
-      window.open(whatsappUrl, '_blank');
+      // Open WhatsApp in same window
+      window.location.href = whatsappUrl;
 
       // Also submit to our backend for record keeping
       await submitInquiry.mutateAsync(data);
@@ -198,7 +198,13 @@ const Contact = () => {
                       transition={{ duration: 0.6, delay: index * 0.1 + 0.2 }}
                       className="flex items-start space-x-4"
                     >
-                      <div className="bg-black text-white p-3 rounded-full">
+                      <div className={`p-3 rounded-full ${
+                        info.title === 'WhatsApp' 
+                          ? 'bg-green-500 text-white' 
+                          : info.title === 'Email'
+                          ? 'bg-blue-500 text-white'
+                          : 'bg-gray-600 text-white'
+                      }`}>
                         <IconComponent className="w-5 h-5" />
                       </div>
                       <div>

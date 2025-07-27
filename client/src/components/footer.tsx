@@ -49,7 +49,7 @@ const Footer = () => {
 
         <div className="border-t border-luxury-beige/30 mt-6 pt-4 text-center">
           <p className="text-sm text-black font-medium">
-            &copy; 2024 Arabian Coast Holiday Homes. All rights reserved.
+            &copy; 2025 Arabian Coast Holiday Homes. All rights reserved.
           </p>
           <div className="mt-2 space-x-4">
             <a href="/terms" className="hover:text-luxury-gold transition-colors text-black text-sm">
