@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,15 +9,17 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
-import { insertInquirySchema } from "@shared/schema";
+import { insertInquirySchema, type Property } from "@shared/schema";
 import { format, parseISO } from "date-fns";
 import { 
   Mail, 
   Clock,
   Send,
-  CheckCircle
+  CheckCircle,
+  Home
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 
@@ -26,6 +28,7 @@ const contactFormSchema = insertInquirySchema.extend({
   lastName: z.string().min(1, "Last name is required"),
   email: z.string().email("Valid email is required"),
   phone: z.string().min(1, "Phone number is required"),
+  propertyName: z.string().min(1, "Please select a property"),
   checkInDate: z.string().min(1, "Check-in date is required"),
   checkOutDate: z.string().min(1, "Check-out date is required"),
   message: z.string().min(1, "Message is required"),
@@ -38,12 +41,21 @@ const Contact = () => {
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
+  // Fetch properties for the dropdown
+  const { data: properties = [] } = useQuery<Property[]>({
+    queryKey: ["/api/properties"],
+  });
+
   // Get URL parameters for pre-filling form
   const urlParams = new URLSearchParams(window.location.search);
   const checkInParam = urlParams.get('checkIn') || '';
   const checkOutParam = urlParams.get('checkOut') || '';
   const propertyIdParam = urlParams.get('propertyId');
   const guestsParam = urlParams.get('guests');
+  
+  // Get property name from propertyId for pre-filling
+  const selectedProperty = properties.find(p => p.id === parseInt(propertyIdParam || ''));
+  const propertyNameParam = selectedProperty?.name || '';
 
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
@@ -53,6 +65,7 @@ const Contact = () => {
       lastName: "",
       email: "",
       phone: "",
+      propertyName: propertyNameParam,
       checkInDate: checkInParam,
       checkOutDate: checkOutParam,
       message: guestsParam ? `I'm interested in booking for ${guestsParam} guest${parseInt(guestsParam) > 1 ? 's' : ''}.` : "",
@@ -94,6 +107,7 @@ const Contact = () => {
         `*Name:* ${data.firstName} ${data.lastName}\n` +
         `*Email:* ${data.email}\n` +
         `*Phone:* ${data.phone}\n` +
+        `*Property:* ${data.propertyName}\n` +
         `*Check-in Date:* ${checkInFormatted}\n` +
         `*Check-out Date:* ${checkOutFormatted}\n` +
         `*Message:* ${data.message}\n\n` +
@@ -311,6 +325,40 @@ const Contact = () => {
                       )}
                     </div>
 
+                    <div>
+                      <Label htmlFor="propertyName" className="text-sm font-medium text-gray-700">
+                        Property of Interest *
+                      </Label>
+                      <Select
+                        value={form.watch("propertyName")}
+                        onValueChange={(value) => form.setValue("propertyName", value)}
+                      >
+                        <SelectTrigger className="mt-1">
+                          <SelectValue placeholder="Select a property">
+                            <div className="flex items-center">
+                              <Home className="w-4 h-4 mr-2 text-gray-500" />
+                              {form.watch("propertyName") || "Select a property"}
+                            </div>
+                          </SelectValue>
+                        </SelectTrigger>
+                        <SelectContent>
+                          {properties.map((property) => (
+                            <SelectItem key={property.id} value={property.name}>
+                              <div className="flex items-center">
+                                <Home className="w-4 h-4 mr-2 text-gray-500" />
+                                {property.name}
+                              </div>
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      {form.formState.errors.propertyName && (
+                        <p className="text-red-500 text-sm mt-1">
+                          {form.formState.errors.propertyName.message}
+                        </p>
+                      )}
+                    </div>
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <Label htmlFor="checkInDate" className="text-sm font-medium text-gray-700">
@@ -370,7 +418,7 @@ const Contact = () => {
 
                     <Button
                       type="submit"
-                      disabled={isSubmitting || submitInquiry.isPending || Object.keys(form.formState.errors).length > 0 || !form.watch("firstName") || !form.watch("lastName") || !form.watch("email") || !form.watch("phone") || !form.watch("checkInDate") || !form.watch("checkOutDate") || !form.watch("message")}
+                      disabled={isSubmitting || submitInquiry.isPending || Object.keys(form.formState.errors).length > 0 || !form.watch("firstName") || !form.watch("lastName") || !form.watch("email") || !form.watch("phone") || !form.watch("propertyName") || !form.watch("checkInDate") || !form.watch("checkOutDate") || !form.watch("message")}
                       className="w-full bg-green-500 text-white hover:bg-green-600 transition-colors duration-200 py-3 text-lg font-bold rounded-lg border-2 border-green-500 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isSubmitting || submitInquiry.isPending ? (
