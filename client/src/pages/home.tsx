@@ -161,7 +161,12 @@ const Home = () => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {featuredProperties?.map((property, index) => (
-                <PropertyCard key={property.id} property={property} index={index} />
+                <PropertyCard 
+                  key={property.id} 
+                  property={property} 
+                  index={index}
+                  showAvailability={false} // No availability badges on home page
+                />
               ))}
             </div>
           )}

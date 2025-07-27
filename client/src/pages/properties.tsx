@@ -288,7 +288,13 @@ const Properties = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredProperties.map((property, index) => (
-                  <PropertyCard key={property.id} property={property} index={index} />
+                  <PropertyCard 
+                    key={property.id} 
+                    property={property} 
+                    index={index}
+                    showAvailability={checkInDate && checkOutDate ? true : false}
+                    isAvailable={true} // For now, assume available if dates are selected - can be enhanced with real availability data
+                  />
                 ))}
               </div>
             </>

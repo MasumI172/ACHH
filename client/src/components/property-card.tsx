@@ -9,9 +9,11 @@ import type { Property } from "@shared/schema";
 interface PropertyCardProps {
   property: Property;
   index?: number;
+  isAvailable?: boolean;
+  showAvailability?: boolean;
 }
 
-const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
+const PropertyCard = ({ property, index = 0, isAvailable = false, showAvailability = false }: PropertyCardProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -44,10 +46,18 @@ const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
                   {property.name}
                 </h3>
               </Link>
-              <div className="inline-flex items-center gap-1 bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-medium ml-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                Available
-              </div>
+              {showAvailability && (
+                <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ml-2 ${
+                  isAvailable 
+                    ? 'bg-green-100 text-green-700' 
+                    : 'bg-red-100 text-red-700'
+                }`}>
+                  <div className={`w-2 h-2 rounded-full ${
+                    isAvailable ? 'bg-green-500' : 'bg-red-500'
+                  }`}></div>
+                  {isAvailable ? 'Available' : 'Not Available'}
+                </div>
+              )}
             </div>
             <p className="text-luxury-bronze text-sm mt-2 luxury-serif">{property.location}</p>
           </div>
