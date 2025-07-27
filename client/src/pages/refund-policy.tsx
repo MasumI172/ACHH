@@ -70,8 +70,8 @@ const RefundPolicy = () => {
             <section>
               <h2 className="text-2xl font-semibold text-luxury-gold mb-4">4. Security Deposit</h2>
               <ul className="list-disc list-inside space-y-2">
-                <li>A refundable security deposit may be required at check-in (cash or digital).</li>
-                <li>This will be returned after property inspection, subject to no damages, missing items, or violations of House Rules.</li>
+                <li>2000 AED security deposit required for all bookings (cash or digital).</li>
+                <li>This will be returned to guests after inspection of property/check-out, subject to no damages, missing items, or violations of House Rules.</li>
                 <li>If deductions are necessary, we will provide a written breakdown with supporting evidence.</li>
               </ul>
             </section>
