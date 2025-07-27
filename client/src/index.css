@@ -4,6 +4,28 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Hide scrollbar for webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* Hide scrollbar for Firefox */
+html {
+  scrollbar-width: none;
+}
+
+/* Alternative method for all browsers */
+body {
+  overflow-x: hidden;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer and Edge */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Webkit browsers */
+}
+
 /* Custom Spacing Utilities */
 .luxury-section {
   padding-top: 2rem !important;
