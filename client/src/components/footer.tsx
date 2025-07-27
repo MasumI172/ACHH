@@ -29,7 +29,7 @@ const Footer = () => {
             <h3 className="text-lg luxury-subheading mb-3 text-black font-semibold">Contact</h3>
             <ul className="space-y-3">
               <li className="flex items-center space-x-3">
-                <FaWhatsapp className="h-5 w-5 text-luxury-gold" />
+                <FaWhatsapp className="h-5 w-5 text-green-500" />
                 <a 
                   href="https://wa.me/971558166062" 
                   target="_blank" 
@@ -40,7 +40,7 @@ const Footer = () => {
                 </a>
               </li>
               <li className="flex items-center space-x-3">
-                <Mail className="h-5 w-5 text-luxury-gold" />
+                <Mail className="h-5 w-5 text-blue-500" />
                 <span className="text-base text-black font-medium">info@arabiancoastholidayhomes.com</span>
               </li>
             </ul>
