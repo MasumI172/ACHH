@@ -38,11 +38,17 @@ const PropertyCard = ({ property, index = 0 }: PropertyCardProps) => {
 
         <CardContent className="p-4 sm:p-6 lg:p-8">
           <div className="mb-4">
-            <Link href={`/properties/${property.id}`}>
-              <h3 className="text-xl luxury-subheading text-luxury-brown hover:text-luxury-gold transition-colors duration-300 leading-tight cursor-pointer">
-                {property.name}
-              </h3>
-            </Link>
+            <div className="flex items-start justify-between mb-2">
+              <Link href={`/properties/${property.id}`}>
+                <h3 className="text-xl luxury-subheading text-luxury-brown hover:text-luxury-gold transition-colors duration-300 leading-tight cursor-pointer">
+                  {property.name}
+                </h3>
+              </Link>
+              <div className="inline-flex items-center gap-1 bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-medium ml-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                Available
+              </div>
+            </div>
             <p className="text-luxury-bronze text-sm mt-2 luxury-serif">{property.location}</p>
           </div>
 

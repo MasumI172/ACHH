@@ -132,6 +132,9 @@ Design preference: Luxury and modern aesthetic with warm beige/cream tones and g
 - **Critical iCal Fix**: Updated to correct Hostex property iCal URL (ID: 12282085) to ensure accurate availability data matching the dashboard
 
 ## Latest UI/UX Improvements (July 27, 2025)
+- **Date Validation Fix**: Fixed critical glitch where past dates showed as "available" - added proper validation to prevent selecting past dates and ensure check-out is after check-in
+- **Property Availability Status**: Added green "Available" badges to all property cards with indicator dot for better visual feedback
+- **Date Picker Enhancement**: Removed problematic showPicker() calls that caused user gesture errors, improved natural date selection behavior
 - **House Rules Cleanup**: Removed "Visiting hours: 8:00 AM to 10:00 PM" section
 - **Check-in Time Update**: Changed "Check-in time: 3:00 PM" to "Check-in time: From 3PM"
 - **Properties Filter Removal**: Removed all price filter options from Properties page
