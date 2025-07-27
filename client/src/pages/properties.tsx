@@ -74,19 +74,115 @@ const Properties = () => {
               Our <span className="text-gold-500">Properties</span>
             </h1>
             {checkInDate && checkOutDate ? (
-              <div className="space-y-2">
+              <div className="space-y-4">
                 <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium">
                   <CheckCircle className="w-4 h-4" />
                   Available {new Date(checkInDate).toLocaleDateString('en-GB')} - {new Date(checkOutDate).toLocaleDateString('en-GB')}
                 </div>
-                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-4">
                   Showing properties available for your selected dates
                 </p>
+                
+                {/* Date Selection for changing dates */}
+                <div className="bg-white rounded-xl shadow-lg p-4 max-w-2xl mx-auto">
+                  <p className="text-sm font-medium text-gray-700 mb-3 text-center">Change your dates</p>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3 items-end">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Check-in</label>
+                      <input 
+                        type="date" 
+                        value={checkInDate}
+                        onChange={(e) => {
+                          setCheckInDate(e.target.value);
+                          // Update URL params
+                          const newUrl = new URL(window.location.href);
+                          newUrl.searchParams.set('checkIn', e.target.value);
+                          if (checkOutDate) newUrl.searchParams.set('checkOut', checkOutDate);
+                          window.history.replaceState({}, '', newUrl.toString());
+                        }}
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold-500"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Check-out</label>
+                      <input 
+                        type="date" 
+                        value={checkOutDate}
+                        onChange={(e) => {
+                          setCheckOutDate(e.target.value);
+                          // Update URL params
+                          const newUrl = new URL(window.location.href);
+                          if (checkInDate) newUrl.searchParams.set('checkIn', checkInDate);
+                          newUrl.searchParams.set('checkOut', e.target.value);
+                          window.history.replaceState({}, '', newUrl.toString());
+                        }}
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold-500"
+                      />
+                    </div>
+                    <Button 
+                      onClick={() => {
+                        // Clear dates and remove from URL
+                        setCheckInDate("");
+                        setCheckOutDate("");
+                        const newUrl = new URL(window.location.href);
+                        newUrl.searchParams.delete('checkIn');
+                        newUrl.searchParams.delete('checkOut');
+                        window.history.replaceState({}, '', newUrl.toString());
+                      }}
+                      variant="outline"
+                      className="text-sm"
+                    >
+                      Clear Dates
+                    </Button>
+                  </div>
+                </div>
               </div>
             ) : (
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Discover our complete collection of luxury holiday homes
-              </p>
+              <div className="space-y-4">
+                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                  Discover our complete collection of luxury holiday homes
+                </p>
+                
+                {/* Date Selection for initial search */}
+                <div className="bg-white rounded-xl shadow-lg p-4 max-w-2xl mx-auto">
+                  <p className="text-sm font-medium text-gray-700 mb-3 text-center">Select dates to check availability</p>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3 items-end">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Check-in</label>
+                      <input 
+                        type="date" 
+                        value={checkInDate}
+                        onChange={(e) => setCheckInDate(e.target.value)}
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold-500"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Check-out</label>
+                      <input 
+                        type="date" 
+                        value={checkOutDate}
+                        onChange={(e) => setCheckOutDate(e.target.value)}
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold-500"
+                      />
+                    </div>
+                    <Button 
+                      onClick={() => {
+                        if (checkInDate && checkOutDate) {
+                          // Update URL params to trigger availability filtering
+                          const newUrl = new URL(window.location.href);
+                          newUrl.searchParams.set('checkIn', checkInDate);
+                          newUrl.searchParams.set('checkOut', checkOutDate);
+                          window.history.replaceState({}, '', newUrl.toString());
+                        }
+                      }}
+                      disabled={!checkInDate || !checkOutDate}
+                      className="text-sm bg-gold-500 hover:bg-gold-600"
+                    >
+                      Check Availability
+                    </Button>
+                  </div>
+                </div>
+              </div>
             )}
           </motion.div>
         </div>
