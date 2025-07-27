@@ -131,21 +131,15 @@ Design preference: Luxury and modern aesthetic with warm beige/cream tones and g
   - Maintains luxury aesthetic with custom styling and gold accent colors
 - **Critical iCal Fix**: Updated to correct Hostex property iCal URL (ID: 12282085) to ensure accurate availability data matching the dashboard
 
-## Latest UI/UX Improvements (July 26, 2025)
-- **Social Media Updates**: Removed TikTok and moved Instagram to header navigation for better visibility
-- **Home Page Enhancement**: Added check-in/check-out date selection section with property search functionality
-- **Currency Conversion**: Updated all pricing displays to AED currency (conversion rate: USD to AED × 3.67)
-- **Contact Updates**: Changed "Private Inquiry" to "Get in Touch" throughout the site
-- **Footer Improvements**: Removed cluttered text, improved logo styling, enhanced text readability
-- **Spacing Optimization**: Reduced gaps and blank spaces throughout the website for better UI density
-- **Featured Collection**: Removed "Featured Collection" section to streamline homepage layout
-- **Price Display**: Added AED pricing on property detail pages and property cards
-- **Property Cards**: Removed "Contact for Exclusive Rates" text, replaced with actual AED pricing
-- **Navigation**: Added Instagram icon to both desktop and mobile navigation menus
-- **Header Enhancement**: Made header fixed with larger logo (h-20/28/32) and white background with shadow
-- **Property Addition**: Added "Stunning apartment" as new featured property in Our Properties section
-- **Price Removal**: Removed all price displays from property cards and detail pages per user request
-- **Text Update**: Changed "Find Your Perfect Stay" to "Your home away from home" on homepage
+## Latest UI/UX Improvements (July 27, 2025)
+- **House Rules Cleanup**: Removed "Visiting hours: 8:00 AM to 10:00 PM" section
+- **Check-in Time Update**: Changed "Check-in time: 3:00 PM" to "Check-in time: From 3PM"
+- **Properties Filter Removal**: Removed all price filter options from Properties page
+- **About Page Simplification**: Reduced to single text description only, removed stats/values/team sections
+- **WhatsApp Link Fix**: Changed WhatsApp links to open in same window instead of new tabs
+- **Contact Icon Enhancement**: Made contact icons colorful (WhatsApp green, Email blue, Hours gray)
+- **Copyright Update**: Updated footer copyright to "© 2025 Arabian Coast Holiday Homes. All rights reserved."
+- **Previous Updates**: Social media improvements, home page enhancements, currency conversion to AED, contact updates, footer improvements, spacing optimization, header enhancements, price removal per user request
 
 ## Deployment & Domain Configuration (July 27, 2025)
 - **Production Build**: Website successfully built for deployment (2.2MB optimized package)
