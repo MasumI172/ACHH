@@ -80,7 +80,7 @@ const Contact = () => {
     onSuccess: () => {
       toast({
         title: "Inquiry Sent Successfully!",
-        description: "Your inquiry has been sent via WhatsApp. We'll contact you within 24 hours.",
+        description: "Your inquiry has been sent via WhatsApp. We typically respond within a few minutes.",
       });
       form.reset();
       queryClient.invalidateQueries({ queryKey: ["/api/inquiries"] });
@@ -167,9 +167,9 @@ const Contact = () => {
       </section>
 
       {/* Contact Form and Info */}
-      <section className="py-20">
+      <section className="py-12 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             {/* Contact Information */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -248,8 +248,8 @@ const Contact = () => {
                     Send Us an Inquiry
                   </h2>
 
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                       <div>
                         <Label htmlFor="firstName" className="text-sm font-medium text-gray-700">
                           First Name *
@@ -258,7 +258,7 @@ const Contact = () => {
                           id="firstName"
                           {...form.register("firstName")}
                           placeholder="John"
-                          className="mt-1"
+                          className="mt-1 h-10"
                           required
                         />
                         {form.formState.errors.firstName && (
@@ -276,7 +276,7 @@ const Contact = () => {
                           id="lastName"
                           {...form.register("lastName")}
                           placeholder="Doe"
-                          className="mt-1"
+                          className="mt-1 h-10"
                           required
                         />
                         {form.formState.errors.lastName && (
@@ -296,7 +296,7 @@ const Contact = () => {
                         type="email"
                         {...form.register("email")}
                         placeholder="john@example.com"
-                        className="mt-1"
+                        className="mt-1 h-10"
                         required
                       />
                       {form.formState.errors.email && (
@@ -315,7 +315,7 @@ const Contact = () => {
                         type="tel"
                         {...form.register("phone")}
                         placeholder="+1 (555) 123-4567"
-                        className="mt-1"
+                        className="mt-1 h-10"
                         required
                       />
                       {form.formState.errors.phone && (
@@ -333,20 +333,15 @@ const Contact = () => {
                         value={form.watch("propertyName")}
                         onValueChange={(value) => form.setValue("propertyName", value)}
                       >
-                        <SelectTrigger className="mt-1">
-                          <SelectValue placeholder="Select a property">
-                            <div className="flex items-center">
-                              <Home className="w-4 h-4 mr-2 text-gray-500" />
-                              {form.watch("propertyName") || "Select a property"}
-                            </div>
-                          </SelectValue>
+                        <SelectTrigger className="mt-1 h-10">
+                          <SelectValue placeholder="Select a property" />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="max-h-60 overflow-auto">
                           {properties.map((property) => (
                             <SelectItem key={property.id} value={property.name}>
-                              <div className="flex items-center">
-                                <Home className="w-4 h-4 mr-2 text-gray-500" />
-                                {property.name}
+                              <div className="flex items-center py-1">
+                                <Home className="w-4 h-4 mr-2 text-gray-500 flex-shrink-0" />
+                                <span className="truncate">{property.name}</span>
                               </div>
                             </SelectItem>
                           ))}
@@ -359,7 +354,7 @@ const Contact = () => {
                       )}
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                       <div>
                         <Label htmlFor="checkInDate" className="text-sm font-medium text-gray-700">
                           Check-in Date *
@@ -368,7 +363,7 @@ const Contact = () => {
                           id="checkInDate"
                           type="date"
                           {...form.register("checkInDate")}
-                          className="mt-1"
+                          className="mt-1 h-10"
                           required
                         />
                         {form.formState.errors.checkInDate && (
@@ -386,7 +381,7 @@ const Contact = () => {
                           id="checkOutDate"
                           type="date"
                           {...form.register("checkOutDate")}
-                          className="mt-1"
+                          className="mt-1 h-10"
                           required
                         />
                         {form.formState.errors.checkOutDate && (
@@ -419,7 +414,7 @@ const Contact = () => {
                     <Button
                       type="submit"
                       disabled={isSubmitting || submitInquiry.isPending || Object.keys(form.formState.errors).length > 0 || !form.watch("firstName") || !form.watch("lastName") || !form.watch("email") || !form.watch("phone") || !form.watch("propertyName") || !form.watch("checkInDate") || !form.watch("checkOutDate") || !form.watch("message")}
-                      className="w-full bg-green-500 text-white hover:bg-green-600 transition-colors duration-200 py-3 text-lg font-bold rounded-lg border-2 border-green-500 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full bg-green-500 text-white hover:bg-green-600 transition-colors duration-200 py-4 text-base sm:text-lg font-bold rounded-lg border-2 border-green-500 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
                     >
                       {isSubmitting || submitInquiry.isPending ? (
                         <div className="flex items-center">
