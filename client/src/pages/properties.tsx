@@ -22,8 +22,15 @@ const Properties = () => {
     const checkIn = urlParams.get('checkIn');
     const checkOut = urlParams.get('checkOut');
     
-    if (checkIn) setCheckInDate(checkIn);
-    if (checkOut) setCheckOutDate(checkOut);
+    // Validate dates are not in the past and check-out is after check-in
+    const today = new Date().toISOString().split('T')[0];
+    
+    if (checkIn && checkIn >= today) {
+      setCheckInDate(checkIn);
+    }
+    if (checkOut && checkOut >= today && checkIn && checkOut > checkIn) {
+      setCheckOutDate(checkOut);
+    }
   }, []);
 
   // Build query with date filtering if dates are present
@@ -92,12 +99,24 @@ const Properties = () => {
                       <input 
                         type="date" 
                         value={checkInDate}
+                        min={new Date().toISOString().split('T')[0]}
                         onChange={(e) => {
-                          setCheckInDate(e.target.value);
+                          const newCheckIn = e.target.value;
+                          setCheckInDate(newCheckIn);
+                          
+                          // If check-out is before or equal to new check-in, clear it
+                          if (checkOutDate && checkOutDate <= newCheckIn) {
+                            setCheckOutDate("");
+                          }
+                          
                           // Update URL params
                           const newUrl = new URL(window.location.href);
-                          newUrl.searchParams.set('checkIn', e.target.value);
-                          if (checkOutDate) newUrl.searchParams.set('checkOut', checkOutDate);
+                          newUrl.searchParams.set('checkIn', newCheckIn);
+                          if (checkOutDate && checkOutDate > newCheckIn) {
+                            newUrl.searchParams.set('checkOut', checkOutDate);
+                          } else {
+                            newUrl.searchParams.delete('checkOut');
+                          }
                           window.history.replaceState({}, '', newUrl.toString());
                         }}
                         className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold-500"
@@ -108,6 +127,7 @@ const Properties = () => {
                       <input 
                         type="date" 
                         value={checkOutDate}
+                        min={checkInDate ? new Date(new Date(checkInDate).getTime() + 24*60*60*1000).toISOString().split('T')[0] : new Date().toISOString().split('T')[0]}
                         onChange={(e) => {
                           setCheckOutDate(e.target.value);
                           // Update URL params
@@ -152,7 +172,16 @@ const Properties = () => {
                       <input 
                         type="date" 
                         value={checkInDate}
-                        onChange={(e) => setCheckInDate(e.target.value)}
+                        min={new Date().toISOString().split('T')[0]}
+                        onChange={(e) => {
+                          const newCheckIn = e.target.value;
+                          setCheckInDate(newCheckIn);
+                          
+                          // If check-out is before or equal to new check-in, clear it
+                          if (checkOutDate && checkOutDate <= newCheckIn) {
+                            setCheckOutDate("");
+                          }
+                        }}
                         className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold-500"
                       />
                     </div>
@@ -161,6 +190,7 @@ const Properties = () => {
                       <input 
                         type="date" 
                         value={checkOutDate}
+                        min={checkInDate ? new Date(new Date(checkInDate).getTime() + 24*60*60*1000).toISOString().split('T')[0] : new Date().toISOString().split('T')[0]}
                         onChange={(e) => setCheckOutDate(e.target.value)}
                         className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold-500"
                       />
