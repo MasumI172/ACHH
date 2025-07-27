@@ -96,7 +96,17 @@ const Home = () => {
                 <input 
                   type="date" 
                   value={checkInDate}
-                  onChange={(e) => setCheckInDate(e.target.value)}
+                  min={new Date().toISOString().split('T')[0]}
+                  onChange={(e) => {
+                    const newCheckIn = e.target.value;
+                    setCheckInDate(newCheckIn);
+                    
+                    // If check-out is before or equal to new check-in, clear it
+                    if (checkOutDate && checkOutDate <= newCheckIn) {
+                      setCheckOutDate("");
+                    }
+                  }}
+                  onFocus={(e) => e.target.showPicker?.()}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-luxury-gold"
                 />
               </div>
@@ -105,7 +115,9 @@ const Home = () => {
                 <input 
                   type="date" 
                   value={checkOutDate}
+                  min={checkInDate ? new Date(new Date(checkInDate).getTime() + 24*60*60*1000).toISOString().split('T')[0] : new Date().toISOString().split('T')[0]}
                   onChange={(e) => setCheckOutDate(e.target.value)}
+                  onFocus={(e) => e.target.showPicker?.()}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-luxury-gold"
                 />
               </div>
