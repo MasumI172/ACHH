@@ -151,7 +151,7 @@ Design preference: Luxury and modern aesthetic with warm beige/cream tones and g
 - **Production Build**: Website successfully built for deployment (2.2MB optimized package)
 - **Hosting Platform**: Configured for Replit Deployments with autoscale pricing
 - **Custom Domain**: arabiancoastholidayhomes.com (hosted by mywebb) - DNS verified and configured
-- **SSL Certificate**: Domain verified ✅ - SSL certificate provisioning in final stages
+- **SSL Certificate**: Domain verified ✅ - Certificate shows replit.app instead of custom domain (requires primary domain setting)
 - **Database**: PostgreSQL configured with proper environment variables
 - **Date Formatting**: Updated WhatsApp inquiry messages to use friendly date format (Friday, January 26, 2024 instead of 2024-01-26)
 - **Security Update**: Patched CVE-2025-30208 vulnerability by upgrading Vite from 5.4.14 to 5.4.19
