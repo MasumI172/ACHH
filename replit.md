@@ -154,4 +154,5 @@ Design preference: Luxury and modern aesthetic with warm beige/cream tones and g
 - **SSL Certificate**: Domain verified ✅ - SSL certificate now provisioning (2-4 hours remaining)
 - **Database**: PostgreSQL configured with proper environment variables
 - **Date Formatting**: Updated WhatsApp inquiry messages to use friendly date format (Friday, January 26, 2024 instead of 2024-01-26)
-- **Deployment Status**: Live on custom domain, domain verified, SSL certificate provisioning in final stage
+- **Security Update**: Patched CVE-2025-30208 vulnerability by upgrading Vite from 5.4.14 to 5.4.19
+- **Deployment Status**: Live on custom domain, domain verified, SSL certificate provisioning in final stage, security vulnerabilities resolved
