@@ -146,3 +146,10 @@ Design preference: Luxury and modern aesthetic with warm beige/cream tones and g
 - **Property Addition**: Added "Stunning apartment" as new featured property in Our Properties section
 - **Price Removal**: Removed all price displays from property cards and detail pages per user request
 - **Text Update**: Changed "Find Your Perfect Stay" to "Your home away from home" on homepage
+
+## Deployment & Domain Configuration (July 27, 2025)
+- **Production Build**: Website successfully built for deployment (2.2MB optimized package)
+- **Hosting Platform**: Configured for Replit Deployments with autoscale pricing
+- **Custom Domain**: arabiancoastholidayhomes.com (hosted by mywebb) ready for DNS configuration
+- **SSL Certificate**: Automatic HTTPS provisioning through Replit
+- **Database**: PostgreSQL configured with proper environment variables
