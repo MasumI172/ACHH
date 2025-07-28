@@ -121,7 +121,12 @@ const Home = () => {
               </div>
               <Button 
                 onClick={handleSearch}
-                className="w-full luxury-button"
+                disabled={!checkInDate || !checkOutDate}
+                className={`w-full luxury-button transition-all duration-300 ${
+                  !checkInDate || !checkOutDate 
+                    ? 'opacity-50 cursor-not-allowed bg-gray-400 hover:bg-gray-400' 
+                    : ''
+                }`}
               >
                 Search Properties
               </Button>
