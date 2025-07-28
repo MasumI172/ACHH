@@ -1,6 +1,6 @@
 import { Mail } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
-import logoPath from "@assets/ChatGPT Image May 29, 2025, 05_54_20 PM.png";
+// Use inline SVG logo instead of importing image
 
 const Footer = () => {
   return (
@@ -10,15 +10,9 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-3">
             <div className="flex items-center">
-              <img 
-                src={logoPath} 
-                alt="Arabian Coast Holiday Homes" 
-                className="h-20 md:h-28 lg:h-32 w-auto object-contain transition-all duration-500 hover:scale-105"
-                style={{
-                  filter: 'drop-shadow(0 2px 8px rgba(60, 47, 31, 0.15))',
-                  opacity: '0.98'
-                }}
-              />
+              <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-luxury-gold tracking-wide">
+                Arabian Coast Holiday Homes
+              </div>
             </div>
           </div>
 
