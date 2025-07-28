@@ -137,15 +137,7 @@ Please let me know the availability and rates. Thank you!`;
       <div className="bg-gradient-to-br from-luxury-gold/5 to-luxury-cream/20 p-1">
         <div className="bg-white rounded-lg">
           <CardContent className="p-4 sm:p-6 lg:p-8">
-            <div className="text-center mb-8">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-luxury-gold/10 rounded-full mb-4">
-                <CalendarIcon className="w-8 h-8 text-luxury-gold" />
-              </div>
-              <div className="text-2xl font-bold text-luxury-brown mb-2 luxury-serif">
-                Check Availability
-              </div>
-              <div className="text-luxury-light-brown text-sm">Select your preferred dates to book your luxury stay</div>
-            </div>
+
 
             {/* Date Selection */}
             <div className="space-y-4 mb-8">
