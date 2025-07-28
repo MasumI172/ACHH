@@ -278,6 +278,8 @@ Please let me know the availability and rates. Thank you!`;
                         weekStartsOn={0}
                         fixedWeeks={true}
                         showOutsideDays={true}
+                        defaultMonth={checkIn || new Date()}
+                        fromMonth={checkIn || new Date()}
                       />
                     </div>
                     
