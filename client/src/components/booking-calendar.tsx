@@ -316,6 +316,23 @@ Please let me know the availability and rates. Thank you!`;
               </div>
             </div>
 
+            {/* Clear Dates Button */}
+            {(checkIn || checkOut) && (
+              <div className="mb-4">
+                <Button
+                  onClick={() => {
+                    setCheckIn(undefined);
+                    setCheckOut(undefined);
+                    setShowCalendar(null);
+                  }}
+                  variant="outline"
+                  className="w-full border-2 border-luxury-bronze/30 text-luxury-bronze hover:bg-luxury-bronze hover:text-white transition-all duration-300 rounded-xl py-3"
+                >
+                  Clear Dates
+                </Button>
+              </div>
+            )}
+
             {/* Booking Button */}
             <div className="pt-4 border-t-2 border-luxury-gold/10">
               <Button 
