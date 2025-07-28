@@ -20,7 +20,7 @@ RUN npm ci --legacy-peer-deps
 COPY . .
 
 # Ensure logo is available for build
-COPY public/logo-chatgpt.png public/logo-chatgpt.png
+COPY public/arabian-coast-logo.png public/arabian-coast-logo.png
 
 # Build the application
 RUN npm run build
