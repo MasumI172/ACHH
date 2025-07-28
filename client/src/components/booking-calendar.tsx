@@ -133,7 +133,7 @@ const BookingCalendar = ({ propertyId, maxGuests, propertyName }: BookingCalenda
 📅 Check-out: ${checkOutDate}
 👥 Guests: ${guests}
 
-Please let me know the availability and rates. Thank you!`;
+Thanks!`;
     
     // WhatsApp API URL
     const whatsappNumber = "971558166062"; // +971 55 816 6062 without + and spaces
@@ -412,7 +412,7 @@ Please let me know the availability and rates. Thank you!`;
               >
                 <FaWhatsapp className="w-4 h-4 mr-2 flex-shrink-0" />
                 <span className="truncate">
-                  {checkIn && checkOut ? 'Book via WhatsApp' : 'SELECT DATES'}
+                  {checkIn && checkOut ? 'Send booking inquiry' : 'SELECT DATES'}
                 </span>
               </Button>
             </div>
