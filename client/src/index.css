@@ -409,248 +409,71 @@ body::-webkit-scrollbar {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   }
 
-  /* Premium Luxury Calendar Styles */
-  .luxury-calendar {
-    font-family: 'Playfair Display', serif;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 244, 236, 0.95));
-    border-radius: 20px;
-    padding: 24px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1), 0 12px 24px rgba(0, 0, 0, 0.05);
-    border: 2px solid hsl(var(--luxury-gold) / 0.2);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .luxury-calendar::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, hsl(var(--luxury-gold) / 0.05), transparent);
-    border-radius: 18px;
-    pointer-events: none;
-  }
-
+  /* Enhanced Calendar Styles */
   .luxury-calendar .rdp-caption {
-    @apply mb-8;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 16px 24px;
-    border-bottom: 3px solid hsl(var(--luxury-gold) / 0.15);
-    position: relative;
-  }
-
-  .luxury-calendar .rdp-caption::after {
-    content: '';
-    position: absolute;
-    bottom: -3px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 3px;
-    background: linear-gradient(90deg, hsl(var(--luxury-gold)), hsl(var(--luxury-gold) / 0.4));
-    border-radius: 2px;
+    @apply mb-6;
   }
 
   .luxury-calendar .rdp-caption_label {
-    @apply text-2xl font-bold text-luxury-brown luxury-serif;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    letter-spacing: 0.5px;
-    position: relative;
-    z-index: 1;
+    @apply text-xl font-bold text-luxury-brown luxury-serif text-center;
   }
 
   .luxury-calendar .rdp-nav {
-    @apply flex items-center gap-4;
-    position: relative;
-    z-index: 1;
+    @apply flex items-center justify-between mb-4 relative;
   }
 
   .luxury-calendar .rdp-nav_button {
-    @apply w-12 h-12 rounded-xl flex items-center justify-center font-semibold;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 244, 236, 0.7));
-    border: 2px solid hsl(var(--luxury-gold) / 0.3);
-    color: hsl(var(--luxury-gold));
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-    backdrop-filter: blur(10px);
+    @apply w-10 h-10 rounded-xl hover:bg-luxury-gold hover:text-white transition-all duration-300 flex items-center justify-center;
+    background-color: hsl(var(--luxury-gold) / 0.1);
   }
 
-  .luxury-calendar .rdp-nav_button:hover {
-    background: linear-gradient(135deg, hsl(var(--luxury-gold)), hsl(var(--luxury-gold) / 0.9));
-    color: white;
-    transform: translateY(-2px) scale(1.05);
-    border-color: hsl(var(--luxury-gold));
-    box-shadow: 0 12px 30px hsl(var(--luxury-gold) / 0.4), 0 6px 15px rgba(0, 0, 0, 0.1);
+  .luxury-calendar .rdp-nav_button[name="previous-month"] {
+    @apply absolute left-0;
+  }
+
+  .luxury-calendar .rdp-nav_button[name="next-month"] {
+    @apply absolute right-0;
   }
 
   .luxury-calendar .rdp-head_cell {
-    @apply text-sm font-bold text-luxury-bronze uppercase tracking-widest py-4;
-    position: relative;
-    z-index: 1;
-  }
-
-  .luxury-calendar .rdp-head_cell::after {
-    content: '';
-    position: absolute;
-    bottom: 4px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30px;
-    height: 2px;
-    background: linear-gradient(90deg, hsl(var(--luxury-gold)), hsl(var(--luxury-gold) / 0.3));
-    border-radius: 1px;
+    @apply text-sm font-semibold text-luxury-bronze uppercase tracking-wider py-3;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
   .luxury-calendar .rdp-table {
-    @apply w-full;
-    border-spacing: 8px;
-    margin-top: 20px;
-    position: relative;
-    z-index: 1;
+    @apply w-full table-fixed;
+    border-spacing: 2px;
   }
 
   .luxury-calendar .rdp-head_cell,
   .luxury-calendar .rdp-cell {
-    width: 14.28%;
+    width: 14.28%; /* 100% / 7 days */
     text-align: center;
   }
 
   .luxury-calendar .rdp-day {
-    @apply w-12 h-12 rounded-xl text-sm font-semibold mx-auto;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 244, 236, 0.6));
-    border: 2px solid transparent;
-    color: hsl(var(--luxury-brown));
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    @apply w-full h-9 rounded-lg text-sm font-medium mx-auto;
+    min-width: 36px;
+    max-width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .luxury-calendar .rdp-day::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, hsl(var(--luxury-gold) / 0.1), transparent);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    border-radius: 14px;
-  }
-
-  .luxury-calendar .rdp-day:hover:not(.rdp-day_disabled):not(.rdp-day_selected) {
-    background: linear-gradient(135deg, hsl(var(--luxury-gold) / 0.2), hsl(var(--luxury-cream)));
-    color: hsl(var(--luxury-gold));
-    transform: translateY(-3px) scale(1.05);
-    border-color: hsl(var(--luxury-gold) / 0.4);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1), 0 6px 15px hsl(var(--luxury-gold) / 0.25);
-  }
-
-  .luxury-calendar .rdp-day:hover::before {
-    opacity: 1;
-  }
-
-  .luxury-calendar .rdp-day_selected {
-    background: linear-gradient(135deg, hsl(var(--luxury-gold)), hsl(var(--luxury-gold) / 0.85));
-    color: white;
-    font-weight: 700;
-    border-color: hsl(var(--luxury-gold));
-    box-shadow: 0 12px 30px hsl(var(--luxury-gold) / 0.5), 0 6px 15px hsl(var(--luxury-gold) / 0.3);
-    transform: translateY(-2px);
-  }
-
-  .luxury-calendar .rdp-day_selected::after {
-    content: '✓';
-    position: absolute;
-    top: 2px;
-    right: 3px;
-    font-size: 10px;
-    color: rgba(255, 255, 255, 0.9);
-    font-weight: 900;
-  }
-
-  .luxury-calendar .rdp-day_disabled {
-    color: hsl(var(--luxury-light-brown) / 0.3);
-    cursor: not-allowed;
-    background: rgba(248, 244, 236, 0.3);
-    box-shadow: none;
-  }
-
-  .luxury-calendar .rdp-day_outside {
-    color: hsl(var(--luxury-light-brown) / 0.25);
-    background: rgba(248, 244, 236, 0.2);
-  }
-
-  .luxury-calendar .rdp-day_booked {
-    background: linear-gradient(135deg, #ef4444, #dc2626);
-    color: white;
-    font-weight: 700;
-    border-color: #dc2626;
-    box-shadow: 0 12px 30px rgba(239, 68, 68, 0.4), 0 6px 15px rgba(220, 38, 38, 0.3);
-  }
-
-  .luxury-calendar .rdp-day_booked::after {
-    content: '✕';
-    position: absolute;
-    top: 2px;
-    right: 3px;
-    font-size: 10px;
-    color: rgba(255, 255, 255, 0.9);
-    font-weight: 900;
-  }
-
-  /* Premium Mobile Calendar Responsiveness */
-  @media (max-width: 640px) {
-    .luxury-calendar {
-      padding: 16px;
-      border-radius: 16px;
-    }
-    
-    .luxury-calendar .rdp-caption_label {
-      @apply text-lg;
-    }
-    
-    .luxury-calendar .rdp-nav_button {
-      @apply w-10 h-10;
-    }
-    
+  /* Responsive calendar sizing */
+  @media (max-width: 480px) {
     .luxury-calendar .rdp-day {
-      @apply w-10 h-10 text-xs;
+      @apply h-8 text-xs;
+      min-width: 28px;
     }
     
     .luxury-calendar .rdp-table {
-      border-spacing: 4px;
+      border-spacing: 1px;
     }
     
     .luxury-calendar .rdp-head_cell {
-      @apply text-xs py-3;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .luxury-calendar {
-      padding: 12px;
-    }
-    
-    .luxury-calendar .rdp-day {
-      @apply w-8 h-8 text-xs;
-    }
-    
-    .luxury-calendar .rdp-table {
-      border-spacing: 2px;
-    }
-    
-    .luxury-calendar .rdp-nav_button {
-      @apply w-8 h-8;
+      @apply text-xs py-2;
     }
   }
 }
