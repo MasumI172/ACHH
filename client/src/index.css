@@ -134,6 +134,103 @@ input[type="date"]::-webkit-clear-button {
   }
 }
 
+/* Enhanced Calendar Widget Styling for Browser Popup */
+::-webkit-calendar-picker-indicator {
+  filter: invert(84%) sepia(19%) saturate(1841%) hue-rotate(322deg) brightness(99%) contrast(89%);
+}
+
+/* Browser Calendar Popup Enhancements - Webkit */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  width: 24px;
+  height: 24px;
+  margin-left: 8px;
+  margin-right: 4px;
+}
+
+/* Calendar popup styling attempts - limited browser support */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  input[type="date"] {
+    font-size: 16px;
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+  }
+  
+  input[type="date"]::-webkit-datetime-edit {
+    padding: 2px 0;
+  }
+  
+  input[type="date"]::-webkit-datetime-edit-text {
+    color: hsl(30, 41%, 62%);
+    padding: 0 2px;
+  }
+  
+  input[type="date"]::-webkit-datetime-edit-month-field {
+    color: hsl(30, 41%, 42%);
+    font-weight: 600;
+  }
+  
+  input[type="date"]::-webkit-datetime-edit-day-field {
+    color: hsl(30, 41%, 42%);
+    font-weight: 600;
+  }
+  
+  input[type="date"]::-webkit-datetime-edit-year-field {
+    color: hsl(30, 41%, 42%);
+    font-weight: 600;
+  }
+}
+
+/* Fallback for calendar popup - limited control available */
+input[type="date"] {
+  min-width: 180px;
+  padding-right: 40px;
+  font-size: 16px;
+}
+
+/* Additional calendar enhancements - browser dependent */
+input[type="date"]:focus {
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+/* Try to influence calendar popup appearance */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background-size: 22px 22px;
+  filter: brightness(1.1) contrast(1.1);
+}
+
+/* Enhanced date field styling for better readability */
+input[type="date"]::-webkit-datetime-edit-month-field,
+input[type="date"]::-webkit-datetime-edit-day-field,
+input[type="date"]::-webkit-datetime-edit-year-field {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 3px 6px;
+  margin: 0 1px;
+  border-radius: 6px;
+}
+
+/* Improve overall date input appearance */
+input[type="date"] {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+/* Browser-specific improvements for calendar popup */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    padding: 6px;
+    margin: 0 6px 0 10px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+  
+  input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    background-color: rgba(212, 175, 55, 0.15);
+    transform: scale(1.05);
+  }
+}
+
 /* Premium Calendar Styles */
 .luxury-calendar .rdp-day {
   @apply w-10 h-10 rounded-lg border-0 text-sm font-medium transition-all duration-300;
