@@ -93,7 +93,7 @@ const Home = () => {
             <div className="bg-gradient-to-br from-luxury-gold/8 to-luxury-cream/15 p-1">
               <div className="bg-white rounded-lg">
                 <CardContent className="p-8">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
                     <div 
                       className="cursor-pointer"
                       onClick={() => {
@@ -142,12 +142,14 @@ const Home = () => {
                         className="w-full px-4 py-4 border-2 border-luxury-cream rounded-xl focus:outline-none focus:ring-2 focus:ring-luxury-gold focus:border-luxury-gold transition-all duration-300 text-luxury-brown font-medium text-lg luxury-shadow-sm hover:border-luxury-gold/50 cursor-pointer"
                       />
                     </div>
-                    <Button 
-                      onClick={handleSearch}
-                      className="w-full luxury-button text-lg py-4 px-6 bg-gradient-to-r from-luxury-gold to-luxury-gold/90 hover:from-luxury-gold/90 hover:to-luxury-gold transition-all duration-500 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 font-semibold uppercase tracking-wide"
-                    >
-                      Search Properties
-                    </Button>
+                    <div className="flex flex-col justify-end">
+                      <Button 
+                        onClick={handleSearch}
+                        className="w-full luxury-button text-lg py-4 px-6 bg-gradient-to-r from-luxury-gold to-luxury-gold/90 hover:from-luxury-gold/90 hover:to-luxury-gold transition-all duration-500 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 font-semibold uppercase tracking-wide h-[60px] flex items-center justify-center"
+                      >
+                        Search Properties
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </div>
