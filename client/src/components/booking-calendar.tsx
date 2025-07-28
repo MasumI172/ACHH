@@ -415,6 +415,15 @@ Thanks!`;
                   {checkIn && checkOut ? 'Send booking inquiry' : 'SELECT DATES'}
                 </span>
               </Button>
+              
+              {/* Response Time Message */}
+              {checkIn && checkOut && (
+                <div className="mt-3 text-center">
+                  <p className="text-sm text-luxury-bronze font-medium">
+                    We typically respond within a few minutes.
+                  </p>
+                </div>
+              )}
             </div>
             
           </CardContent>
