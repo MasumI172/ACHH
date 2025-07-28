@@ -100,7 +100,7 @@ const Home = () => {
                         const input = document.querySelector('input[type="date"][data-checkin="true"]') as HTMLInputElement;
                         if (input) {
                           input.focus();
-                          input.showPicker?.();
+                          input.click();
                         }
                       }}
                     >
@@ -119,9 +119,6 @@ const Home = () => {
                             setCheckOutDate("");
                           }
                         }}
-                        onClick={(e) => {
-                          e.currentTarget.showPicker?.();
-                        }}
                         className="w-full px-4 py-4 border-2 border-luxury-cream rounded-xl focus:outline-none focus:ring-2 focus:ring-luxury-gold focus:border-luxury-gold transition-all duration-300 text-luxury-brown font-medium text-lg luxury-shadow-sm hover:border-luxury-gold/50 cursor-pointer"
                       />
                     </div>
@@ -131,7 +128,7 @@ const Home = () => {
                         const input = document.querySelector('input[type="date"][data-checkout="true"]') as HTMLInputElement;
                         if (input) {
                           input.focus();
-                          input.showPicker?.();
+                          input.click();
                         }
                       }}
                     >
@@ -142,9 +139,6 @@ const Home = () => {
                         value={checkOutDate}
                         min={checkInDate ? new Date(new Date(checkInDate).getTime() + 24*60*60*1000).toISOString().split('T')[0] : new Date().toISOString().split('T')[0]}
                         onChange={(e) => setCheckOutDate(e.target.value)}
-                        onClick={(e) => {
-                          e.currentTarget.showPicker?.();
-                        }}
                         className="w-full px-4 py-4 border-2 border-luxury-cream rounded-xl focus:outline-none focus:ring-2 focus:ring-luxury-gold focus:border-luxury-gold transition-all duration-300 text-luxury-brown font-medium text-lg luxury-shadow-sm hover:border-luxury-gold/50 cursor-pointer"
                       />
                     </div>
