@@ -27,6 +27,7 @@ const contactFormSchema = insertInquirySchema.extend({
   firstName: z.string().min(1, "First name is required"),
   lastName: z.string().min(1, "Last name is required"),
   email: z.string().email("Valid email is required"),
+  countryCode: z.string().min(1, "Please select a country code"),
   phone: z.string().min(1, "Phone number is required"),
   propertyName: z.string().min(1, "Please select a property"),
   checkInDate: z.string().min(1, "Check-in date is required"),
@@ -35,6 +36,31 @@ const contactFormSchema = insertInquirySchema.extend({
 });
 
 type ContactFormData = z.infer<typeof contactFormSchema>;
+
+// Country codes with popular countries first
+const countryCodes = [
+  { code: "+971", country: "UAE", flag: "🇦🇪" },
+  { code: "+1", country: "US/Canada", flag: "🇺🇸" },
+  { code: "+44", country: "UK", flag: "🇬🇧" },
+  { code: "+33", country: "France", flag: "🇫🇷" },
+  { code: "+49", country: "Germany", flag: "🇩🇪" },
+  { code: "+39", country: "Italy", flag: "🇮🇹" },
+  { code: "+34", country: "Spain", flag: "🇪🇸" },
+  { code: "+86", country: "China", flag: "🇨🇳" },
+  { code: "+91", country: "India", flag: "🇮🇳" },
+  { code: "+81", country: "Japan", flag: "🇯🇵" },
+  { code: "+7", country: "Russia", flag: "🇷🇺" },
+  { code: "+55", country: "Brazil", flag: "🇧🇷" },
+  { code: "+61", country: "Australia", flag: "🇦🇺" },
+  { code: "+20", country: "Egypt", flag: "🇪🇬" },
+  { code: "+966", country: "Saudi Arabia", flag: "🇸🇦" },
+  { code: "+962", country: "Jordan", flag: "🇯🇴" },
+  { code: "+961", country: "Lebanon", flag: "🇱🇧" },
+  { code: "+965", country: "Kuwait", flag: "🇰🇼" },
+  { code: "+973", country: "Bahrain", flag: "🇧🇭" },
+  { code: "+974", country: "Qatar", flag: "🇶🇦" },
+  { code: "+968", country: "Oman", flag: "🇴🇲" },
+];
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -64,6 +90,7 @@ const Contact = () => {
       firstName: "",
       lastName: "",
       email: "",
+      countryCode: "+971", // Default to UAE
       phone: "",
       propertyName: propertyNameParam,
       checkInDate: checkInParam,
@@ -102,11 +129,14 @@ const Contact = () => {
       const checkInFormatted = format(parseISO(data.checkInDate), 'EEEE, MMMM d, yyyy');
       const checkOutFormatted = format(parseISO(data.checkOutDate), 'EEEE, MMMM d, yyyy');
       
+      // Combine country code with phone number
+      const fullPhoneNumber = `${data.countryCode} ${data.phone}`;
+      
       // Format the message for WhatsApp
       const whatsappMessage = `*New Inquiry from Website*\n\n` +
         `*Name:* ${data.firstName} ${data.lastName}\n` +
         `*Email:* ${data.email}\n` +
-        `*Phone:* ${data.phone}\n` +
+        `*Phone:* ${fullPhoneNumber}\n` +
         `*Property:* ${data.propertyName}\n` +
         `*Check-in Date:* ${checkInFormatted}\n` +
         `*Check-out Date:* ${checkOutFormatted}\n` +
@@ -119,8 +149,13 @@ const Contact = () => {
       // Open WhatsApp in same window
       window.location.href = whatsappUrl;
 
-      // Also submit to our backend for record keeping
-      await submitInquiry.mutateAsync(data);
+      // Also submit to our backend for record keeping (with combined phone number)
+      const submissionData = {
+        ...data,
+        phone: fullPhoneNumber,
+        propertyId: data.propertyId || null,
+      };
+      await submitInquiry.mutateAsync(submissionData);
     } finally {
       setIsSubmitting(false);
     }
@@ -316,17 +351,40 @@ const Contact = () => {
                       <Label htmlFor="phone" className="text-sm font-medium text-gray-700">
                         Phone Number *
                       </Label>
-                      <Input
-                        id="phone"
-                        type="tel"
-                        {...form.register("phone")}
-                        placeholder="+1 (555) 123-4567"
-                        className="mt-1 h-10"
-                        required
-                      />
-                      {form.formState.errors.phone && (
+                      <div className="grid grid-cols-3 gap-2 mt-1">
+                        <Select
+                          value={form.watch("countryCode")}
+                          onValueChange={(value) => form.setValue("countryCode", value)}
+                        >
+                          <SelectTrigger className="h-10">
+                            <SelectValue placeholder="Code" />
+                          </SelectTrigger>
+                          <SelectContent className="max-h-60">
+                            {countryCodes.map((country) => (
+                              <SelectItem key={country.code} value={country.code}>
+                                <div className="flex items-center gap-2">
+                                  <span>{country.flag}</span>
+                                  <span>{country.code}</span>
+                                  <span className="text-xs text-gray-500">{country.country}</span>
+                                </div>
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <div className="col-span-2">
+                          <Input
+                            id="phone"
+                            type="tel"
+                            {...form.register("phone")}
+                            placeholder="123456789"
+                            className="h-10"
+                            required
+                          />
+                        </div>
+                      </div>
+                      {(form.formState.errors.countryCode || form.formState.errors.phone) && (
                         <p className="text-red-500 text-sm mt-1">
-                          {form.formState.errors.phone.message}
+                          {form.formState.errors.countryCode?.message || form.formState.errors.phone?.message}
                         </p>
                       )}
                     </div>
