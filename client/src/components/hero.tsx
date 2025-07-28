@@ -23,15 +23,10 @@ const Hero = () => {
             transition={{ duration: 1.2 }}
             className="space-y-8"
           >
-            <div className="space-y-6">
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 tracking-tight">
-                Arabian Coast
-                <span className="block text-gold-600">Holiday Homes</span>
-              </h1>
+            <div className="space-y-4">
+
               
-              <p className="text-xl md:text-2xl text-gray-700 font-light max-w-3xl mx-auto">
-                Your home away from home
-              </p>
+
             </div>
 
 
