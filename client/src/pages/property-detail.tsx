@@ -115,14 +115,14 @@ const PropertyDetail = () => {
       </section>
 
       {/* Property Details */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        <div className="grid grid-cols-1 gap-8">
           {/* Main Content */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-2"
+            className="w-full"
           >
             <div className="flex items-start justify-between mb-6">
               <div>
@@ -210,20 +210,7 @@ const PropertyDetail = () => {
             </div>
           </motion.div>
 
-          {/* Booking Calendar */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="lg:col-span-1"
-          >
 
-            <BookingCalendar 
-              propertyId={property.id} 
-              maxGuests={property.maxGuests}
-              propertyName={property.name}
-            />
-          </motion.div>
         </div>
       </section>
     </div>
