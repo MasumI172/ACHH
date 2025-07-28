@@ -43,3 +43,13 @@ logs
 # Replit files
 .replit
 replit.nix
+
+# Development assets and archives
+attached_assets/
+*.tar.gz
+*.zip
+
+# Deployment documentation
+*deployment*.md
+*domain*.md
+*ssl*.md
