@@ -94,10 +94,20 @@ const Home = () => {
               <div className="bg-white rounded-lg">
                 <CardContent className="p-8">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
-                    <div>
-                      <label className="block text-sm font-semibold text-luxury-bronze mb-3 uppercase tracking-wider">Check-in</label>
+                    <div 
+                      className="cursor-pointer"
+                      onClick={() => {
+                        const input = document.querySelector('input[type="date"][data-checkin="true"]') as HTMLInputElement;
+                        if (input) {
+                          input.focus();
+                          input.showPicker?.();
+                        }
+                      }}
+                    >
+                      <label className="block text-sm font-semibold text-luxury-bronze mb-3 uppercase tracking-wider cursor-pointer">Check-in</label>
                       <input 
                         type="date" 
+                        data-checkin="true"
                         value={checkInDate}
                         min={new Date().toISOString().split('T')[0]}
                         onChange={(e) => {
@@ -109,17 +119,33 @@ const Home = () => {
                             setCheckOutDate("");
                           }
                         }}
-                        className="w-full px-4 py-4 border-2 border-luxury-cream rounded-xl focus:outline-none focus:ring-2 focus:ring-luxury-gold focus:border-luxury-gold transition-all duration-300 text-luxury-brown font-medium text-lg luxury-shadow-sm hover:border-luxury-gold/50"
+                        onClick={(e) => {
+                          e.currentTarget.showPicker?.();
+                        }}
+                        className="w-full px-4 py-4 border-2 border-luxury-cream rounded-xl focus:outline-none focus:ring-2 focus:ring-luxury-gold focus:border-luxury-gold transition-all duration-300 text-luxury-brown font-medium text-lg luxury-shadow-sm hover:border-luxury-gold/50 cursor-pointer"
                       />
                     </div>
-                    <div>
-                      <label className="block text-sm font-semibold text-luxury-bronze mb-3 uppercase tracking-wider">Check-out</label>
+                    <div 
+                      className="cursor-pointer"
+                      onClick={() => {
+                        const input = document.querySelector('input[type="date"][data-checkout="true"]') as HTMLInputElement;
+                        if (input) {
+                          input.focus();
+                          input.showPicker?.();
+                        }
+                      }}
+                    >
+                      <label className="block text-sm font-semibold text-luxury-bronze mb-3 uppercase tracking-wider cursor-pointer">Check-out</label>
                       <input 
                         type="date" 
+                        data-checkout="true"
                         value={checkOutDate}
                         min={checkInDate ? new Date(new Date(checkInDate).getTime() + 24*60*60*1000).toISOString().split('T')[0] : new Date().toISOString().split('T')[0]}
                         onChange={(e) => setCheckOutDate(e.target.value)}
-                        className="w-full px-4 py-4 border-2 border-luxury-cream rounded-xl focus:outline-none focus:ring-2 focus:ring-luxury-gold focus:border-luxury-gold transition-all duration-300 text-luxury-brown font-medium text-lg luxury-shadow-sm hover:border-luxury-gold/50"
+                        onClick={(e) => {
+                          e.currentTarget.showPicker?.();
+                        }}
+                        className="w-full px-4 py-4 border-2 border-luxury-cream rounded-xl focus:outline-none focus:ring-2 focus:ring-luxury-gold focus:border-luxury-gold transition-all duration-300 text-luxury-brown font-medium text-lg luxury-shadow-sm hover:border-luxury-gold/50 cursor-pointer"
                       />
                     </div>
                     <Button 
