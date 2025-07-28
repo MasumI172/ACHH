@@ -68,7 +68,13 @@ const Home = () => {
   return (
     <div className="min-h-screen pt-24">
       {/* Hero Section */}
-      <Hero />
+      <Hero 
+        checkInDate={checkInDate}
+        checkOutDate={checkOutDate}
+        onCheckInChange={setCheckInDate}
+        onCheckOutChange={setCheckOutDate}
+        onSearch={handleSearch}
+      />
 
 
 
@@ -82,12 +88,9 @@ const Home = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl luxury-heading text-luxury-brown mb-2">
+            <h2 className="text-3xl md:text-4xl luxury-heading text-luxury-brown mb-4">
               Our <span className="luxury-accent italic luxury-serif">Properties</span>
             </h2>
-            <p className="text-lg text-gray-600 mb-6">
-              Your home away from home
-            </p>
           </motion.div>
 
           {isLoading ? (
