@@ -70,70 +70,7 @@ const Home = () => {
       {/* Hero Section */}
       <Hero />
 
-      {/* Date Selection Section */}
-      <section className="luxury-section luxury-bg py-6">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-6"
-          >
-            <h2 className="text-3xl md:text-4xl luxury-heading text-luxury-brown mb-4">
-              Your home away from <span className="luxury-accent italic luxury-serif">home</span>
-            </h2>
-            <p className="text-lg luxury-text max-w-2xl mx-auto leading-relaxed luxury-serif">
-              Select your dates to discover available luxury properties
-            </p>
-          </motion.div>
-          
-          {/* Date Selection Component - I'll create this */}
-          <div className="bg-white rounded-xl shadow-lg p-6 mb-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Check-in</label>
-                <input 
-                  type="date" 
-                  value={checkInDate}
-                  min={new Date().toISOString().split('T')[0]}
-                  onChange={(e) => {
-                    const newCheckIn = e.target.value;
-                    setCheckInDate(newCheckIn);
-                    
-                    // If check-out is before or equal to new check-in, clear it
-                    if (checkOutDate && checkOutDate <= newCheckIn) {
-                      setCheckOutDate("");
-                    }
-                  }}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-luxury-gold"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Check-out</label>
-                <input 
-                  type="date" 
-                  value={checkOutDate}
-                  min={checkInDate ? new Date(new Date(checkInDate).getTime() + 24*60*60*1000).toISOString().split('T')[0] : new Date().toISOString().split('T')[0]}
-                  onChange={(e) => setCheckOutDate(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-luxury-gold"
-                />
-              </div>
-              <Button 
-                onClick={handleSearch}
-                disabled={!checkInDate || !checkOutDate}
-                className={`w-full luxury-button transition-all duration-300 ${
-                  !checkInDate || !checkOutDate 
-                    ? 'opacity-50 cursor-not-allowed bg-gray-400 hover:bg-gray-400' 
-                    : ''
-                }`}
-              >
-                Search Properties
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       {/* Properties Section */}
       <section className="luxury-section luxury-bg py-8">

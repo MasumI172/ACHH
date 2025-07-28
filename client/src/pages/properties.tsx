@@ -6,11 +6,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
-import { Search, Filter, MapPin, CheckCircle } from "lucide-react";
+import { Filter, MapPin, CheckCircle } from "lucide-react";
 import type { Property } from "@shared/schema";
 
 const Properties = () => {
-  const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
 
   const [checkInDate, setCheckInDate] = useState<string>("");
@@ -57,13 +56,8 @@ const Properties = () => {
 
 
   const filteredProperties = properties?.filter((property) => {
-    const matchesSearch = property.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         property.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         property.location.toLowerCase().includes(searchTerm.toLowerCase());
-    
     const matchesCategory = selectedCategory === "all" || property.category === selectedCategory;
-    
-    return matchesSearch && matchesCategory;
+    return matchesCategory;
   });
 
   return (
@@ -225,34 +219,20 @@ const Properties = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col lg:flex-row gap-4 items-center"
+            className="flex justify-center"
           >
-            <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-              <Input
-                placeholder="Search properties..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
-              />
-            </div>
-            
-            <div className="flex gap-4 items-center">
-              <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Category" />
-                </SelectTrigger>
-                <SelectContent>
-                  {categories.map((category) => (
-                    <SelectItem key={category.value} value={category.value}>
-                      {category.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-
-
-            </div>
+            <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Category" />
+              </SelectTrigger>
+              <SelectContent>
+                {categories.map((category) => (
+                  <SelectItem key={category.value} value={category.value}>
+                    {category.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </motion.div>
         </div>
       </section>
@@ -316,7 +296,6 @@ const Properties = () => {
                   </p>
                   <Button
                     onClick={() => {
-                      setSearchTerm("");
                       setSelectedCategory("all");
                     }}
                     className="bg-gold-500 text-white hover:bg-gold-600"
