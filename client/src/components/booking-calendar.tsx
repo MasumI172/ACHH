@@ -243,10 +243,12 @@ Please let me know the availability and rates. Thank you!`;
                         disabled={disabledDays}
                         className="luxury-calendar w-full"
                         modifiers={{
-                          booked: (date) => isDateBooked(date)
+                          booked: (date) => isDateBooked(date),
+                          checkin: checkIn ? (date) => date.getTime() === checkIn.getTime() : undefined
                         }}
                         modifiersClassNames={{
-                          booked: 'rdp-day_booked'
+                          booked: 'rdp-day_booked',
+                          checkin: 'rdp-day_checkin'
                         }}
                         weekStartsOn={0}
                         fixedWeeks={true}
@@ -264,6 +266,14 @@ Please let me know the availability and rates. Thank you!`;
                           <span className="inline-block w-4 h-4 bg-red-500 rounded mr-3"></span>
                           <span className="font-medium">Already booked (unavailable)</span>
                         </div>
+                        {checkIn && (
+                          <div className="flex items-center text-luxury-brown">
+                            <span className="inline-block w-4 h-4 bg-blue-500 rounded mr-3 relative">
+                              <span className="absolute -top-1 -right-1 text-white text-xs">✓</span>
+                            </span>
+                            <span className="font-medium">Your selected check-in date</span>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
