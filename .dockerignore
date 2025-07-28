@@ -11,10 +11,11 @@ coverage
 .cache
 .config
 .local
+# Keep only essential build files, exclude development assets
 attached_assets
 *.tar.gz
 *.zip
 *.md
 deployment-package
-dist
 generated-icon.png
+# Keep dist out during development but include public logo

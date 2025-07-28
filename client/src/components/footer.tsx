@@ -1,6 +1,6 @@
 import { Mail } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
-// Use inline SVG logo instead of importing image
+// Use the ChatGPT logo from public folder
 
 const Footer = () => {
   return (
@@ -10,9 +10,15 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-3">
             <div className="flex items-center">
-              <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-luxury-gold tracking-wide">
-                Arabian Coast Holiday Homes
-              </div>
+              <img 
+                src="/logo-chatgpt.png" 
+                alt="Arabian Coast Holiday Homes" 
+                className="h-20 md:h-28 lg:h-32 w-auto object-contain transition-all duration-500 hover:scale-105"
+                style={{
+                  filter: 'drop-shadow(0 2px 8px rgba(60, 47, 31, 0.15))',
+                  opacity: '0.98'
+                }}
+              />
             </div>
           </div>
 

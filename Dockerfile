@@ -16,8 +16,11 @@ ENV NODE_ENV=development
 # Install all dependencies (dev needed for build)
 RUN npm ci --legacy-peer-deps
 
-# Copy source code (excluding node_modules via .dockerignore)
+# Copy source code (excluding development assets via .dockerignore)
 COPY . .
+
+# Ensure logo is available for build
+COPY public/logo-chatgpt.png public/logo-chatgpt.png
 
 # Build the application
 RUN npm run build

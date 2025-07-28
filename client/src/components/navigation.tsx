@@ -3,7 +3,7 @@ import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, Instagram } from "lucide-react";
-// Use text logo instead of importing image
+// Use the ChatGPT logo from public folder
 
 const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -42,9 +42,15 @@ const Navigation = () => {
           <div className="absolute left-1/2 transform -translate-x-1/2">
             <Link href="/">
               <div className="flex items-center cursor-pointer group">
-                <div className="text-xl md:text-2xl lg:text-3xl font-bold text-luxury-gold tracking-wide transition-all duration-300 hover:scale-105">
-                  Arabian Coast Holiday Homes
-                </div>
+                <img 
+                  src="/logo-chatgpt.png" 
+                  alt="Arabian Coast Holiday Homes" 
+                  className="h-20 md:h-28 lg:h-32 w-auto object-contain transition-all duration-500 hover:scale-105"
+                  style={{
+                    filter: 'drop-shadow(0 2px 8px rgba(60, 47, 31, 0.15))',
+                    opacity: '0.98'
+                  }}
+                />
               </div>
             </Link>
           </div>
