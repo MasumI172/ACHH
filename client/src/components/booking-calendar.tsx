@@ -273,23 +273,56 @@ Please let me know the availability and rates. Thank you!`;
             </div>
 
             {/* Guests Selection */}
-            <div className="border-2 border-luxury-cream rounded-xl p-6 mb-8 bg-gradient-to-r from-luxury-cream/20 to-luxury-gold/5 luxury-shadow-sm">
+            <div className={`border-2 rounded-xl p-6 mb-8 luxury-shadow-sm transition-all duration-300 ${
+              !checkIn || !checkOut 
+                ? 'border-gray-200 bg-gray-50 opacity-60' 
+                : 'border-luxury-cream bg-gradient-to-r from-luxury-cream/20 to-luxury-gold/5'
+            }`}>
               <div className="flex items-center mb-4">
-                <div className="w-10 h-10 bg-luxury-gold/10 rounded-lg flex items-center justify-center mr-3">
-                  <Users className="w-5 h-5 text-luxury-gold" />
+                <div className={`w-10 h-10 rounded-lg flex items-center justify-center mr-3 transition-all duration-300 ${
+                  !checkIn || !checkOut 
+                    ? 'bg-gray-200' 
+                    : 'bg-luxury-gold/10'
+                }`}>
+                  <Users className={`w-5 h-5 transition-all duration-300 ${
+                    !checkIn || !checkOut 
+                      ? 'text-gray-400' 
+                      : 'text-luxury-gold'
+                  }`} />
                 </div>
                 <div>
-                  <label className="text-sm text-luxury-bronze font-medium uppercase tracking-wide block">Number of Guests</label>
-                  <p className="text-xs text-luxury-light-brown">Maximum {maxGuests} guests allowed</p>
+                  <label className={`text-sm font-medium uppercase tracking-wide block transition-all duration-300 ${
+                    !checkIn || !checkOut 
+                      ? 'text-gray-400' 
+                      : 'text-luxury-bronze'
+                  }`}>Number of Guests</label>
+                  <p className={`text-xs transition-all duration-300 ${
+                    !checkIn || !checkOut 
+                      ? 'text-gray-400' 
+                      : 'text-luxury-light-brown'
+                  }`}>
+                    {!checkIn || !checkOut 
+                      ? 'Please select dates first' 
+                      : `Maximum ${maxGuests} guests allowed`
+                    }
+                  </p>
                 </div>
               </div>
               
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <span className="text-2xl font-bold text-luxury-brown mr-2">
+                  <span className={`text-2xl font-bold mr-2 transition-all duration-300 ${
+                    !checkIn || !checkOut 
+                      ? 'text-gray-400' 
+                      : 'text-luxury-brown'
+                  }`}>
                     {guests}
                   </span>
-                  <span className="text-luxury-bronze font-medium">
+                  <span className={`font-medium transition-all duration-300 ${
+                    !checkIn || !checkOut 
+                      ? 'text-gray-400' 
+                      : 'text-luxury-bronze'
+                  }`}>
                     guest{guests > 1 ? 's' : ''}
                   </span>
                 </div>
@@ -298,8 +331,12 @@ Please let me know the availability and rates. Thank you!`;
                     variant="outline"
                     size="sm"
                     onClick={() => setGuests(Math.max(1, guests - 1))}
-                    disabled={guests <= 1}
-                    className="h-10 w-10 p-0 border-2 border-luxury-gold text-luxury-gold hover:bg-luxury-gold hover:text-white font-bold text-lg transition-all duration-300 rounded-xl"
+                    disabled={!checkIn || !checkOut || guests <= 1}
+                    className={`h-10 w-10 p-0 border-2 font-bold text-lg transition-all duration-300 rounded-xl ${
+                      !checkIn || !checkOut 
+                        ? 'border-gray-300 text-gray-400 cursor-not-allowed hover:bg-transparent hover:text-gray-400' 
+                        : 'border-luxury-gold text-luxury-gold hover:bg-luxury-gold hover:text-white'
+                    }`}
                   >
                     −
                   </Button>
@@ -307,8 +344,12 @@ Please let me know the availability and rates. Thank you!`;
                     variant="outline"
                     size="sm"
                     onClick={() => setGuests(Math.min(maxGuests, guests + 1))}
-                    disabled={guests >= maxGuests}
-                    className="h-10 w-10 p-0 border-2 border-luxury-gold text-luxury-gold hover:bg-luxury-gold hover:text-white font-bold text-lg transition-all duration-300 rounded-xl"
+                    disabled={!checkIn || !checkOut || guests >= maxGuests}
+                    className={`h-10 w-10 p-0 border-2 font-bold text-lg transition-all duration-300 rounded-xl ${
+                      !checkIn || !checkOut 
+                        ? 'border-gray-300 text-gray-400 cursor-not-allowed hover:bg-transparent hover:text-gray-400' 
+                        : 'border-luxury-gold text-luxury-gold hover:bg-luxury-gold hover:text-white'
+                    }`}
                   >
                     +
                   </Button>
