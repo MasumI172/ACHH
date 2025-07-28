@@ -88,73 +88,45 @@ const Home = () => {
             </p>
           </motion.div>
           
-          {/* Premium Date Selection Component */}
-          <Card className="luxury-shadow border-0 luxury-card overflow-hidden">
-            <div className="bg-gradient-to-br from-luxury-gold/8 to-luxury-cream/15 p-1">
-              <div className="bg-white rounded-lg">
-                <CardContent className="p-8">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-                    <div 
-                      className="cursor-pointer"
-                      onClick={() => {
-                        const input = document.querySelector('input[type="date"][data-checkin="true"]') as HTMLInputElement;
-                        if (input) {
-                          input.focus();
-                          input.click();
-                        }
-                      }}
-                    >
-                      <label className="block text-sm font-semibold text-luxury-bronze mb-3 uppercase tracking-wider cursor-pointer">Check-in</label>
-                      <input 
-                        type="date" 
-                        data-checkin="true"
-                        value={checkInDate}
-                        min={new Date().toISOString().split('T')[0]}
-                        onChange={(e) => {
-                          const newCheckIn = e.target.value;
-                          setCheckInDate(newCheckIn);
-                          
-                          // If check-out is before or equal to new check-in, clear it
-                          if (checkOutDate && checkOutDate <= newCheckIn) {
-                            setCheckOutDate("");
-                          }
-                        }}
-                        className="w-full px-4 py-4 border-2 border-luxury-cream rounded-xl focus:outline-none focus:ring-2 focus:ring-luxury-gold focus:border-luxury-gold transition-all duration-300 text-luxury-brown font-medium text-lg luxury-shadow-sm hover:border-luxury-gold/50 cursor-pointer"
-                      />
-                    </div>
-                    <div 
-                      className="cursor-pointer"
-                      onClick={() => {
-                        const input = document.querySelector('input[type="date"][data-checkout="true"]') as HTMLInputElement;
-                        if (input) {
-                          input.focus();
-                          input.click();
-                        }
-                      }}
-                    >
-                      <label className="block text-sm font-semibold text-luxury-bronze mb-3 uppercase tracking-wider cursor-pointer">Check-out</label>
-                      <input 
-                        type="date" 
-                        data-checkout="true"
-                        value={checkOutDate}
-                        min={checkInDate ? new Date(new Date(checkInDate).getTime() + 24*60*60*1000).toISOString().split('T')[0] : new Date().toISOString().split('T')[0]}
-                        onChange={(e) => setCheckOutDate(e.target.value)}
-                        className="w-full px-4 py-4 border-2 border-luxury-cream rounded-xl focus:outline-none focus:ring-2 focus:ring-luxury-gold focus:border-luxury-gold transition-all duration-300 text-luxury-brown font-medium text-lg luxury-shadow-sm hover:border-luxury-gold/50 cursor-pointer"
-                      />
-                    </div>
-                    <div className="flex flex-col justify-end">
-                      <Button 
-                        onClick={handleSearch}
-                        className="w-full luxury-button text-lg py-4 px-6 bg-gradient-to-r from-luxury-gold to-luxury-gold/90 hover:from-luxury-gold/90 hover:to-luxury-gold transition-all duration-500 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 font-semibold uppercase tracking-wide h-[60px] flex items-center justify-center"
-                      >
-                        Search Properties
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
+          {/* Date Selection Component - I'll create this */}
+          <div className="bg-white rounded-xl shadow-lg p-6 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Check-in</label>
+                <input 
+                  type="date" 
+                  value={checkInDate}
+                  min={new Date().toISOString().split('T')[0]}
+                  onChange={(e) => {
+                    const newCheckIn = e.target.value;
+                    setCheckInDate(newCheckIn);
+                    
+                    // If check-out is before or equal to new check-in, clear it
+                    if (checkOutDate && checkOutDate <= newCheckIn) {
+                      setCheckOutDate("");
+                    }
+                  }}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-luxury-gold"
+                />
               </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Check-out</label>
+                <input 
+                  type="date" 
+                  value={checkOutDate}
+                  min={checkInDate ? new Date(new Date(checkInDate).getTime() + 24*60*60*1000).toISOString().split('T')[0] : new Date().toISOString().split('T')[0]}
+                  onChange={(e) => setCheckOutDate(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-luxury-gold"
+                />
+              </div>
+              <Button 
+                onClick={handleSearch}
+                className="w-full luxury-button"
+              >
+                Search Properties
+              </Button>
             </div>
-          </Card>
+          </div>
         </div>
       </section>
 
