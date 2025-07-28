@@ -1,0 +1,24 @@
+<svg width="400" height="120" viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Elegant script "ac" -->
+  <path d="M 80 50 Q 90 45 100 50 Q 110 55 120 50 Q 130 45 140 50 Q 150 55 160 50" 
+        stroke="currentColor" 
+        stroke-width="1.5" 
+        fill="none" 
+        stroke-linecap="round"/>
+  
+  <!-- ARABIAN COAST text -->
+  <text x="20" y="85" 
+        font-family="serif" 
+        font-size="24" 
+        font-weight="400" 
+        letter-spacing="4" 
+        fill="currentColor">ARABIAN COAST</text>
+  
+  <!-- HOLIDAY HOMES text -->
+  <text x="90" y="105" 
+        font-family="serif" 
+        font-size="12" 
+        font-weight="300" 
+        letter-spacing="2" 
+        fill="currentColor">HOLIDAY HOMES</text>
+</svg>
