@@ -10,8 +10,22 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
+import { cn } from "@/lib/utils";
 import { insertInquirySchema, type Property } from "@shared/schema";
 import { format, parseISO } from "date-fns";
 import { 
@@ -19,7 +33,9 @@ import {
   Clock,
   Send,
   CheckCircle,
-  Home
+  Home,
+  Check,
+  ChevronsUpDown
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 
@@ -134,6 +150,7 @@ const countryCodes = [
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [countryCodeOpen, setCountryCodeOpen] = useState(false);
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -422,25 +439,58 @@ const Contact = () => {
                         Phone Number *
                       </Label>
                       <div className="grid grid-cols-3 gap-2 mt-1">
-                        <Select
-                          value={form.watch("countryCode")}
-                          onValueChange={(value) => form.setValue("countryCode", value)}
-                        >
-                          <SelectTrigger className="h-10">
-                            <SelectValue placeholder="Code" />
-                          </SelectTrigger>
-                          <SelectContent className="max-h-60">
-                            {countryCodes.map((country) => (
-                              <SelectItem key={country.code} value={country.code}>
+                        <Popover open={countryCodeOpen} onOpenChange={setCountryCodeOpen}>
+                          <PopoverTrigger asChild>
+                            <Button
+                              variant="outline"
+                              role="combobox"
+                              aria-expanded={countryCodeOpen}
+                              className="h-10 justify-between"
+                            >
+                              {form.watch("countryCode") ? (
                                 <div className="flex items-center gap-2">
-                                  <span>{country.flag}</span>
-                                  <span>{country.code}</span>
-                                  <span className="text-xs text-gray-500">{country.country}</span>
+                                  <span>{countryCodes.find((country) => country.code === form.watch("countryCode"))?.flag}</span>
+                                  <span>{form.watch("countryCode")}</span>
                                 </div>
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+                              ) : (
+                                "Code"
+                              )}
+                              <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                            </Button>
+                          </PopoverTrigger>
+                          <PopoverContent className="w-[300px] p-0">
+                            <Command>
+                              <CommandInput placeholder="Search country code..." />
+                              <CommandList>
+                                <CommandEmpty>No country found.</CommandEmpty>
+                                <CommandGroup>
+                                  {countryCodes.map((country) => (
+                                    <CommandItem
+                                      key={country.code}
+                                      value={`${country.code} ${country.country}`}
+                                      onSelect={() => {
+                                        form.setValue("countryCode", country.code);
+                                        setCountryCodeOpen(false);
+                                      }}
+                                    >
+                                      <Check
+                                        className={cn(
+                                          "mr-2 h-4 w-4",
+                                          form.watch("countryCode") === country.code ? "opacity-100" : "opacity-0"
+                                        )}
+                                      />
+                                      <div className="flex items-center gap-2">
+                                        <span>{country.flag}</span>
+                                        <span className="font-medium">{country.code}</span>
+                                        <span className="text-sm text-gray-500">{country.country}</span>
+                                      </div>
+                                    </CommandItem>
+                                  ))}
+                                </CommandGroup>
+                              </CommandList>
+                            </Command>
+                          </PopoverContent>
+                        </Popover>
                         <div className="col-span-2">
                           <Input
                             id="phone"
