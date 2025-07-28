@@ -84,6 +84,25 @@ const BookingCalendar = ({ propertyId, maxGuests, propertyName }: BookingCalenda
     }
   };
 
+  // Create function to check if a checkout date is valid
+  const isValidCheckoutDate = (date: Date) => {
+    if (!checkIn || date <= checkIn) return false;
+    if (isDateBooked(date)) return false;
+    
+    // Check if any dates between checkin and this potential checkout are booked
+    let currentDate = new Date(checkIn);
+    currentDate.setDate(currentDate.getDate() + 1); // Start day after checkin
+    
+    while (currentDate < date) {
+      if (isDateBooked(currentDate)) {
+        return false; // There's a booking in between
+      }
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+    
+    return true;
+  };
+
   const disabledDays = [
     { before: new Date() }, // Disable past dates
     // Disable booked dates
@@ -92,6 +111,14 @@ const BookingCalendar = ({ propertyId, maxGuests, propertyName }: BookingCalenda
       to: parseISO(booking.end)
     })) || [])
   ];
+
+  // Create smarter disabled days for checkout calendar  
+  const checkoutDisabledDays = checkIn ? [
+    { before: new Date() }, // Disable past dates
+    { before: checkIn }, // Disable dates before checkin
+    // For checkout, disable any date that would create an invalid booking range
+    (date: Date) => !isValidCheckoutDate(date)
+  ] : disabledDays;
 
   const handleBookingInquiry = () => {
     if (!checkIn || !checkOut) return;
@@ -240,7 +267,7 @@ Please let me know the availability and rates. Thank you!`;
                         mode="single"
                         selected={checkOut}
                         onSelect={handleDateSelect}
-                        disabled={disabledDays}
+                        disabled={checkoutDisabledDays}
                         className="luxury-calendar w-full"
                         modifiers={{
                           booked: (date) => isDateBooked(date)
