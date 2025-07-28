@@ -125,33 +125,7 @@ body::-webkit-scrollbar {
   transform: none;
 }
 
-/* Check-in date styling on checkout calendar */
-.rdp-day_checkin {
-  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
-  color: white !important;
-  font-weight: bold !important;
-  border: 2px solid #1d4ed8 !important;
-  border-radius: 8px;
-  position: relative;
-}
 
-.rdp-day_checkin:after {
-  content: '✓';
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  background: #1d4ed8;
-  color: white;
-  border-radius: 50%;
-  width: 14px;
-  height: 14px;
-  font-size: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  line-height: 1;
-}
 
 .rdp-button:focus-visible {
   outline: var(--rdp-outline);
