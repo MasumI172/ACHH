@@ -160,7 +160,7 @@ const Properties = () => {
                 {/* Date Selection for initial search */}
                 <div className="bg-white rounded-xl shadow-lg p-4 max-w-2xl mx-auto">
                   <p className="text-sm font-medium text-gray-700 mb-3 text-center">Select dates to check availability</p>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3 items-end">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Check-in</label>
                       <input 
@@ -175,6 +175,14 @@ const Properties = () => {
                           if (checkOutDate && checkOutDate <= newCheckIn) {
                             setCheckOutDate("");
                           }
+                          
+                          // Auto-update URL if both dates are present
+                          if (newCheckIn && checkOutDate && checkOutDate > newCheckIn) {
+                            const newUrl = new URL(window.location.href);
+                            newUrl.searchParams.set('checkIn', newCheckIn);
+                            newUrl.searchParams.set('checkOut', checkOutDate);
+                            window.history.replaceState({}, '', newUrl.toString());
+                          }
                         }}
                         className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold-500"
                       />
@@ -185,25 +193,21 @@ const Properties = () => {
                         type="date" 
                         value={checkOutDate}
                         min={checkInDate ? new Date(new Date(checkInDate).getTime() + 24*60*60*1000).toISOString().split('T')[0] : new Date().toISOString().split('T')[0]}
-                        onChange={(e) => setCheckOutDate(e.target.value)}
+                        onChange={(e) => {
+                          const newCheckOut = e.target.value;
+                          setCheckOutDate(newCheckOut);
+                          
+                          // Auto-update URL if both dates are present
+                          if (checkInDate && newCheckOut) {
+                            const newUrl = new URL(window.location.href);
+                            newUrl.searchParams.set('checkIn', checkInDate);
+                            newUrl.searchParams.set('checkOut', newCheckOut);
+                            window.history.replaceState({}, '', newUrl.toString());
+                          }
+                        }}
                         className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gold-500"
                       />
                     </div>
-                    <Button 
-                      onClick={() => {
-                        if (checkInDate && checkOutDate) {
-                          // Update URL params to trigger availability filtering
-                          const newUrl = new URL(window.location.href);
-                          newUrl.searchParams.set('checkIn', checkInDate);
-                          newUrl.searchParams.set('checkOut', checkOutDate);
-                          window.history.replaceState({}, '', newUrl.toString());
-                        }
-                      }}
-                      disabled={!checkInDate || !checkOutDate}
-                      className="text-sm bg-gold-500 hover:bg-gold-600"
-                    >
-                      Check Availability
-                    </Button>
                   </div>
                 </div>
               </div>
