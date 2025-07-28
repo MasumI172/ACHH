@@ -1,24 +1,24 @@
 <svg width="400" height="120" viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Elegant script "ac" -->
-  <path d="M 80 50 Q 90 45 100 50 Q 110 55 120 50 Q 130 45 140 50 Q 150 55 160 50" 
-        stroke="currentColor" 
-        stroke-width="1.5" 
+  <!-- Elegant script "ac" matching the original design -->
+  <path d="M 140 25 Q 150 20 160 25 Q 170 30 180 25 Q 190 20 200 25 Q 210 30 220 25" 
+        stroke="#2B1810" 
+        stroke-width="1.2" 
         fill="none" 
         stroke-linecap="round"/>
   
-  <!-- ARABIAN COAST text -->
-  <text x="20" y="85" 
-        font-family="serif" 
-        font-size="24" 
+  <!-- ARABIAN COAST text with proper spacing -->
+  <text x="50" y="75" 
+        font-family="Times, serif" 
+        font-size="28" 
         font-weight="400" 
-        letter-spacing="4" 
-        fill="currentColor">ARABIAN COAST</text>
+        letter-spacing="6" 
+        fill="#2B1810">ARABIAN COAST</text>
   
-  <!-- HOLIDAY HOMES text -->
-  <text x="90" y="105" 
-        font-family="serif" 
-        font-size="12" 
+  <!-- HOLIDAY HOMES text centered -->
+  <text x="140" y="95" 
+        font-family="Times, serif" 
+        font-size="11" 
         font-weight="300" 
-        letter-spacing="2" 
-        fill="currentColor">HOLIDAY HOMES</text>
+        letter-spacing="3" 
+        fill="#2B1810">HOLIDAY HOMES</text>
 </svg>

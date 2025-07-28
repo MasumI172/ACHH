@@ -43,12 +43,11 @@ const Navigation = () => {
             <Link href="/">
               <div className="flex items-center cursor-pointer group">
                 <img 
-                  src="/arabian-coast-logo.png" 
+                  src="/arabian-coast-logo.svg" 
                   alt="Arabian Coast Holiday Homes" 
                   className="h-20 md:h-28 lg:h-32 w-auto object-contain transition-all duration-500 hover:scale-105"
                   style={{
-                    filter: 'drop-shadow(0 2px 8px rgba(60, 47, 31, 0.15))',
-                    backgroundColor: 'transparent'
+                    filter: 'drop-shadow(0 2px 8px rgba(60, 47, 31, 0.15))'
                   }}
                 />
               </div>
