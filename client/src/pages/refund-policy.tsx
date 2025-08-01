@@ -16,93 +16,129 @@ const RefundPolicy = () => {
           
           <div className="prose prose-sm sm:prose-base lg:prose-lg max-w-none text-luxury-brown space-y-4 sm:space-y-6 break-words overflow-wrap-anywhere">
             <p>
-              This Cancellation and Refund Policy applies to all reservations made through our website, in person, via phone, or through third-party platforms such as Airbnb and Booking.com.
+              This Cancellation and Refund Policy applies to all bookings made with Arabian Coast Holiday Homes L.L.C. ("we", "us", "our") via:
+            </p>
+            
+            <ul className="list-disc list-inside space-y-2 mt-4">
+              <li>Our official website (www.arabiancoastholidayhomes.com)</li>
+              <li>WhatsApp, phone, or email</li>
+              <li>In-person</li>
+              <li>Third-party platforms (e.g. Airbnb, Booking.com)</li>
+            </ul>
+            
+            <p className="mt-4">
+              By confirming a reservation, the Guest agrees to the terms outlined below.
             </p>
 
             <section>
-              <h2 className="text-2xl font-semibold text-luxury-gold mb-4">1. How to Cancel Your Booking</h2>
-              <p>To cancel a reservation made directly with Arabian Coast Holiday Homes L.L.C., you must submit a written cancellation request as follows:</p>
-              <ul className="list-disc list-inside space-y-2 mt-4">
-                <li>Email info@arabiancoastholidayhomes.com from the same email address used to make the booking</li>
-                <li>Include your full name, booking reference, and a clear request to cancel</li>
-              </ul>
-              <p className="mt-4">
-                For bookings made via Airbnb, Booking.com, or other partner platforms, cancellations must be submitted directly through the relevant platform, following their applicable policies.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-2xl font-semibold text-luxury-gold mb-4">2. General Cancellation Terms</h2>
-              <p>Unless otherwise agreed in writing, the following terms apply:</p>
+              <h2 className="text-2xl font-semibold text-luxury-gold mb-4">1. How to Cancel a Booking</h2>
               
-              <div className="mt-4 space-y-4">
-                <div>
-                  <h3 className="text-lg font-semibold text-luxury-brown mb-2">Free Cancellation:</h3>
-                  <p>Cancellations made at least 5 days before check-in are eligible for a full refund, excluding any processing or transaction fees.</p>
-                </div>
-                
-                <div>
-                  <h3 className="text-lg font-semibold text-luxury-brown mb-2">Late Cancellation:</h3>
-                  <p>Cancellations made less than 5 days before check-in may be charged partially or in full, depending on the booking terms and property type.</p>
-                </div>
-                
-                <div>
-                  <h3 className="text-lg font-semibold text-luxury-brown mb-2">No-Show:</h3>
-                  <p>Guests who do not arrive and fail to cancel in advance will be considered no-shows, and the booking is non-refundable.</p>
+              <div className="mt-4">
+                <h3 className="text-lg font-semibold text-luxury-brown mb-2">A. For Direct Bookings (Website, Email, WhatsApp, Phone):</h3>
+                <p>Send a written cancellation request to info@arabiancoastholidayhomes.com, including:</p>
+                <ul className="list-disc list-inside space-y-2 mt-2 ml-4">
+                  <li>Full name</li>
+                  <li>Booking reference</li>
+                  <li>The email or phone number used at time of booking</li>
+                  <li>A clear request to cancel</li>
+                </ul>
+                <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded mt-4">
+                  <p className="font-semibold">Cancellation is considered received only after written confirmation from Arabian Coast Holiday Homes.</p>
                 </div>
               </div>
 
-              <div className="bg-luxury-cream/30 p-4 rounded-lg mt-6">
-                <p className="text-sm">
-                  <strong>Note:</strong> For reservations via Airbnb, Booking.com, or similar platforms, their selected cancellation policy will apply and may override the terms above.
-                </p>
+              <div className="mt-6">
+                <h3 className="text-lg font-semibold text-luxury-brown mb-2">B. For Third-Party Bookings:</h3>
+                <p>If booked via Airbnb, Booking.com, or another platform, you must cancel directly through the platform, and their cancellation policies will apply.</p>
+              </div>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold text-luxury-gold mb-4">2. Standard Cancellation Terms (Direct Bookings)</h2>
+              <p>Unless otherwise agreed in writing at the time of booking:</p>
+              
+              <div className="mt-4 space-y-4">
+                <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded">
+                  <h3 className="text-lg font-semibold text-green-700 mb-2">✅ Free Cancellation</h3>
+                  <ul className="list-disc list-inside space-y-1">
+                    <li>Full refund if cancelled at least 5 full days before check-in</li>
+                    <li>Transaction, processing, or bank charges (if any) are non-refundable</li>
+                  </ul>
+                </div>
+                
+                <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded">
+                  <h3 className="text-lg font-semibold text-yellow-700 mb-2">❌ Late Cancellation</h3>
+                  <p>If cancelled less than 5 days before check-in, a partial or full charge may apply based on the property type, demand period, and booking terms</p>
+                </div>
+                
+                <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded">
+                  <h3 className="text-lg font-semibold text-red-700 mb-2">🚫 No-Show</h3>
+                  <p>Bookings are non-refundable for Guests who do not show up and fail to cancel in advance</p>
+                </div>
               </div>
             </section>
 
             <section>
               <h2 className="text-2xl font-semibold text-luxury-gold mb-4">3. Refund Processing</h2>
               <ul className="list-disc list-inside space-y-2">
-                <li>Refunds (if applicable) are processed within 7–14 business days to the original payment method.</li>
-                <li>Any transaction, currency conversion, or administrative fees are non-refundable unless required by UAE consumer protection regulations.</li>
+                <li>Approved refunds are processed within 7–14 business days to the original payment method</li>
+                <li>Transaction fees, currency conversion costs, and administrative fees are non-refundable, unless otherwise required by UAE law</li>
+                <li>Refund timelines may vary based on the bank or payment processor</li>
               </ul>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-luxury-gold mb-4">4. Security Deposit</h2>
+              <h2 className="text-2xl font-semibold text-luxury-gold mb-4">4. Security Deposit Policy</h2>
               <ul className="list-disc list-inside space-y-2">
-                <li>2000 AED security deposit required for all bookings (cash or digital).</li>
-                <li>This will be returned to guests after inspection of property/check-out, subject to no damages, missing items, or violations of House Rules.</li>
-                <li>If deductions are necessary, we will provide a written breakdown with supporting evidence.</li>
+                <li><strong>A refundable 2000 AED security deposit is required for all stays (cash or digital)</strong></li>
+                <li>Returned within 5 business days after check-out, subject to:
+                  <ul className="list-disc list-inside space-y-1 mt-2 ml-4">
+                    <li>No property damage</li>
+                    <li>No missing items</li>
+                    <li>No violation of House Rules or Terms</li>
+                  </ul>
+                </li>
+                <li>If deductions are required, we will provide a written breakdown with supporting evidence (e.g. photos, incident report)</li>
               </ul>
             </section>
 
             <section>
               <h2 className="text-2xl font-semibold text-luxury-gold mb-4">5. Operator Rights</h2>
-              <p>Arabian Coast Holiday Homes L.L.C. reserves the right to withhold amounts from the booking or deposit in cases of:</p>
+              <p>Arabian Coast Holiday Homes L.L.C. reserves the right to retain part or all of the booking amount or security deposit in cases including, but not limited to:</p>
               <ul className="list-disc list-inside space-y-2 mt-4">
-                <li>Cancellation outside the permitted window</li>
-                <li>No-shows</li>
-                <li>Property damage or missing items</li>
-                <li>Breach of House Rules or Reservation Terms</li>
-                <li>Unauthorized events, parties, or smoking</li>
-                <li>Excessive cleaning required post-checkout</li>
+                <li>Late cancellation or no-show</li>
+                <li>Damage to the apartment, furniture, or appliances</li>
+                <li>Missing or stolen items</li>
+                <li>Violation of House Rules, such as:
+                  <ul className="list-disc list-inside space-y-1 mt-2 ml-4">
+                    <li>Unauthorized parties or gatherings</li>
+                    <li>Smoking inside the apartment</li>
+                    <li>Bringing unapproved pets</li>
+                    <li>Excessive mess or cleaning required</li>
+                    <li>Misuse of facilities or unauthorized visitors</li>
+                  </ul>
+                </li>
               </ul>
             </section>
 
             <section>
               <h2 className="text-2xl font-semibold text-luxury-gold mb-4">6. Guest Agreement</h2>
-              <p>By making a reservation, the Guest acknowledges and agrees to the:</p>
-              <ul className="list-disc list-inside space-y-2 mt-4">
-                <li>Reservation Terms & Conditions</li>
-                <li>Cancellation and Refund Policy (this page)</li>
-                <li>House Rules (provided before or at check-in)</li>
-              </ul>
+              <div className="bg-luxury-gold/10 border border-luxury-gold p-6 rounded-lg">
+                <p className="font-semibold mb-4">By completing a booking, you confirm acceptance of:</p>
+                <ul className="list-disc list-inside space-y-2">
+                  <li>Our Reservation Terms & Conditions</li>
+                  <li>This Cancellation and Refund Policy</li>
+                  <li>Our House Rules (provided before or at check-in)</li>
+                  <li>Our Terms & Conditions and Privacy Policy</li>
+                </ul>
+                <p className="mt-4 font-semibold">These documents together form the binding Guest Agreement.</p>
+              </div>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-luxury-gold mb-4">7. Governing Law</h2>
+              <h2 className="text-2xl font-semibold text-luxury-gold mb-4">7. Governing Law & Jurisdiction</h2>
               <p>
-                This policy is governed by the laws of the United Arab Emirates. Any disputes shall be subject to the exclusive jurisdiction of the courts of Dubai.
+                This policy is governed by the laws of the United Arab Emirates. Any dispute arising from this policy shall be subject to the exclusive jurisdiction of the courts of Dubai.
               </p>
             </section>
           </div>
