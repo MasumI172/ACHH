@@ -24,7 +24,7 @@ const Guidebook = () => {
       icon: <Eye className="w-6 h-6" />,
       category: "Iconic Landmark",
       highlights: ["World's tallest building", "Observation deck", "Night light shows", "Panoramic views"],
-      image: "/guidebook-sightseeing.png"
+      image: "/guidebook-burj-khalifa.png"
     },
     {
       name: "Dubai Fountain Lake",
@@ -32,7 +32,7 @@ const Guidebook = () => {
       icon: <Waves className="w-6 h-6" />,
       category: "Entertainment",
       highlights: ["Free water & light show", "Synchronized music", "Multiple evening shows", "Near Dubai Mall"],
-      image: "/guidebook-fountain.png"
+      image: "/guidebook-dubai-fountain.png"
     },
     {
       name: "Dubai Mall Aquarium",
@@ -40,7 +40,7 @@ const Guidebook = () => {
       icon: <Fish className="w-6 h-6" />,
       category: "Family Attraction",
       highlights: ["World's largest indoor aquarium", "Glass tunnel experience", "Thousands of species", "Diving with sharks activity"],
-      image: "/guidebook-aquarium.png"
+      image: "/guidebook-aquarium-new.png"
     }
   ];
 
@@ -51,7 +51,7 @@ const Guidebook = () => {
       icon: <ShoppingBag className="w-6 h-6" />,
       category: "Shopping & Entertainment",
       highlights: ["World's largest mall", "Ice rink & aquarium", "VR park", "Endless dining options"],
-      image: "/guidebook-shopping.png"
+      image: "/guidebook-dubai-mall.png"
     },
     {
       name: "Dubai Ice Rink",
@@ -59,7 +59,7 @@ const Guidebook = () => {
       icon: <Snowflake className="w-6 h-6" />,
       category: "Recreation",
       highlights: ["Indoor skating", "Public sessions", "Ice hockey games", "Cool escape from heat"],
-      image: "/guidebook-ice-rink.png"
+      image: "/guidebook-ice-rink-new.png"
     }
   ];
 
