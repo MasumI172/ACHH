@@ -13,7 +13,8 @@ import {
   Eye,
   Waves,
   Fish,
-  Snowflake
+  Snowflake,
+  Navigation
 } from "lucide-react";
 
 const Guidebook = () => {
@@ -24,7 +25,9 @@ const Guidebook = () => {
       icon: <Eye className="w-6 h-6" />,
       category: "Iconic Landmark",
       highlights: ["World's tallest building", "Observation deck", "Night light shows", "Panoramic views"],
-      image: "/guidebook-burj-khalifa.png"
+      image: "/guidebook-burj-khalifa.png",
+      location: "1 Sheikh Mohammed bin Rashid Blvd, Downtown Dubai",
+      directions: "8-minute walk from property via Sheikh Mohammed bin Rashid Boulevard. Take the Dubai Mall Metro Station (Red Line) or use taxi services like Careem, Uber, or Bolt."
     },
     {
       name: "Dubai Fountain Lake",
@@ -32,7 +35,9 @@ const Guidebook = () => {
       icon: <Waves className="w-6 h-6" />,
       category: "Entertainment",
       highlights: ["Free water & light show", "Synchronized music", "Multiple evening shows", "Near Dubai Mall"],
-      image: "/guidebook-dubai-fountain.png"
+      image: "/guidebook-dubai-fountain.png",
+      location: "Burj Khalifa Lake, Downtown Dubai",
+      directions: "5-minute walk from property to the lake promenade. Best viewing spots are from the Dubai Mall waterfront boardwalk or At the Top Sky Lounge."
     },
     {
       name: "Dubai Mall Aquarium",
@@ -40,7 +45,9 @@ const Guidebook = () => {
       icon: <Fish className="w-6 h-6" />,
       category: "Family Attraction",
       highlights: ["World's largest indoor aquarium", "Glass tunnel experience", "Thousands of species", "Diving with sharks activity"],
-      image: "/guidebook-aquarium-new.png"
+      image: "/guidebook-aquarium-new.png",
+      location: "Ground Floor, The Dubai Mall, Downtown Dubai",
+      directions: "8-minute walk to Dubai Mall main entrance, then follow signs to Ground Floor aquarium. Located near the main atrium and easily accessible via mall directory."
     }
   ];
 
@@ -51,7 +58,9 @@ const Guidebook = () => {
       icon: <ShoppingBag className="w-6 h-6" />,
       category: "Shopping & Entertainment",
       highlights: ["World's largest mall", "Ice rink & aquarium", "VR park", "Endless dining options"],
-      image: "/guidebook-dubai-mall.png"
+      image: "/guidebook-dubai-mall.png",
+      location: "Financial Centre Road, Downtown Dubai",
+      directions: "8-minute walk via Sheikh Mohammed bin Rashid Boulevard. Multiple entrances available - use Fashion Avenue entrance for luxury shopping or Grand Atrium entrance for main attractions."
     },
     {
       name: "Dubai Ice Rink",
@@ -59,7 +68,9 @@ const Guidebook = () => {
       icon: <Snowflake className="w-6 h-6" />,
       category: "Recreation",
       highlights: ["Indoor skating", "Public sessions", "Ice hockey games", "Cool escape from heat"],
-      image: "/guidebook-ice-rink-new.png"
+      image: "/guidebook-ice-rink-new.png",
+      location: "Level 2, The Dubai Mall, Downtown Dubai",
+      directions: "Walk to Dubai Mall (8 minutes), take escalator to Level 2. Follow signs for 'Dubai Ice Rink' or ask at the information desk near the main atrium."
     }
   ];
 
@@ -159,6 +170,24 @@ const Guidebook = () => {
                       {attraction.description}
                     </p>
                     
+                    <div className="space-y-3 mb-4">
+                      <div className="flex items-start gap-2">
+                        <MapPin className="w-4 h-4 text-luxury-gold mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-xs font-semibold text-luxury-brown">Location</p>
+                          <p className="text-xs text-luxury-bronze">{attraction.location}</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start gap-2">
+                        <Navigation className="w-4 h-4 text-luxury-gold mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-xs font-semibold text-luxury-brown">Directions</p>
+                          <p className="text-xs text-luxury-bronze leading-relaxed">{attraction.directions}</p>
+                        </div>
+                      </div>
+                    </div>
+                    
                     <div className="space-y-2">
                       <h4 className="font-semibold text-luxury-brown text-sm">Highlights:</h4>
                       <div className="flex flex-wrap gap-2">
@@ -235,6 +264,24 @@ const Guidebook = () => {
                     <p className="text-luxury-bronze mb-4 leading-relaxed text-lg">
                       {destination.description}
                     </p>
+                    
+                    <div className="space-y-3 mb-4">
+                      <div className="flex items-start gap-2">
+                        <MapPin className="w-4 h-4 text-luxury-gold mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-xs font-semibold text-luxury-brown">Location</p>
+                          <p className="text-xs text-luxury-bronze">{destination.location}</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start gap-2">
+                        <Navigation className="w-4 h-4 text-luxury-gold mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-xs font-semibold text-luxury-brown">Directions</p>
+                          <p className="text-xs text-luxury-bronze leading-relaxed">{destination.directions}</p>
+                        </div>
+                      </div>
+                    </div>
                     
                     <div className="space-y-2">
                       <h4 className="font-semibold text-luxury-brown text-sm">Key Features:</h4>
