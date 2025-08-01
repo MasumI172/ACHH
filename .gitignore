@@ -48,6 +48,9 @@ replit.nix
 attached_assets/
 *.tar.gz
 *.zip
+*.backup
+*.archive
+arabian-coast-updated.tar.gz
 
 # Deployment documentation
 *deployment*.md
