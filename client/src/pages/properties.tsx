@@ -71,12 +71,17 @@ const Properties = () => {
     const today = new Date();
     
     // Search for alternative dates within the next 3 months
-    for (let i = 0; i < 90 && alternatives.length < 5; i++) {
+    for (let i = 1; i < 90 && alternatives.length < 5; i++) { // Start from day 1, not today
       const potentialCheckIn = addDays(today, i);
       const potentialCheckOut = addDays(potentialCheckIn, requestedNights);
       
       const checkInStr = potentialCheckIn.toISOString().split('T')[0];
       const checkOutStr = potentialCheckOut.toISOString().split('T')[0];
+      
+      // Skip if this is the same as the requested dates
+      if (checkInStr === requestedCheckIn && checkOutStr === requestedCheckOut) {
+        continue;
+      }
       
       try {
         // Check if properties are available for this date range
@@ -92,6 +97,9 @@ const Properties = () => {
             });
           }
         }
+        
+        // Add a small delay to prevent overwhelming the server
+        await new Promise(resolve => setTimeout(resolve, 100));
       } catch (error) {
         console.log('Error checking alternative dates:', error);
       }
@@ -103,10 +111,12 @@ const Properties = () => {
   // Check for alternatives when no properties are found
   useEffect(() => {
     const checkAlternatives = async () => {
-      if (checkInDate && checkOutDate && filteredProperties && filteredProperties.length === 0 && !isLoading) {
+      if (checkInDate && checkOutDate && filteredProperties !== undefined && filteredProperties.length === 0 && !isLoading) {
+        console.log('Searching for alternatives...', checkInDate, checkOutDate);
         const alternatives = await findAlternativeDates(checkInDate, checkOutDate);
+        console.log('Found alternatives:', alternatives);
         setAlternativeDates(alternatives);
-        setShowingAlternatives(true);
+        setShowingAlternatives(alternatives.length > 0);
       } else {
         setAlternativeDates([]);
         setShowingAlternatives(false);
