@@ -42,6 +42,10 @@ app.use((req, res, next) => {
   // Serve static files from public directory
   const publicPath = path.resolve(process.cwd(), "public");
   app.use(express.static(publicPath));
+  
+  // Serve static files from attached_assets directory
+  const assetsPath = path.resolve(process.cwd(), "attached_assets");
+  app.use("/attached_assets", express.static(assetsPath));
 
   // Seed the database with sample properties
   await seedDatabase();
@@ -59,9 +63,7 @@ app.use((req, res, next) => {
   // importantly only setup vite in development and after
   // setting up all the other routes so the catch-all route
   // doesn't interfere with the other routes
-  const isDevelopment = process.env.NODE_ENV === "development" || app.get("env") === "development";
-  
-  if (isDevelopment) {
+  if (app.get("env") === "development") {
     await setupVite(app, server);
   } else {
     serveStatic(app);
