@@ -403,11 +403,7 @@ const Properties = () => {
                           {alternative.properties.slice(0, 2).map((property) => (
                             <div 
                               key={property.id} 
-                              className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                window.location.href = `/properties/${property.id}?checkIn=${alternative.checkIn}&checkOut=${alternative.checkOut}`;
-                              }}
+                              className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg"
                             >
                               <div className="w-12 h-12 bg-luxury-gold/10 rounded-lg flex items-center justify-center">
                                 <span className="text-luxury-gold text-xs font-bold">
@@ -415,7 +411,13 @@ const Properties = () => {
                                 </span>
                               </div>
                               <div className="flex-1 min-w-0">
-                                <div className="text-sm font-medium text-gray-900 truncate">
+                                <div 
+                                  className="text-sm font-medium text-amber-700 truncate hover:text-amber-800 cursor-pointer transition-colors underline"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    window.location.href = `/properties/${property.id}?checkIn=${alternative.checkIn}&checkOut=${alternative.checkOut}`;
+                                  }}
+                                >
                                   {property.name}
                                 </div>
                                 <div className="text-xs text-gray-500">
@@ -432,20 +434,7 @@ const Properties = () => {
                         </div>
                       </div>
                       
-                      <Button 
-                        size="sm" 
-                        className="bg-amber-500 hover:bg-amber-600 text-white border-0 w-full group-hover:scale-105 transition-transform duration-300"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          // Navigate to the first property with the alternative dates
-                          const propertyId = alternative.properties[0]?.id;
-                          if (propertyId) {
-                            window.location.href = `/properties/${propertyId}?checkIn=${alternative.checkIn}&checkOut=${alternative.checkOut}`;
-                          }
-                        }}
-                      >
-                        View {alternative.properties.length} {alternative.properties.length === 1 ? 'Property' : 'Properties'}
-                      </Button>
+
                     </div>
                   </div>
                 ))}
