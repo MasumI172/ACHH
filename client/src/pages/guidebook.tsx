@@ -129,11 +129,12 @@ const Guidebook = () => {
                 transition={{ duration: 0.6, delay: index * 0.2 }}
               >
                 <Card className="luxury-card h-full luxury-shadow group hover:scale-105 transition-all duration-500 overflow-hidden">
-                  <div className="relative h-48 overflow-hidden">
+                  <div className="relative h-52 overflow-hidden">
                     <img 
                       src={attraction.image} 
                       alt={attraction.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
+                      style={{ objectPosition: 'center 30%' }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                     <Badge 
@@ -205,11 +206,12 @@ const Guidebook = () => {
                 transition={{ duration: 0.6, delay: index * 0.2 }}
               >
                 <Card className="luxury-card h-full luxury-shadow group hover:scale-105 transition-all duration-500 overflow-hidden">
-                  <div className="relative h-64 overflow-hidden">
+                  <div className="relative h-56 overflow-hidden">
                     <img 
                       src={destination.image} 
                       alt={destination.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
+                      style={{ objectPosition: 'center 25%' }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                     <Badge 
