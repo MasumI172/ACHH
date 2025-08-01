@@ -166,3 +166,4 @@ Design preference: Luxury and modern aesthetic with warm beige/cream tones and g
   - **Call-to-Action**: Direct booking link integration from guidebook to contact page
   - **Visual Enhancement**: Added guidebook images from Airbnb listing to match original visual layout and user experience
   - **Location & Directions**: Added detailed location addresses and walking directions from property to each attraction for practical guest navigation
+  - **Alternative Date Suggestions**: Enhanced booking calendar to automatically suggest up to 5 alternative available date ranges when selected dates have conflicts, improving booking conversion rates
