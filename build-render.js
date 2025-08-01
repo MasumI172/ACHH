@@ -11,21 +11,15 @@ try {
   console.log('1. Building frontend...');
   execSync('vite build', { stdio: 'inherit' });
 
-  // Step 2: Build backend with strict externals
+  // Step 2: Build backend with strict externals  
   console.log('2. Building backend...');
   const esbuildCommand = [
-    'esbuild server/index.prod.ts',
+    'esbuild server/index.render.ts',
     '--platform=node',
     '--format=esm',
     '--bundle',
     '--outfile=dist/index.js',
-    '--packages=external',
-    '--external:vite',
-    '--external:nanoid', 
-    '--external:../vite.config.js',
-    '--external:../vite.config.ts',
-    '--external:./vite',
-    '--external:vite/*'
+    '--packages=external'
   ].join(' ');
   
   execSync(esbuildCommand, { stdio: 'inherit' });
