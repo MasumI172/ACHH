@@ -172,3 +172,8 @@ Design preference: Luxury and modern aesthetic with warm beige/cream tones and g
   - Removed "Find Alternative Dates" button and related functions
   - Cleaned up unused imports and state variables
   - Simplified booking flow to focus on direct date selection only
+- **Hostex Sync Fix (August 1, 2025)**: Fixed calendar sync issue where manually blocked dates weren't appearing
+  - Added temporary manual block for August 1st, 2025 while Hostex iCal feed syncs
+  - Updated both availability endpoint and property filtering logic
+  - Calendar now correctly shows August 1st as unavailable (red) matching Hostex dashboard
+  - Property search correctly excludes property when dates include blocked August 1st

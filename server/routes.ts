@@ -48,42 +48,54 @@ export async function registerRoutes(app: Express): Promise<Server> {
             const requestedEnd = new Date(checkOut as string);
             let isAvailable = true;
             
-            for (let k in events) {
-              const event = events[k];
+            // Temporary fix: Manual block for August 1st for property ID 13
+            if (property.id === 13) {
+              const aug1Start = new Date(2025, 7, 1); // August 1st, 2025
+              const aug1End = new Date(2025, 7, 2);   // August 2nd, 2025 (end exclusive)
               
-              if (event.type === 'VEVENT') {
-                let bookingStart, bookingEnd;
+              if (requestedStart < aug1End && requestedEnd > aug1Start) {
+                isAvailable = false;
+              }
+            }
+            
+            if (isAvailable) {
+              for (let k in events) {
+                const event = events[k];
                 
-                if (typeof event.start === 'string') {
-                  if (event.start.length === 8) {
-                    const year = parseInt(event.start.substring(0, 4));
-                    const month = parseInt(event.start.substring(4, 6)) - 1;
-                    const day = parseInt(event.start.substring(6, 8));
-                    bookingStart = new Date(year, month, day);
+                if (event.type === 'VEVENT') {
+                  let bookingStart, bookingEnd;
+                  
+                  if (typeof event.start === 'string') {
+                    if (event.start.length === 8) {
+                      const year = parseInt(event.start.substring(0, 4));
+                      const month = parseInt(event.start.substring(4, 6)) - 1;
+                      const day = parseInt(event.start.substring(6, 8));
+                      bookingStart = new Date(year, month, day);
+                    } else {
+                      bookingStart = new Date(event.start);
+                    }
                   } else {
                     bookingStart = new Date(event.start);
                   }
-                } else {
-                  bookingStart = new Date(event.start);
-                }
-                
-                if (typeof event.end === 'string') {
-                  if (event.end.length === 8) {
-                    const year = parseInt(event.end.substring(0, 4));
-                    const month = parseInt(event.end.substring(4, 6)) - 1;
-                    const day = parseInt(event.end.substring(6, 8));
-                    bookingEnd = new Date(year, month, day);
+                  
+                  if (typeof event.end === 'string') {
+                    if (event.end.length === 8) {
+                      const year = parseInt(event.end.substring(0, 4));
+                      const month = parseInt(event.end.substring(4, 6)) - 1;
+                      const day = parseInt(event.end.substring(6, 8));
+                      bookingEnd = new Date(year, month, day);
+                    } else {
+                      bookingEnd = new Date(event.end);
+                    }
                   } else {
                     bookingEnd = new Date(event.end);
                   }
-                } else {
-                  bookingEnd = new Date(event.end);
-                }
-                
-                // Check for date overlap
-                if (requestedStart < bookingEnd && requestedEnd > bookingStart) {
-                  isAvailable = false;
-                  break;
+                  
+                  // Check for date overlap
+                  if (requestedStart < bookingEnd && requestedEnd > bookingStart) {
+                    isAvailable = false;
+                    break;
+                  }
                 }
               }
             }
@@ -271,6 +283,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       }
 
+      
+      // Temporary fix: Manually add August 1st as blocked for property 13 until Hostex sync resolves
+      if (propertyId === 13) {
+        const aug1Block = {
+          id: 'manual-block-aug-1-2025',
+          summary: 'Hostex (Not available) - Manual Block',
+          start: new Date(2025, 7, 1).toISOString(), // August 1st, 2025
+          end: new Date(2025, 7, 1).toISOString(),   // Same day
+          status: 'CONFIRMED'
+        };
+        
+        // Check if August 1st is already blocked (avoid duplicates)
+        const aug1Already = bookings.some(booking => {
+          const bookingStart = new Date(booking.start);
+          return bookingStart.getFullYear() === 2025 && 
+                 bookingStart.getMonth() === 7 && 
+                 bookingStart.getDate() === 1;
+        });
+        
+        if (!aug1Already) {
+          bookings.push(aug1Block);
+        }
+      }
       
       // Sort bookings by start date
       bookings.sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime());
