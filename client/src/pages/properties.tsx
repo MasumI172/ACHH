@@ -406,7 +406,7 @@ const Properties = () => {
                               className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors"
                               onClick={(e) => {
                                 e.stopPropagation();
-                                window.location.href = `/property/${property.id}?checkIn=${alternative.checkIn}&checkOut=${alternative.checkOut}`;
+                                window.location.href = `/properties/${property.id}?checkIn=${alternative.checkIn}&checkOut=${alternative.checkOut}`;
                               }}
                             >
                               <div className="w-12 h-12 bg-luxury-gold/10 rounded-lg flex items-center justify-center">
@@ -440,7 +440,7 @@ const Properties = () => {
                           // Navigate to the first property with the alternative dates
                           const propertyId = alternative.properties[0]?.id;
                           if (propertyId) {
-                            window.location.href = `/property/${propertyId}?checkIn=${alternative.checkIn}&checkOut=${alternative.checkOut}`;
+                            window.location.href = `/properties/${propertyId}?checkIn=${alternative.checkIn}&checkOut=${alternative.checkOut}`;
                           }
                         }}
                       >

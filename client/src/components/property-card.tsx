@@ -18,7 +18,7 @@ interface PropertyCardProps {
 const PropertyCard = ({ property, index = 0, isAvailable = false, showAvailability = false, checkInDate, checkOutDate }: PropertyCardProps) => {
   // Build URL with date parameters if available
   const getPropertyUrl = () => {
-    const baseUrl = `/property/${property.id}`;
+    const baseUrl = `/properties/${property.id}`;
     if (checkInDate && checkOutDate) {
       return `${baseUrl}?checkIn=${checkInDate}&checkOut=${checkOutDate}`;
     }
