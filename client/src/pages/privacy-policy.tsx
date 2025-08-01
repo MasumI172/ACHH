@@ -16,116 +16,146 @@ const PrivacyPolicy = () => {
           
           <div className="prose prose-sm sm:prose-base lg:prose-lg max-w-none text-luxury-brown space-y-4 sm:space-y-6 break-words overflow-wrap-anywhere">
             <p>
-              At Arabian Coast Holiday Homes, we respect your privacy and are committed to protecting any personal information you share with us. This policy explains how we collect, use, and safeguard your data when you visit our website: <strong>www.arabiancoastholidayhomes.com</strong>
+              At Arabian Coast Holiday Homes L.L.C. ("we", "us", "our"), your privacy is important to us. This Privacy Policy explains how we collect, use, store, and protect your personal data when you interact with us through our website: www.arabiancoastholidayhomes.com or any direct booking channels.
             </p>
             
             <p>
-              This policy applies to online interactions via our website only. If you book or interact with us through third-party platforms or in person, additional terms may apply.
+              By using our website or providing your personal information, you agree to the terms of this Privacy Policy.
             </p>
 
             <section>
-              <h2 className="text-2xl font-semibold text-luxury-gold mb-4">1. Your Agreement</h2>
-              <p>By using our website, you agree to this Privacy Policy and the way we process your personal data.</p>
+              <h2 className="text-2xl font-semibold text-luxury-gold mb-4">1. Scope of This Policy</h2>
+              <p>This policy applies to personal data collected directly by us through:</p>
+              <ul className="list-disc list-inside space-y-2 mt-4">
+                <li>Our website contact or booking forms</li>
+                <li>Direct booking channels (e.g. email, WhatsApp, phone)</li>
+                <li>General enquiries or feedback submissions</li>
+              </ul>
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded mt-4">
+                <p className="font-semibold">Note: If you book via third-party platforms (e.g. Airbnb, Booking.com), their own privacy policies also apply.</p>
+              </div>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-luxury-gold mb-4">2. Information We Collect</h2>
-              <p>We only collect what we need to deliver our services and improve your experience. This may include:</p>
+              <h2 className="text-2xl font-semibold text-luxury-gold mb-4">2. What Information We Collect</h2>
+              <p>We collect only the data necessary to provide and manage your booking and comply with legal requirements. This may include:</p>
               <ul className="list-disc list-inside space-y-2 mt-4">
-                <li>Details you enter in our contact or booking forms (e.g. name, phone, email)</li>
-                <li>Booking and enquiry information</li>
-                <li>Files or documents you choose to share with us</li>
-                <li>Basic technical data like your IP address, browser type, and page visits</li>
-                <li>Cookies, which help us understand how you use the site and tailor your experience</li>
+                <li>Full name, email, phone number</li>
+                <li>Nationality and passport/Emirates ID (for regulatory check-in)</li>
+                <li>Booking details, preferences, and communication history</li>
+                <li>Files or documents you provide (e.g. ID copies for registration)</li>
+                <li>IP address, browser type, device info, and usage analytics</li>
+                <li>Cookie data for improving website performance</li>
               </ul>
               <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded mt-4">
-                <p className="font-semibold">We do not collect or store payment card details via our website.</p>
+                <p className="font-semibold">We do not collect or store payment card details via our website. All payments are processed securely by third-party payment providers.</p>
               </div>
             </section>
 
             <section>
               <h2 className="text-2xl font-semibold text-luxury-gold mb-4">3. How We Use Your Information</h2>
-              <p>We use the data we collect for purposes such as:</p>
+              <p>We use your personal data to:</p>
               <ul className="list-disc list-inside space-y-2 mt-4">
-                <li>Responding to enquiries and managing bookings</li>
-                <li>Providing booking confirmations and updates</li>
-                <li>Improving website content and performance</li>
-                <li>Ensuring site security and preventing abuse</li>
-                <li>Fulfilling legal and regulatory obligations</li>
+                <li>Respond to enquiries and manage bookings</li>
+                <li>Communicate check-in details, confirmations, and reminders</li>
+                <li>Verify guest identity and fulfill regulatory reporting obligations (e.g. to DET)</li>
+                <li>Enhance website functionality and improve user experience</li>
+                <li>Maintain security and detect misuse or fraud</li>
+                <li>Fulfill legal, accounting, and audit requirements</li>
               </ul>
               <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded mt-4">
-                <p className="font-semibold">We never sell or rent your personal data to third parties.</p>
+                <p className="font-semibold">We do not sell, rent, or share your personal data with third parties for marketing purposes.</p>
               </div>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-luxury-gold mb-4">4. Cookies</h2>
-              <p>
-                We use cookies to improve site speed, remember preferences, and analyze visitor behavior. You can control or disable cookies in your browser settings — though some features may stop working as expected.
+              <h2 className="text-2xl font-semibold text-luxury-gold mb-4">4. Legal Basis for Processing</h2>
+              <p>In accordance with Federal Decree-Law No. 45 of 2021 (UAE), our legal bases for processing include:</p>
+              <ul className="list-disc list-inside space-y-2 mt-4">
+                <li>Your explicit consent</li>
+                <li>Contractual necessity (e.g. fulfilling your booking)</li>
+                <li>Legal compliance (e.g. reporting to the Department of Economy and Tourism)</li>
+                <li>Our legitimate interest in ensuring service quality and website functionality</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold text-luxury-gold mb-4">5. Cookies & Analytics</h2>
+              <p>We use essential and analytics cookies to:</p>
+              <ul className="list-disc list-inside space-y-2 mt-4">
+                <li>Improve loading speed and user experience</li>
+                <li>Monitor traffic and site performance</li>
+                <li>Remember preferences (e.g. language)</li>
+              </ul>
+              <p className="mt-4">
+                You can disable non-essential cookies via your browser settings. Disabling may affect website functionality.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-luxury-gold mb-4">5. Log & Technical Data</h2>
-              <p>When you visit our website, we may log:</p>
+              <h2 className="text-2xl font-semibold text-luxury-gold mb-4">6. Log & Technical Data</h2>
+              <p>When you visit our site, we may automatically log anonymized data such as:</p>
               <ul className="list-disc list-inside space-y-2 mt-4">
-                <li>IP address</li>
-                <li>Browser type</li>
-                <li>Device info</li>
-                <li>Referring/exit pages</li>
-                <li>Time spent on pages</li>
+                <li>IP address and browser type</li>
+                <li>Device and OS version</li>
+                <li>Time spent on pages and click paths</li>
+                <li>Referrer URLs</li>
               </ul>
-              <p className="mt-4">This data is anonymized and used for internal analytics only.</p>
+              <p className="mt-4">This data is used only for internal performance monitoring and is never linked to your identity.</p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-luxury-gold mb-4">6. Your Rights (UAE & Global Compliance)</h2>
-              <p>You may have the right to:</p>
+              <h2 className="text-2xl font-semibold text-luxury-gold mb-4">7. Your Rights (Data Access & Control)</h2>
+              <p>You have the right to:</p>
               <ul className="list-disc list-inside space-y-2 mt-4">
-                <li>Access the personal data we hold about you</li>
-                <li>Correct or complete inaccurate data</li>
-                <li>Request deletion of your data (where legally allowed)</li>
-                <li>Object to or restrict how we process your data</li>
-                <li>Request a copy of your data in a portable format</li>
+                <li>Request access to your personal data</li>
+                <li>Ask for correction of inaccurate information</li>
+                <li>Request deletion (subject to legal retention limits)</li>
+                <li>Object to or restrict certain data uses</li>
+                <li>Request data portability in a structured format</li>
               </ul>
               <div className="bg-luxury-cream/30 p-4 rounded-lg mt-4">
                 <p>
-                  To make a request, email us at <strong>info@arabiancoastholidayhomes.com</strong>. We'll respond within 30 calendar days in accordance with applicable law.
+                  To exercise your rights, email info@arabiancoastholidayhomes.com. We will respond within 30 calendar days, in line with UAE law.
                 </p>
               </div>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-luxury-gold mb-4">7. Children's Privacy</h2>
+              <h2 className="text-2xl font-semibold text-luxury-gold mb-4">8. Data Retention</h2>
+              <p>We retain your personal data:</p>
+              <ul className="list-disc list-inside space-y-2 mt-4">
+                <li>For the duration of your stay and booking history</li>
+                <li>As required by UAE regulations, including DET and tax authorities</li>
+                <li>For up to 12 months after your last interaction, unless required longer by law</li>
+              </ul>
+              <p className="mt-4">After this, data is securely deleted or archived in compliance with applicable regulations.</p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold text-luxury-gold mb-4">9. Children's Privacy</h2>
               <p>
-                Our services are not directed at children under 13. We do not knowingly collect their data. If you believe a child has submitted information to us, please contact us immediately for removal.
+                Our services are not intended for children under 13 years old. We do not knowingly collect personal data from minors. If we become aware that such data was submitted, we will delete it immediately.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-luxury-gold mb-4">8. External Links</h2>
+              <h2 className="text-2xl font-semibold text-luxury-gold mb-4">10. Third-Party Links</h2>
               <p>
-                Some pages on our site may link to external websites. We are not responsible for the privacy practices or content of those sites.
+                Our website may link to external sites (e.g. payment providers or property platforms). We are not responsible for their content or privacy practices. Please review their respective policies before using them.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-luxury-gold mb-4">9. Data Retention</h2>
-              <p>
-                We retain your data only as long as necessary for operational, legal, or audit purposes. Once no longer needed, we securely erase or archive it.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-2xl font-semibold text-luxury-gold mb-4">10. Contact Us</h2>
+              <h2 className="text-2xl font-semibold text-luxury-gold mb-4">11. Contact Us</h2>
               <div className="bg-luxury-gold/10 border border-luxury-gold p-6 rounded-lg">
-                <p className="font-semibold mb-4">If you have questions about this Privacy Policy or how we handle your data, please reach out:</p>
+                <p className="font-semibold mb-4">If you have any questions or concerns about this Privacy Policy or how your personal data is handled, contact:</p>
                 <div className="space-y-2">
-                  <p><strong>Arabian Coast Holiday Homes</strong></p>
+                  <p><strong>Arabian Coast Holiday Homes L.L.C.</strong></p>
                   <p>📍 Dubai, United Arab Emirates</p>
                   <p>📧 info@arabiancoastholidayhomes.com</p>
                   <p>🌐 www.arabiancoastholidayhomes.com</p>
-                  <p>🧾 Company Licence Number: 1453578</p>
+                  <p>🧾 Trade License No: 1453578</p>
                 </div>
               </div>
             </section>
