@@ -342,8 +342,10 @@ const Properties = () => {
                 <div>
                   <h3 className="text-xl font-bold text-amber-800">Alternative Available Dates</h3>
                   <p className="text-amber-700">
-                    {alternativeDates.length === 0 
+                    {alternativeDates.length === 0 && isSearchingAlternatives
                       ? "Searching for available alternatives..." 
+                      : alternativeDates.length === 0
+                      ? "Click 'Find Alternative Dates' to search for available options"
                       : "Your selected dates aren't available. Here are some great alternatives:"
                     }
                   </p>
@@ -516,7 +518,7 @@ const Properties = () => {
                 ))}
               </div>
             </>
-          ) : (
+          ) : !showingAlternatives ? (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -555,7 +557,7 @@ const Properties = () => {
                 </CardContent>
               </Card>
             </motion.div>
-          )}
+          ) : null}
         </div>
       </section>
     </div>
