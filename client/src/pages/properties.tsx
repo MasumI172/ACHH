@@ -16,6 +16,7 @@ const Properties = () => {
   const [checkOutDate, setCheckOutDate] = useState<string>("");
   const [alternativeDates, setAlternativeDates] = useState<{checkIn: string, checkOut: string, properties: Property[]}[]>([]);
   const [showingAlternatives, setShowingAlternatives] = useState(false);
+  const [isSearchingAlternatives, setIsSearchingAlternatives] = useState(false);
 
   // Check for URL parameters on component mount
   useEffect(() => {
@@ -103,10 +104,11 @@ const Properties = () => {
               };
             }
           }
+          return null;
         } catch (error) {
           console.log('Error checking date:', checkInStr, error);
+          return null;
         }
-        return null;
       });
       
       const results = await Promise.all(promises);
@@ -121,38 +123,38 @@ const Properties = () => {
     }
   };
 
-  // Check for alternatives when no properties are found
-  useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
+  // Manual alternative search function
+  const searchForAlternatives = async () => {
+    if (isSearchingAlternatives || !checkInDate || !checkOutDate) return;
     
-    const checkAlternatives = async () => {
-      if (checkInDate && checkOutDate && filteredProperties !== undefined && filteredProperties.length === 0 && !isLoading) {
-        // Show loading state immediately
-        setShowingAlternatives(true);
-        setAlternativeDates([]);
-        
-        console.log('Searching for alternatives...', checkInDate, checkOutDate);
-        const alternatives = await findAlternativeDates(checkInDate, checkOutDate);
-        console.log('Found alternatives:', alternatives);
-        setAlternativeDates(alternatives);
-        setShowingAlternatives(alternatives.length > 0);
-      } else {
-        setAlternativeDates([]);
-        setShowingAlternatives(false);
-      }
-    };
+    setIsSearchingAlternatives(true);
+    setShowingAlternatives(true);
+    setAlternativeDates([]);
     
-    // Debounce the search to avoid multiple rapid calls
-    timeoutId = setTimeout(checkAlternatives, 500);
+    console.log('Searching for alternatives...', checkInDate, checkOutDate);
     
-    return () => clearTimeout(timeoutId);
-  }, [filteredProperties, checkInDate, checkOutDate, isLoading]);
+    try {
+      const alternatives = await findAlternativeDates(checkInDate, checkOutDate);
+      console.log('Found alternatives:', alternatives);
+      setAlternativeDates(alternatives);
+      setShowingAlternatives(alternatives.length > 0);
+    } catch (error) {
+      console.log('Error finding alternatives:', error);
+      setAlternativeDates([]);
+      setShowingAlternatives(false);
+    } finally {
+      setIsSearchingAlternatives(false);
+    }
+  };
 
   const handleAlternativeDateSelect = (alternative: {checkIn: string, checkOut: string, properties: Property[]}) => {
-    setCheckInDate(alternative.checkIn);
-    setCheckOutDate(alternative.checkOut);
+    // Clear alternatives first to prevent re-triggering
     setAlternativeDates([]);
     setShowingAlternatives(false);
+    
+    // Update dates
+    setCheckInDate(alternative.checkIn);
+    setCheckOutDate(alternative.checkOut);
     
     // Update URL params
     const newUrl = new URL(window.location.href);
@@ -525,6 +527,18 @@ const Properties = () => {
                   <p className="text-gray-600 mb-4">
                     Try adjusting your search criteria or browse all properties.
                   </p>
+                  {checkInDate && checkOutDate && (
+                    <div className="mt-4">
+                      <Button 
+                        onClick={searchForAlternatives}
+                        disabled={isSearchingAlternatives}
+                        className="bg-amber-500 hover:bg-amber-600 text-white mr-2"
+                      >
+                        {isSearchingAlternatives ? 'Searching...' : 'Find Alternative Dates'}
+                      </Button>
+                    </div>
+                  )}
+
                   <Button
                     onClick={() => {
                       setSelectedCategory("all");
