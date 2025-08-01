@@ -350,14 +350,19 @@ const Properties = () => {
                 </div>
               </div>
               
-              {alternativeDates.length === 0 ? (
-                /* Loading State */
+              {alternativeDates.length === 0 && isSearchingAlternatives ? (
+                /* Loading State - only show when actively searching */
                 <div className="text-center py-8">
                   <div className="inline-flex items-center gap-3 text-amber-700">
                     <div className="w-6 h-6 border-2 border-amber-500 border-t-transparent rounded-full animate-spin"></div>
                     <span className="text-lg font-medium">Finding the best available dates...</span>
                   </div>
                   <p className="text-amber-600 text-sm mt-2">This will take just a moment</p>
+                </div>
+              ) : alternativeDates.length === 0 ? (
+                /* No results yet - show message to click button */
+                <div className="text-center py-8">
+                  <p className="text-amber-700 text-lg">Click "Find Alternative Dates" to search for available options</p>
                 </div>
               ) : (
                 /* Results */
@@ -374,7 +379,7 @@ const Properties = () => {
                       <div className="flex items-center justify-between mb-3">
                         <div className="text-sm text-amber-700 font-medium">Option {index + 1}</div>
                         <Badge variant="secondary" className="bg-green-100 text-green-700 border-green-200 text-xs">
-                          {alternative.properties.length} Available
+                          {alternative.properties.length} {alternative.properties.length === 1 ? 'Property' : 'Properties'} available
                         </Badge>
                       </div>
                       <div className="space-y-2 mb-4">
