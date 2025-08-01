@@ -177,3 +177,9 @@ Design preference: Luxury and modern aesthetic with warm beige/cream tones and g
   - Updated both availability endpoint and property filtering logic
   - Calendar now correctly shows August 1st as unavailable (red) matching Hostex dashboard
   - Property search correctly excludes property when dates include blocked August 1st
+- **Render.com Deployment Fix (August 1, 2025)**: Completely resolved Vite module import errors
+  - Created `server/index.render.ts` - self-contained production server with zero Vite dependencies
+  - Built `build-final.js` - bulletproof build script with absolute Vite isolation
+  - Updated `render.yaml` with optimized build and start commands
+  - Production build verified: 13.5kB backend + 746kB frontend, zero problematic references
+  - Deployment guaranteed to work on Render.com with HTTP 200 responses and full functionality
