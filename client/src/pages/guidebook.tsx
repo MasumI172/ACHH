@@ -23,21 +23,24 @@ const Guidebook = () => {
       description: "The Burj Khalifa is the tallest building in the world, offering stunning views from its observation deck. At night, it lights up with vibrant displays, often showcasing special themes or events. Visitors can enjoy panoramic views of Dubai's skyline and desert. It's a must-see landmark that beautifully illuminates the city.",
       icon: <Eye className="w-6 h-6" />,
       category: "Iconic Landmark",
-      highlights: ["World's tallest building", "Observation deck", "Night light shows", "Panoramic views"]
+      highlights: ["World's tallest building", "Observation deck", "Night light shows", "Panoramic views"],
+      image: "/guidebook-sightseeing.png"
     },
     {
       name: "Dubai Fountain Lake",
       description: "The Dubai Fountain is a breathtaking water and light show set against the Burj Khalifa. It's free to watch and features synchronized dances with music. Located near the Dubai Mall, it's a perfect spot for shopping and sightseeing. The fountain runs multiple times in the evening, creating a magical experience.",
       icon: <Waves className="w-6 h-6" />,
       category: "Entertainment",
-      highlights: ["Free water & light show", "Synchronized music", "Multiple evening shows", "Near Dubai Mall"]
+      highlights: ["Free water & light show", "Synchronized music", "Multiple evening shows", "Near Dubai Mall"],
+      image: "/guidebook-fountain.png"
     },
     {
       name: "Dubai Mall Aquarium",
       description: "The Dubai Mall Aquarium is one of the largest indoor aquariums in the world, featuring a stunning display of marine life. Visitors can walk through a glass tunnel for a 360-degree view of the tank, home to thousands of aquatic species. It's a mesmerizing experience for both adults and kids. The aquarium also offers unique activities like diving with sharks.",
       icon: <Fish className="w-6 h-6" />,
       category: "Family Attraction",
-      highlights: ["World's largest indoor aquarium", "Glass tunnel experience", "Thousands of species", "Diving with sharks activity"]
+      highlights: ["World's largest indoor aquarium", "Glass tunnel experience", "Thousands of species", "Diving with sharks activity"],
+      image: "/guidebook-aquarium.png"
     }
   ];
 
@@ -47,14 +50,16 @@ const Guidebook = () => {
       description: "The Dubai Mall is one of the largest shopping malls in the world, offering an endless variety of stores, restaurants, and entertainment. It's home to attractions like an ice rink, an aquarium, and a virtual reality park. Visitors can enjoy shopping, dining, and family-friendly activities all in one place. It's the ultimate destination for both leisure and luxury.",
       icon: <ShoppingBag className="w-6 h-6" />,
       category: "Shopping & Entertainment",
-      highlights: ["World's largest mall", "Ice rink & aquarium", "VR park", "Endless dining options"]
+      highlights: ["World's largest mall", "Ice rink & aquarium", "VR park", "Endless dining options"],
+      image: "/guidebook-shopping.png"
     },
     {
       name: "Dubai Ice Rink",
       description: "The Dubai Mall Ice Rink is a popular indoor skating destination, offering a fun experience for skaters of all levels. The rink hosts public sessions, ice hockey games, and figure skating events. It's a cool escape from the desert heat and perfect for families looking for unique activities.",
       icon: <Snowflake className="w-6 h-6" />,
       category: "Recreation",
-      highlights: ["Indoor skating", "Public sessions", "Ice hockey games", "Cool escape from heat"]
+      highlights: ["Indoor skating", "Public sessions", "Ice hockey games", "Cool escape from heat"],
+      image: "/guidebook-ice-rink.png"
     }
   ];
 
@@ -123,20 +128,30 @@ const Guidebook = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
               >
-                <Card className="luxury-card h-full luxury-shadow group hover:scale-105 transition-all duration-500">
+                <Card className="luxury-card h-full luxury-shadow group hover:scale-105 transition-all duration-500 overflow-hidden">
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={attraction.image} 
+                      alt={attraction.name}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                    <Badge 
+                      variant="secondary" 
+                      className="absolute top-3 left-3 bg-white/90 text-luxury-brown backdrop-blur-sm"
+                    >
+                      {attraction.category}
+                    </Badge>
+                  </div>
+                  
                   <CardContent className="p-6">
-                    <div className="flex items-start gap-4 mb-4">
+                    <div className="flex items-start gap-3 mb-4">
                       <div className="p-3 bg-luxury-gold/10 rounded-xl text-luxury-gold">
                         {attraction.icon}
                       </div>
-                      <div className="flex-1">
-                        <Badge variant="secondary" className="mb-2 bg-luxury-cream text-luxury-brown">
-                          {attraction.category}
-                        </Badge>
-                        <h3 className="text-xl font-bold text-luxury-brown mb-2">
-                          {attraction.name}
-                        </h3>
-                      </div>
+                      <h3 className="text-xl font-bold text-luxury-brown flex-1">
+                        {attraction.name}
+                      </h3>
                     </div>
                     
                     <p className="text-luxury-bronze mb-4 leading-relaxed">
@@ -189,20 +204,30 @@ const Guidebook = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
               >
-                <Card className="luxury-card h-full luxury-shadow group hover:scale-105 transition-all duration-500">
+                <Card className="luxury-card h-full luxury-shadow group hover:scale-105 transition-all duration-500 overflow-hidden">
+                  <div className="relative h-64 overflow-hidden">
+                    <img 
+                      src={destination.image} 
+                      alt={destination.name}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                    <Badge 
+                      variant="secondary" 
+                      className="absolute top-4 left-4 bg-white/90 text-luxury-brown backdrop-blur-sm"
+                    >
+                      {destination.category}
+                    </Badge>
+                  </div>
+                  
                   <CardContent className="p-8">
                     <div className="flex items-start gap-4 mb-4">
                       <div className="p-3 bg-luxury-gold/10 rounded-xl text-luxury-gold">
                         {destination.icon}
                       </div>
-                      <div className="flex-1">
-                        <Badge variant="secondary" className="mb-2 bg-luxury-cream text-luxury-brown">
-                          {destination.category}
-                        </Badge>
-                        <h3 className="text-2xl font-bold text-luxury-brown mb-2">
-                          {destination.name}
-                        </h3>
-                      </div>
+                      <h3 className="text-2xl font-bold text-luxury-brown flex-1">
+                        {destination.name}
+                      </h3>
                     </div>
                     
                     <p className="text-luxury-bronze mb-4 leading-relaxed text-lg">
