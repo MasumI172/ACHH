@@ -161,12 +161,12 @@ const Guidebook = () => {
                       <div className="p-3 bg-luxury-gold/10 rounded-xl text-luxury-gold">
                         {attraction.icon}
                       </div>
-                      <h3 className="text-xl font-bold text-luxury-brown flex-1">
+                      <h3 className="text-lg font-bold text-luxury-brown flex-1">
                         {attraction.name}
                       </h3>
                     </div>
                     
-                    <p className="text-luxury-bronze mb-4 leading-relaxed">
+                    <p className="text-luxury-bronze mb-4 leading-relaxed text-sm">
                       {attraction.description}
                     </p>
                     
@@ -256,12 +256,12 @@ const Guidebook = () => {
                       <div className="p-3 bg-luxury-gold/10 rounded-xl text-luxury-gold">
                         {destination.icon}
                       </div>
-                      <h3 className="text-2xl font-bold text-luxury-brown flex-1">
+                      <h3 className="text-xl font-bold text-luxury-brown flex-1">
                         {destination.name}
                       </h3>
                     </div>
                     
-                    <p className="text-luxury-bronze mb-4 leading-relaxed text-lg">
+                    <p className="text-luxury-bronze mb-4 leading-relaxed text-sm">
                       {destination.description}
                     </p>
                     
