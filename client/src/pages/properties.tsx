@@ -401,7 +401,14 @@ const Properties = () => {
                         <h4 className="text-sm font-medium text-gray-700 mb-2">Available Properties:</h4>
                         <div className="space-y-2">
                           {alternative.properties.slice(0, 2).map((property) => (
-                            <div key={property.id} className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg">
+                            <div 
+                              key={property.id} 
+                              className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                window.location.href = `/property/${property.id}?checkIn=${alternative.checkIn}&checkOut=${alternative.checkOut}`;
+                              }}
+                            >
                               <div className="w-12 h-12 bg-luxury-gold/10 rounded-lg flex items-center justify-center">
                                 <span className="text-luxury-gold text-xs font-bold">
                                   {property.name.split(' ').map(w => w[0]).join('').slice(0, 2)}
@@ -428,8 +435,16 @@ const Properties = () => {
                       <Button 
                         size="sm" 
                         className="bg-amber-500 hover:bg-amber-600 text-white border-0 w-full group-hover:scale-105 transition-transform duration-300"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          // Navigate to the first property with the alternative dates
+                          const propertyId = alternative.properties[0]?.id;
+                          if (propertyId) {
+                            window.location.href = `/property/${propertyId}?checkIn=${alternative.checkIn}&checkOut=${alternative.checkOut}`;
+                          }
+                        }}
                       >
-                        View {alternative.properties.length} Properties
+                        View {alternative.properties.length} {alternative.properties.length === 1 ? 'Property' : 'Properties'}
                       </Button>
                     </div>
                   </div>
@@ -514,6 +529,8 @@ const Properties = () => {
                     index={index}
                     showAvailability={checkInDate && checkOutDate ? true : false}
                     isAvailable={true} // For now, assume available if dates are selected - can be enhanced with real availability data
+                    checkInDate={checkInDate}
+                    checkOutDate={checkOutDate}
                   />
                 ))}
               </div>

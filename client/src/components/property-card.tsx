@@ -11,9 +11,19 @@ interface PropertyCardProps {
   index?: number;
   isAvailable?: boolean;
   showAvailability?: boolean;
+  checkInDate?: string;
+  checkOutDate?: string;
 }
 
-const PropertyCard = ({ property, index = 0, isAvailable = false, showAvailability = false }: PropertyCardProps) => {
+const PropertyCard = ({ property, index = 0, isAvailable = false, showAvailability = false, checkInDate, checkOutDate }: PropertyCardProps) => {
+  // Build URL with date parameters if available
+  const getPropertyUrl = () => {
+    const baseUrl = `/property/${property.id}`;
+    if (checkInDate && checkOutDate) {
+      return `${baseUrl}?checkIn=${checkInDate}&checkOut=${checkOutDate}`;
+    }
+    return baseUrl;
+  };
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -23,7 +33,7 @@ const PropertyCard = ({ property, index = 0, isAvailable = false, showAvailabili
       className="property-card"
     >
       <Card className="luxury-card overflow-hidden luxury-shadow transition-all duration-700 group">
-        <Link href={`/properties/${property.id}`}>
+        <Link href={getPropertyUrl()}>
           <div className="relative overflow-hidden cursor-pointer">
             <img
               src={property.images[0]}
@@ -41,7 +51,7 @@ const PropertyCard = ({ property, index = 0, isAvailable = false, showAvailabili
         <CardContent className="p-4 sm:p-6 lg:p-8">
           <div className="mb-4">
             <div className="flex items-start justify-between mb-2">
-              <Link href={`/properties/${property.id}`}>
+              <Link href={getPropertyUrl()}>
                 <h3 className="text-xl luxury-subheading text-luxury-brown hover:text-luxury-gold transition-colors duration-300 leading-tight cursor-pointer">
                   {property.name}
                 </h3>
@@ -82,7 +92,7 @@ const PropertyCard = ({ property, index = 0, isAvailable = false, showAvailabili
           </div>
 
           <div className="flex items-center justify-end">
-            <Link href={`/properties/${property.id}`}>
+            <Link href={getPropertyUrl()}>
               <Button className="luxury-button group">
                 <span className="group-hover:translate-x-1 transition-transform duration-300">View Details</span>
               </Button>

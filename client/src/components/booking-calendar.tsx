@@ -35,6 +35,31 @@ const BookingCalendar = ({ propertyId, maxGuests, propertyName }: BookingCalenda
   const [showCalendar, setShowCalendar] = useState<'checkin' | 'checkout' | null>(null);
   const [alternativeDates, setAlternativeDates] = useState<{checkIn: Date, checkOut: Date}[]>([]);
 
+  // Check for URL parameters on component mount to pre-fill dates
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const checkInParam = urlParams.get('checkIn');
+    const checkOutParam = urlParams.get('checkOut');
+    
+    if (checkInParam && checkOutParam) {
+      try {
+        const checkInDate = new Date(checkInParam);
+        const checkOutDate = new Date(checkOutParam);
+        
+        // Validate dates are not in the past and check-out is after check-in
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        
+        if (checkInDate >= today && checkOutDate > checkInDate) {
+          setCheckIn(checkInDate);
+          setCheckOut(checkOutDate);
+        }
+      } catch (error) {
+        console.log('Error parsing URL dates:', error);
+      }
+    }
+  }, []);
+
   // Fetch availability data from Hostex iCal
   const { data: availabilityData, isLoading: isLoadingAvailability, refetch } = useQuery<AvailabilityData>({
     queryKey: [`/api/properties/${propertyId}/availability`],
