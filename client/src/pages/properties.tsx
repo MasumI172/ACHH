@@ -70,8 +70,9 @@ const Properties = () => {
     const alternatives: {checkIn: string, checkOut: string, properties: Property[]}[] = [];
     const today = new Date();
     
-    // Search for alternative dates within the next 3 months
-    for (let i = 1; i < 90 && alternatives.length < 5; i++) { // Start from day 1, not today
+    // Create array of potential dates to check (sample every 2-3 days for speed)
+    const datesToCheck: string[][] = [];
+    for (let i = 1; i < 60 && datesToCheck.length < 20; i += 2) { // Check every 2 days, limit to 20 checks
       const potentialCheckIn = addDays(today, i);
       const potentialCheckOut = addDays(potentialCheckIn, requestedNights);
       
@@ -83,35 +84,53 @@ const Properties = () => {
         continue;
       }
       
-      try {
-        // Check if properties are available for this date range
-        const url = `/api/properties?checkIn=${checkInStr}&checkOut=${checkOutStr}`;
-        const response = await fetch(url);
-        if (response.ok) {
-          const availableProperties = await response.json();
-          if (availableProperties && availableProperties.length > 0) {
-            alternatives.push({
-              checkIn: checkInStr,
-              checkOut: checkOutStr,
-              properties: availableProperties
-            });
-          }
-        }
-        
-        // Add a small delay to prevent overwhelming the server
-        await new Promise(resolve => setTimeout(resolve, 100));
-      } catch (error) {
-        console.log('Error checking alternative dates:', error);
-      }
+      datesToCheck.push([checkInStr, checkOutStr]);
     }
     
-    return alternatives;
+    // Use Promise.all to check multiple dates simultaneously
+    try {
+      const promises = datesToCheck.map(async ([checkInStr, checkOutStr]) => {
+        try {
+          const url = `/api/properties?checkIn=${checkInStr}&checkOut=${checkOutStr}`;
+          const response = await fetch(url);
+          if (response.ok) {
+            const availableProperties = await response.json();
+            if (availableProperties && availableProperties.length > 0) {
+              return {
+                checkIn: checkInStr,
+                checkOut: checkOutStr,
+                properties: availableProperties
+              };
+            }
+          }
+        } catch (error) {
+          console.log('Error checking date:', checkInStr, error);
+        }
+        return null;
+      });
+      
+      const results = await Promise.all(promises);
+      
+      // Filter out null results and take first 5
+      const validAlternatives = results.filter(result => result !== null);
+      return validAlternatives.slice(0, 5);
+      
+    } catch (error) {
+      console.log('Error in parallel date checking:', error);
+      return [];
+    }
   };
 
   // Check for alternatives when no properties are found
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    
     const checkAlternatives = async () => {
       if (checkInDate && checkOutDate && filteredProperties !== undefined && filteredProperties.length === 0 && !isLoading) {
+        // Show loading state immediately
+        setShowingAlternatives(true);
+        setAlternativeDates([]);
+        
         console.log('Searching for alternatives...', checkInDate, checkOutDate);
         const alternatives = await findAlternativeDates(checkInDate, checkOutDate);
         console.log('Found alternatives:', alternatives);
@@ -123,7 +142,10 @@ const Properties = () => {
       }
     };
     
-    checkAlternatives();
+    // Debounce the search to avoid multiple rapid calls
+    timeoutId = setTimeout(checkAlternatives, 500);
+    
+    return () => clearTimeout(timeoutId);
   }, [filteredProperties, checkInDate, checkOutDate, isLoading]);
 
   const handleAlternativeDateSelect = (alternative: {checkIn: string, checkOut: string, properties: Property[]}) => {
@@ -302,7 +324,7 @@ const Properties = () => {
       </section>
 
       {/* Alternative Dates Section */}
-      {showingAlternatives && alternativeDates.length > 0 && (
+      {showingAlternatives && (
         <section className="py-6 bg-gradient-to-br from-amber-50 to-orange-50">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
@@ -317,9 +339,27 @@ const Properties = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-amber-800">Alternative Available Dates</h3>
-                  <p className="text-amber-700">Your selected dates aren't available. Here are some great alternatives:</p>
+                  <p className="text-amber-700">
+                    {alternativeDates.length === 0 
+                      ? "Searching for available alternatives..." 
+                      : "Your selected dates aren't available. Here are some great alternatives:"
+                    }
+                  </p>
                 </div>
               </div>
+              
+              {alternativeDates.length === 0 ? (
+                /* Loading State */
+                <div className="text-center py-8">
+                  <div className="inline-flex items-center gap-3 text-amber-700">
+                    <div className="w-6 h-6 border-2 border-amber-500 border-t-transparent rounded-full animate-spin"></div>
+                    <span className="text-lg font-medium">Finding the best available dates...</span>
+                  </div>
+                  <p className="text-amber-600 text-sm mt-2">This will take just a moment</p>
+                </div>
+              ) : (
+                /* Results */
+                <>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 {alternativeDates.map((alternative, index) => (
@@ -392,6 +432,8 @@ const Properties = () => {
                   💡 <strong>Tip:</strong> Click on any alternative date option to automatically update your search and see available properties.
                 </p>
               </div>
+              </>
+              )}
             </motion.div>
           </div>
         </section>
