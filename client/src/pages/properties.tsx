@@ -14,7 +14,7 @@ const Properties = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [checkInDate, setCheckInDate] = useState<string>("");
   const [checkOutDate, setCheckOutDate] = useState<string>("");
-  const [alternativeDates, setAlternativeDates] = useState<{checkIn: string, checkOut: string}[]>([]);
+  const [alternativeDates, setAlternativeDates] = useState<{checkIn: string, checkOut: string, properties: Property[]}[]>([]);
   const [showingAlternatives, setShowingAlternatives] = useState(false);
 
   // Check for URL parameters on component mount
@@ -67,7 +67,7 @@ const Properties = () => {
     if (!requestedCheckIn || !requestedCheckOut) return [];
     
     const requestedNights = differenceInDays(new Date(requestedCheckOut), new Date(requestedCheckIn));
-    const alternatives: {checkIn: string, checkOut: string}[] = [];
+    const alternatives: {checkIn: string, checkOut: string, properties: Property[]}[] = [];
     const today = new Date();
     
     // Search for alternative dates within the next 3 months
@@ -87,7 +87,8 @@ const Properties = () => {
           if (availableProperties && availableProperties.length > 0) {
             alternatives.push({
               checkIn: checkInStr,
-              checkOut: checkOutStr
+              checkOut: checkOutStr,
+              properties: availableProperties
             });
           }
         }
@@ -115,7 +116,7 @@ const Properties = () => {
     checkAlternatives();
   }, [filteredProperties, checkInDate, checkOutDate, isLoading]);
 
-  const handleAlternativeDateSelect = (alternative: {checkIn: string, checkOut: string}) => {
+  const handleAlternativeDateSelect = (alternative: {checkIn: string, checkOut: string, properties: Property[]}) => {
     setCheckInDate(alternative.checkIn);
     setCheckOutDate(alternative.checkOut);
     setAlternativeDates([]);
@@ -310,36 +311,66 @@ const Properties = () => {
                 </div>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 {alternativeDates.map((alternative, index) => (
                   <div 
                     key={index}
                     onClick={() => handleAlternativeDateSelect(alternative)}
-                    className="cursor-pointer p-4 bg-white border-2 border-amber-200 rounded-xl hover:border-amber-400 hover:bg-amber-50 transition-all duration-300 shadow-sm group"
+                    className="cursor-pointer p-6 bg-white border-2 border-amber-200 rounded-xl hover:border-amber-400 hover:bg-amber-50 transition-all duration-300 shadow-sm group"
                   >
-                    <div className="text-center">
-                      <div className="flex items-center justify-center gap-2 mb-3">
+                    <div className="mb-4">
+                      <div className="flex items-center justify-between mb-3">
                         <div className="text-sm text-amber-700 font-medium">Option {index + 1}</div>
                         <Badge variant="secondary" className="bg-green-100 text-green-700 border-green-200 text-xs">
-                          Available
+                          {alternative.properties.length} Available
                         </Badge>
                       </div>
                       <div className="space-y-2 mb-4">
-                        <div className="text-luxury-brown font-semibold text-sm">
-                          📅 {format(new Date(alternative.checkIn), 'EEE, MMM d')}
+                        <div className="text-luxury-brown font-semibold">
+                          📅 Check-in: {format(new Date(alternative.checkIn), 'EEE, MMM d, yyyy')}
                         </div>
-                        <div className="text-luxury-brown font-semibold text-sm">
-                          📅 {format(new Date(alternative.checkOut), 'EEE, MMM d')}
+                        <div className="text-luxury-brown font-semibold">
+                          📅 Check-out: {format(new Date(alternative.checkOut), 'EEE, MMM d, yyyy')}
                         </div>
-                        <div className="text-amber-700 text-xs">
+                        <div className="text-amber-700 text-sm">
                           {differenceInDays(new Date(alternative.checkOut), new Date(alternative.checkIn))} night{differenceInDays(new Date(alternative.checkOut), new Date(alternative.checkIn)) !== 1 ? 's' : ''}
                         </div>
                       </div>
+                      
+                      {/* Available Properties */}
+                      <div className="mb-4">
+                        <h4 className="text-sm font-medium text-gray-700 mb-2">Available Properties:</h4>
+                        <div className="space-y-2">
+                          {alternative.properties.slice(0, 2).map((property) => (
+                            <div key={property.id} className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg">
+                              <div className="w-12 h-12 bg-luxury-gold/10 rounded-lg flex items-center justify-center">
+                                <span className="text-luxury-gold text-xs font-bold">
+                                  {property.name.split(' ').map(w => w[0]).join('').slice(0, 2)}
+                                </span>
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <div className="text-sm font-medium text-gray-900 truncate">
+                                  {property.name}
+                                </div>
+                                <div className="text-xs text-gray-500">
+                                  {property.category} • {property.maxGuests} guests
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                          {alternative.properties.length > 2 && (
+                            <div className="text-xs text-gray-500 text-center">
+                              +{alternative.properties.length - 2} more properties
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                      
                       <Button 
                         size="sm" 
                         className="bg-amber-500 hover:bg-amber-600 text-white border-0 w-full group-hover:scale-105 transition-transform duration-300"
                       >
-                        Select Dates
+                        View {alternative.properties.length} Properties
                       </Button>
                     </div>
                   </div>
