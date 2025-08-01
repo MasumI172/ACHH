@@ -4,9 +4,9 @@ import { DayPicker } from "react-day-picker";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar as CalendarIcon, Users, ExternalLink, Lightbulb } from "lucide-react";
+import { Calendar as CalendarIcon, Users, ExternalLink } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
-import { format, parseISO, isWithinInterval, startOfDay, endOfDay, addDays, differenceInDays } from "date-fns";
+import { format, parseISO, isWithinInterval, startOfDay, endOfDay, addDays } from "date-fns";
 
 interface Booking {
   id: string;
@@ -33,7 +33,7 @@ const BookingCalendar = ({ propertyId, maxGuests, propertyName }: BookingCalenda
   const [checkIn, setCheckIn] = useState<Date>();
   const [checkOut, setCheckOut] = useState<Date>();
   const [showCalendar, setShowCalendar] = useState<'checkin' | 'checkout' | null>(null);
-  const [alternativeDates, setAlternativeDates] = useState<{checkIn: Date, checkOut: Date}[]>([]);
+
 
   // Check for URL parameters on component mount to pre-fill dates
   useEffect(() => {
@@ -154,72 +154,9 @@ const BookingCalendar = ({ propertyId, maxGuests, propertyName }: BookingCalenda
     (date: Date) => !isValidCheckoutDate(date)
   ] : disabledDays;
 
-  // Function to find alternative available dates
-  const findAlternativeDates = (requestedCheckIn: Date, requestedCheckOut: Date) => {
-    if (!availabilityData?.bookings) return [];
-    
-    const requestedNights = differenceInDays(requestedCheckOut, requestedCheckIn);
-    const alternatives: {checkIn: Date, checkOut: Date}[] = [];
-    const today = new Date();
-    
-    // Search for alternative dates within the next 3 months
-    for (let i = 0; i < 90 && alternatives.length < 5; i++) {
-      const potentialCheckIn = addDays(today, i);
-      const potentialCheckOut = addDays(potentialCheckIn, requestedNights);
-      
-      // Check if this date range is available
-      let isRangeAvailable = true;
-      let currentDate = new Date(potentialCheckIn);
-      
-      while (currentDate <= potentialCheckOut && isRangeAvailable) {
-        if (isDateBooked(currentDate)) {
-          isRangeAvailable = false;
-        }
-        currentDate = addDays(currentDate, 1);
-      }
-      
-      if (isRangeAvailable) {
-        alternatives.push({
-          checkIn: potentialCheckIn,
-          checkOut: potentialCheckOut
-        });
-      }
-    }
-    
-    return alternatives;
-  };
 
-  // Check for conflicts when both dates are selected
-  useEffect(() => {
-    if (checkIn && checkOut) {
-      // Check if the selected range has any conflicts
-      let hasConflict = false;
-      let currentDate = new Date(checkIn);
-      
-      while (currentDate <= checkOut) {
-        if (isDateBooked(currentDate)) {
-          hasConflict = true;
-          break;
-        }
-        currentDate = addDays(currentDate, 1);
-      }
-      
-      if (hasConflict) {
-        // Find alternative dates
-        const alternatives = findAlternativeDates(checkIn, checkOut);
-        setAlternativeDates(alternatives);
-      } else {
-        setAlternativeDates([]);
-      }
-    }
-  }, [checkIn, checkOut, availabilityData]);
 
-  const handleAlternativeDateSelect = (alternative: {checkIn: Date, checkOut: Date}) => {
-    setCheckIn(alternative.checkIn);
-    setCheckOut(alternative.checkOut);
-    setAlternativeDates([]);
-    setShowCalendar(null);
-  };
+
 
   const handleBookingInquiry = () => {
     if (!checkIn || !checkOut) return;
@@ -402,66 +339,7 @@ Thanks!`;
               </div>
             </div>
 
-            {/* Alternative Dates Section */}
-            {alternativeDates.length > 0 && (
-              <div className="mb-8 p-6 bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200 rounded-xl">
-                <div className="flex items-center mb-4">
-                  <div className="w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center mr-3">
-                    <Lightbulb className="w-5 h-5 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-amber-800 text-lg">Alternative Available Dates</h3>
-                    <p className="text-amber-700 text-sm">Your selected dates have conflicts. Here are some available alternatives:</p>
-                  </div>
-                </div>
-                
-                <div className="space-y-3">
-                  {alternativeDates.map((alternative, index) => (
-                    <div 
-                      key={index}
-                      onClick={() => handleAlternativeDateSelect(alternative)}
-                      className="cursor-pointer p-4 bg-white border-2 border-amber-200 rounded-xl hover:border-amber-400 hover:bg-amber-50 transition-all duration-300 luxury-shadow-sm group"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <div className="flex items-center gap-4 mb-2">
-                            <div className="text-sm text-amber-700 font-medium">Option {index + 1}</div>
-                            <Badge variant="secondary" className="bg-green-100 text-green-700 border-green-200">
-                              Available
-                            </Badge>
-                          </div>
-                          <div className="space-y-1">
-                            <div className="text-luxury-brown font-semibold">
-                              📅 Check-in: {format(alternative.checkIn, 'EEEE, MMMM d, yyyy')}
-                            </div>
-                            <div className="text-luxury-brown font-semibold">
-                              📅 Check-out: {format(alternative.checkOut, 'EEEE, MMMM d, yyyy')}
-                            </div>
-                            <div className="text-amber-700 text-sm">
-                              {differenceInDays(alternative.checkOut, alternative.checkIn)} night{differenceInDays(alternative.checkOut, alternative.checkIn) !== 1 ? 's' : ''}
-                            </div>
-                          </div>
-                        </div>
-                        <div className="group-hover:scale-110 transition-transform duration-300">
-                          <Button 
-                            size="sm" 
-                            className="bg-amber-500 hover:bg-amber-600 text-white border-0"
-                          >
-                            Select
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                
-                <div className="mt-4 p-3 bg-amber-100 rounded-lg border border-amber-300">
-                  <p className="text-amber-800 text-sm">
-                    💡 <strong>Tip:</strong> Click on any alternative date to automatically select it for your booking.
-                  </p>
-                </div>
-              </div>
-            )}
+
 
             {/* Guests Selection */}
             <div className={`border-2 rounded-xl p-6 mb-8 luxury-shadow-sm transition-all duration-300 ${

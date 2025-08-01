@@ -5,18 +5,15 @@ import PropertyCard from "@/components/property-card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Filter, MapPin, CheckCircle, Lightbulb, Calendar } from "lucide-react";
-import { format, addDays, differenceInDays, parseISO } from "date-fns";
+
+import { Filter, MapPin, CheckCircle, Calendar } from "lucide-react";
+import { format, parseISO } from "date-fns";
 import type { Property } from "@shared/schema";
 
 const Properties = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [checkInDate, setCheckInDate] = useState<string>("");
   const [checkOutDate, setCheckOutDate] = useState<string>("");
-  const [alternativeDates, setAlternativeDates] = useState<{checkIn: string, checkOut: string, properties: Property[]}[]>([]);
-  const [showingAlternatives, setShowingAlternatives] = useState(false);
-  const [isSearchingAlternatives, setIsSearchingAlternatives] = useState(false);
 
   // Check for URL parameters on component mount
   useEffect(() => {
@@ -71,105 +68,7 @@ const Properties = () => {
     return matchesCategory;
   });
 
-  // Function to find alternative available dates
-  const findAlternativeDates = async (requestedCheckIn: string, requestedCheckOut: string) => {
-    if (!requestedCheckIn || !requestedCheckOut) return [];
-    
-    const requestedNights = differenceInDays(new Date(requestedCheckOut), new Date(requestedCheckIn));
-    const alternatives: {checkIn: string, checkOut: string, properties: Property[]}[] = [];
-    const today = new Date();
-    
-    // Create array of potential dates to check (sample every 2-3 days for speed)
-    const datesToCheck: string[][] = [];
-    for (let i = 1; i < 60 && datesToCheck.length < 20; i += 2) { // Check every 2 days, limit to 20 checks
-      const potentialCheckIn = addDays(today, i);
-      const potentialCheckOut = addDays(potentialCheckIn, requestedNights);
-      
-      const checkInStr = potentialCheckIn.toISOString().split('T')[0];
-      const checkOutStr = potentialCheckOut.toISOString().split('T')[0];
-      
-      // Skip if this is the same as the requested dates
-      if (checkInStr === requestedCheckIn && checkOutStr === requestedCheckOut) {
-        continue;
-      }
-      
-      datesToCheck.push([checkInStr, checkOutStr]);
-    }
-    
-    // Use Promise.all to check multiple dates simultaneously
-    try {
-      const promises = datesToCheck.map(async ([checkInStr, checkOutStr]) => {
-        try {
-          const url = `/api/properties?checkIn=${checkInStr}&checkOut=${checkOutStr}`;
-          const response = await fetch(url);
-          if (response.ok) {
-            const availableProperties = await response.json();
-            if (availableProperties && availableProperties.length > 0) {
-              return {
-                checkIn: checkInStr,
-                checkOut: checkOutStr,
-                properties: availableProperties
-              };
-            }
-          }
-          return null;
-        } catch (error) {
-          console.log('Error checking date:', checkInStr, error);
-          return null;
-        }
-      });
-      
-      const results = await Promise.all(promises);
-      
-      // Filter out null results and take first 5
-      const validAlternatives = results.filter(result => result !== null);
-      return validAlternatives.slice(0, 5);
-      
-    } catch (error) {
-      console.log('Error in parallel date checking:', error);
-      return [];
-    }
-  };
 
-  // Manual alternative search function
-  const searchForAlternatives = async () => {
-    if (isSearchingAlternatives || !checkInDate || !checkOutDate) return;
-    
-    setIsSearchingAlternatives(true);
-    setShowingAlternatives(true);
-    setAlternativeDates([]);
-    
-    console.log('Searching for alternatives...', checkInDate, checkOutDate);
-    
-    try {
-      const alternatives = await findAlternativeDates(checkInDate, checkOutDate);
-      console.log('Found alternatives:', alternatives);
-      setAlternativeDates(alternatives);
-      setShowingAlternatives(alternatives.length > 0);
-    } catch (error) {
-      console.log('Error finding alternatives:', error);
-      setAlternativeDates([]);
-      setShowingAlternatives(false);
-    } finally {
-      setIsSearchingAlternatives(false);
-    }
-  };
-
-  const handleAlternativeDateSelect = (alternative: {checkIn: string, checkOut: string, properties: Property[]}) => {
-    // Clear alternatives first to prevent re-triggering
-    setAlternativeDates([]);
-    setShowingAlternatives(false);
-    
-    // Update dates
-    setCheckInDate(alternative.checkIn);
-    setCheckOutDate(alternative.checkOut);
-    
-    // Update URL params
-    const newUrl = new URL(window.location.href);
-    newUrl.searchParams.set('checkIn', alternative.checkIn);
-    newUrl.searchParams.set('checkOut', alternative.checkOut);
-    window.history.replaceState({}, '', newUrl.toString());
-  };
 
   return (
     <div className="min-h-screen pt-24">
@@ -333,132 +232,7 @@ const Properties = () => {
         </div>
       </section>
 
-      {/* Alternative Dates Section */}
-      {showingAlternatives && (
-        <section className="py-6 bg-gradient-to-br from-amber-50 to-orange-50">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="bg-white rounded-xl shadow-lg p-6 border-2 border-amber-200"
-            >
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center mr-4">
-                  <Lightbulb className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-amber-800">Alternative Available Dates</h3>
-                  <p className="text-amber-700">
-                    {alternativeDates.length === 0 && isSearchingAlternatives
-                      ? "Searching for available alternatives..." 
-                      : alternativeDates.length === 0
-                      ? "Click 'Find Alternative Dates' to search for available options"
-                      : "Your selected dates aren't available. Here are some great alternatives:"
-                    }
-                  </p>
-                </div>
-              </div>
-              
-              {alternativeDates.length === 0 && isSearchingAlternatives ? (
-                /* Loading State - only show when actively searching */
-                <div className="text-center py-8">
-                  <div className="inline-flex items-center gap-3 text-amber-700">
-                    <div className="w-6 h-6 border-2 border-amber-500 border-t-transparent rounded-full animate-spin"></div>
-                    <span className="text-lg font-medium">Finding the best available dates...</span>
-                  </div>
-                  <p className="text-amber-600 text-sm mt-2">This will take just a moment</p>
-                </div>
-              ) : alternativeDates.length === 0 ? (
-                /* No results yet - show message to click button */
-                <div className="text-center py-8">
-                  <p className="text-amber-700 text-lg">Click "Find Alternative Dates" to search for available options</p>
-                </div>
-              ) : (
-                /* Results */
-                <>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                {alternativeDates.map((alternative, index) => (
-                  <div 
-                    key={index}
-                    onClick={() => handleAlternativeDateSelect(alternative)}
-                    className="cursor-pointer p-6 bg-white border-2 border-amber-200 rounded-xl hover:border-amber-400 hover:bg-amber-50 transition-all duration-300 shadow-sm group"
-                  >
-                    <div className="mb-4">
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="text-sm text-amber-700 font-medium">Option {index + 1}</div>
-                        <Badge variant="secondary" className="bg-green-100 text-green-700 border-green-200 text-xs">
-                          {alternative.properties.length} {alternative.properties.length === 1 ? 'Property' : 'Properties'} available
-                        </Badge>
-                      </div>
-                      <div className="space-y-2 mb-4">
-                        <div className="text-luxury-brown font-semibold">
-                          📅 Check-in: {format(new Date(alternative.checkIn), 'EEE, MMM d, yyyy')}
-                        </div>
-                        <div className="text-luxury-brown font-semibold">
-                          📅 Check-out: {format(new Date(alternative.checkOut), 'EEE, MMM d, yyyy')}
-                        </div>
-                        <div className="text-amber-700 text-sm">
-                          {differenceInDays(new Date(alternative.checkOut), new Date(alternative.checkIn))} night{differenceInDays(new Date(alternative.checkOut), new Date(alternative.checkIn)) !== 1 ? 's' : ''}
-                        </div>
-                      </div>
-                      
-                      {/* Available Properties */}
-                      <div className="mb-4">
-                        <h4 className="text-sm font-medium text-gray-700 mb-2">Available Properties:</h4>
-                        <div className="space-y-2">
-                          {alternative.properties.slice(0, 2).map((property) => (
-                            <div 
-                              key={property.id} 
-                              className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg"
-                            >
-                              <div className="w-12 h-12 bg-luxury-gold/10 rounded-lg flex items-center justify-center">
-                                <span className="text-luxury-gold text-xs font-bold">
-                                  {property.name.split(' ').map(w => w[0]).join('').slice(0, 2)}
-                                </span>
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <div 
-                                  className="text-sm font-medium text-amber-700 truncate hover:text-amber-800 cursor-pointer transition-colors underline"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    window.location.href = `/properties/${property.id}?checkIn=${alternative.checkIn}&checkOut=${alternative.checkOut}`;
-                                  }}
-                                >
-                                  {property.name}
-                                </div>
-                                <div className="text-xs text-gray-500">
-                                  {property.category} • {property.maxGuests} guests
-                                </div>
-                              </div>
-                            </div>
-                          ))}
-                          {alternative.properties.length > 2 && (
-                            <div className="text-xs text-gray-500 text-center">
-                              +{alternative.properties.length - 2} more properties
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                      
 
-                    </div>
-                  </div>
-                ))}
-              </div>
-              
-              <div className="p-4 bg-amber-100 rounded-lg border border-amber-300">
-                <p className="text-amber-800 text-sm text-center">
-                  💡 <strong>Tip:</strong> Click on any alternative date option to automatically update your search and see available properties.
-                </p>
-              </div>
-              </>
-              )}
-            </motion.div>
-          </div>
-        </section>
-      )}
 
       {/* Filters */}
       <section className="py-6 bg-white border-b">
@@ -532,7 +306,7 @@ const Properties = () => {
                 ))}
               </div>
             </>
-          ) : !showingAlternatives ? (
+          ) : (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -548,17 +322,6 @@ const Properties = () => {
                   <p className="text-gray-600 mb-4">
                     Try adjusting your search criteria or browse all properties.
                   </p>
-                  {checkInDate && checkOutDate && (
-                    <div className="mt-4">
-                      <Button 
-                        onClick={searchForAlternatives}
-                        disabled={isSearchingAlternatives}
-                        className="bg-amber-500 hover:bg-amber-600 text-white mr-2"
-                      >
-                        {isSearchingAlternatives ? 'Searching...' : 'Find Alternative Dates'}
-                      </Button>
-                    </div>
-                  )}
 
                   <Button
                     onClick={() => {
@@ -571,7 +334,7 @@ const Properties = () => {
                 </CardContent>
               </Card>
             </motion.div>
-          ) : null}
+          )}
         </div>
       </section>
     </div>
