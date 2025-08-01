@@ -21,13 +21,13 @@ try {
   
   // Use esbuild with maximum isolation
   const esbuildCmd = [
-    'esbuild server/index.render.ts',
+    'esbuild server/index.production.ts',
     '--platform=node',
     '--format=esm', 
     '--bundle',
     '--outfile=dist/server.js',
     '--packages=external',
-    '--banner:js="// Production server - completely isolated"',
+    '--banner:js="// Production server - isolated build"',
     '--define:process.env.NODE_ENV=\\"production\\"'
   ].join(' ');
   
