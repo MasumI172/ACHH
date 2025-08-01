@@ -5,14 +5,17 @@ import PropertyCard from "@/components/property-card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
-import { Filter, MapPin, CheckCircle } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Filter, MapPin, CheckCircle, Lightbulb, Calendar } from "lucide-react";
+import { format, addDays, differenceInDays, parseISO } from "date-fns";
 import type { Property } from "@shared/schema";
 
 const Properties = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
-
   const [checkInDate, setCheckInDate] = useState<string>("");
   const [checkOutDate, setCheckOutDate] = useState<string>("");
+  const [alternativeDates, setAlternativeDates] = useState<{checkIn: string, checkOut: string}[]>([]);
+  const [showingAlternatives, setShowingAlternatives] = useState(false);
 
   // Check for URL parameters on component mount
   useEffect(() => {
@@ -58,6 +61,72 @@ const Properties = () => {
     const matchesCategory = selectedCategory === "all" || property.category === selectedCategory;
     return matchesCategory;
   });
+
+  // Function to find alternative available dates
+  const findAlternativeDates = async (requestedCheckIn: string, requestedCheckOut: string) => {
+    if (!requestedCheckIn || !requestedCheckOut) return [];
+    
+    const requestedNights = differenceInDays(new Date(requestedCheckOut), new Date(requestedCheckIn));
+    const alternatives: {checkIn: string, checkOut: string}[] = [];
+    const today = new Date();
+    
+    // Search for alternative dates within the next 3 months
+    for (let i = 0; i < 90 && alternatives.length < 5; i++) {
+      const potentialCheckIn = addDays(today, i);
+      const potentialCheckOut = addDays(potentialCheckIn, requestedNights);
+      
+      const checkInStr = potentialCheckIn.toISOString().split('T')[0];
+      const checkOutStr = potentialCheckOut.toISOString().split('T')[0];
+      
+      try {
+        // Check if properties are available for this date range
+        const url = `/api/properties?checkIn=${checkInStr}&checkOut=${checkOutStr}`;
+        const response = await fetch(url);
+        if (response.ok) {
+          const availableProperties = await response.json();
+          if (availableProperties && availableProperties.length > 0) {
+            alternatives.push({
+              checkIn: checkInStr,
+              checkOut: checkOutStr
+            });
+          }
+        }
+      } catch (error) {
+        console.log('Error checking alternative dates:', error);
+      }
+    }
+    
+    return alternatives;
+  };
+
+  // Check for alternatives when no properties are found
+  useEffect(() => {
+    const checkAlternatives = async () => {
+      if (checkInDate && checkOutDate && filteredProperties && filteredProperties.length === 0 && !isLoading) {
+        const alternatives = await findAlternativeDates(checkInDate, checkOutDate);
+        setAlternativeDates(alternatives);
+        setShowingAlternatives(true);
+      } else {
+        setAlternativeDates([]);
+        setShowingAlternatives(false);
+      }
+    };
+    
+    checkAlternatives();
+  }, [filteredProperties, checkInDate, checkOutDate, isLoading]);
+
+  const handleAlternativeDateSelect = (alternative: {checkIn: string, checkOut: string}) => {
+    setCheckInDate(alternative.checkIn);
+    setCheckOutDate(alternative.checkOut);
+    setAlternativeDates([]);
+    setShowingAlternatives(false);
+    
+    // Update URL params
+    const newUrl = new URL(window.location.href);
+    newUrl.searchParams.set('checkIn', alternative.checkIn);
+    newUrl.searchParams.set('checkOut', alternative.checkOut);
+    window.history.replaceState({}, '', newUrl.toString());
+  };
 
   return (
     <div className="min-h-screen pt-24">
@@ -220,6 +289,72 @@ const Properties = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Alternative Dates Section */}
+      {showingAlternatives && alternativeDates.length > 0 && (
+        <section className="py-6 bg-gradient-to-br from-amber-50 to-orange-50">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="bg-white rounded-xl shadow-lg p-6 border-2 border-amber-200"
+            >
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center mr-4">
+                  <Lightbulb className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-amber-800">Alternative Available Dates</h3>
+                  <p className="text-amber-700">Your selected dates aren't available. Here are some great alternatives:</p>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                {alternativeDates.map((alternative, index) => (
+                  <div 
+                    key={index}
+                    onClick={() => handleAlternativeDateSelect(alternative)}
+                    className="cursor-pointer p-4 bg-white border-2 border-amber-200 rounded-xl hover:border-amber-400 hover:bg-amber-50 transition-all duration-300 shadow-sm group"
+                  >
+                    <div className="text-center">
+                      <div className="flex items-center justify-center gap-2 mb-3">
+                        <div className="text-sm text-amber-700 font-medium">Option {index + 1}</div>
+                        <Badge variant="secondary" className="bg-green-100 text-green-700 border-green-200 text-xs">
+                          Available
+                        </Badge>
+                      </div>
+                      <div className="space-y-2 mb-4">
+                        <div className="text-luxury-brown font-semibold text-sm">
+                          📅 {format(new Date(alternative.checkIn), 'EEE, MMM d')}
+                        </div>
+                        <div className="text-luxury-brown font-semibold text-sm">
+                          📅 {format(new Date(alternative.checkOut), 'EEE, MMM d')}
+                        </div>
+                        <div className="text-amber-700 text-xs">
+                          {differenceInDays(new Date(alternative.checkOut), new Date(alternative.checkIn))} night{differenceInDays(new Date(alternative.checkOut), new Date(alternative.checkIn)) !== 1 ? 's' : ''}
+                        </div>
+                      </div>
+                      <Button 
+                        size="sm" 
+                        className="bg-amber-500 hover:bg-amber-600 text-white border-0 w-full group-hover:scale-105 transition-transform duration-300"
+                      >
+                        Select Dates
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="p-4 bg-amber-100 rounded-lg border border-amber-300">
+                <p className="text-amber-800 text-sm text-center">
+                  💡 <strong>Tip:</strong> Click on any alternative date option to automatically update your search and see available properties.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* Filters */}
       <section className="py-6 bg-white border-b">
