@@ -15,35 +15,41 @@ build/
 .env.test.local
 .env.production.local
 
-# IDE files
+# IDE
 .vscode/
 .idea/
-*.swp
-*.swo
 
-# OS files
+# OS generated files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
-# Development assets (excluding production images)
-attached_assets/
-
-# Log files
+# Logs
+logs
 *.log
-
-# Cache directories
-.cache/
-.parcel-cache/
 
 # Temporary files
 *.tmp
 *.temp
 
-# Development cache and state files
-.cache/
-.local/
-.config/
+# Database
+*.sqlite
+*.db
 
-# Replit-specific files (keep only .replit for configuration)
-.breakpoints
-.upm/
+# Replit files
+.replit
+replit.nix
+
+# Development assets and archives
+attached_assets/
+*.tar.gz
+*.zip
+
+# Deployment documentation
+*deployment*.md
+*domain*.md
+*ssl*.md
