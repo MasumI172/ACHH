@@ -33,6 +33,14 @@ const Properties = () => {
     if (checkOut && checkOut >= today && checkIn && checkOut > checkIn) {
       setCheckOutDate(checkOut);
     }
+    
+    // Clear URL parameters after reading them to prevent persistence on refresh
+    if (checkIn || checkOut) {
+      const newUrl = new URL(window.location.href);
+      newUrl.searchParams.delete('checkIn');
+      newUrl.searchParams.delete('checkOut');
+      window.history.replaceState({}, '', newUrl.toString());
+    }
   }, []);
 
   // Build query with date filtering if dates are present

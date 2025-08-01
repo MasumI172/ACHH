@@ -58,6 +58,14 @@ const BookingCalendar = ({ propertyId, maxGuests, propertyName }: BookingCalenda
         console.log('Error parsing URL dates:', error);
       }
     }
+    
+    // Clear URL parameters after reading them to prevent persistence on refresh
+    if (checkInParam || checkOutParam) {
+      const newUrl = new URL(window.location.href);
+      newUrl.searchParams.delete('checkIn');
+      newUrl.searchParams.delete('checkOut');
+      window.history.replaceState({}, '', newUrl.toString());
+    }
   }, []);
 
   // Fetch availability data from Hostex iCal
