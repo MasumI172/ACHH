@@ -8,6 +8,7 @@ import Home from "@/pages/home";
 import Properties from "@/pages/properties";
 import PropertyDetail from "@/pages/property-detail";
 import About from "@/pages/about";
+import Guidebook from "@/pages/guidebook";
 import Contact from "@/pages/contact";
 import Terms from "@/pages/terms";
 import RefundPolicy from "@/pages/refund-policy";
@@ -38,6 +39,7 @@ function Router() {
         <Route path="/properties" component={Properties} />
         <Route path="/properties/:id" component={PropertyDetail} />
         <Route path="/about" component={About} />
+        <Route path="/guidebook" component={Guidebook} />
         <Route path="/contact" component={Contact} />
         <Route path="/terms" component={Terms} />
         <Route path="/refund-policy" component={RefundPolicy} />

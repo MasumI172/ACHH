@@ -53,6 +53,7 @@ Design preference: Luxury and modern aesthetic with warm beige/cream tones and g
 - **Properties**: Property listing with search and filtering capabilities
 - **Property Detail**: Individual property showcase with image carousel
 - **About**: Company information and team details
+- **Guidebook**: Comprehensive guest guide with sightseeing, shopping, and city advice (matches Airbnb guidebook)
 - **Services**: Detailed service offerings
 - **Contact**: Customer inquiry form
 
@@ -153,3 +154,13 @@ Design preference: Luxury and modern aesthetic with warm beige/cream tones and g
 - **Date Formatting**: Updated WhatsApp inquiry messages to use friendly date format (Friday, January 26, 2024 instead of 2024-01-26)
 - **Security Update**: Patched CVE-2025-30208 vulnerability by upgrading Vite from 5.4.14 to 5.4.19
 - **Deployment Status**: Live on custom domain, domain verified, SSL certificate provisioning in final stage, security vulnerabilities resolved
+
+## Latest Features Added (August 1, 2025)
+- **Guest Guidebook Page**: Added comprehensive guidebook section matching Airbnb listing content
+  - **Sightseeing Section**: Burj Khalifa, Dubai Fountain Lake, Dubai Mall Aquarium with detailed descriptions
+  - **Shopping Section**: The Dubai Mall and Dubai Ice Rink with highlights and features
+  - **City Advice Section**: Transportation tips including taxi apps (Careem, Bolt, Uber) and metro access
+  - **Luxury Design**: Consistent with website branding using gold accents and elegant card layouts
+  - **Navigation Integration**: Added to main navigation bar and routing system
+  - **Responsive Design**: Fully optimized for mobile and desktop viewing
+  - **Call-to-Action**: Direct booking link integration from guidebook to contact page
