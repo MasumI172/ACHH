@@ -84,10 +84,7 @@ export function ReviewsSection({
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-luxury-gold to-luxury-dark-gold"></div>
             
             <CardHeader className="pb-4 relative">
-              {/* Quote decoration */}
-              <div className="absolute -top-2 -left-2 text-6xl text-luxury-gold/20 luxury-serif font-bold leading-none">"</div>
-              
-              <div className="flex items-center justify-between mb-4 relative z-10">
+              <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center space-x-1">
                   {[...Array(5)].map((_, i) => (
                     <Star
