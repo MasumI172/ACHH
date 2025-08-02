@@ -134,8 +134,10 @@ app.get("/api/properties", async (req, res) => {
                   } else {
                     bookingStart = new Date(event.start);
                   }
-                } else {
+                } else if (event.start) {
                   bookingStart = new Date(event.start);
+                } else {
+                  continue;
                 }
                 
                 if (typeof event.end === 'string') {
@@ -147,8 +149,10 @@ app.get("/api/properties", async (req, res) => {
                   } else {
                     bookingEnd = new Date(event.end);
                   }
-                } else {
+                } else if (event.end) {
                   bookingEnd = new Date(event.end);
+                } else {
+                  continue;
                 }
                 
                 if (requestedStart < bookingEnd && requestedEnd > bookingStart) {
@@ -218,7 +222,7 @@ app.post("/api/inquiries", async (req, res) => {
     const insertSchema = schema.insertInquirySchema;
     const inquiry = insertSchema.parse(req.body);
     
-    const result = await db.insert(schema.inquiries).values(inquiry).returning();
+    const result = await db.insert(schema.inquiries).values([inquiry]).returning();
     res.status(201).json(result[0]);
   } catch (error) {
     if (error instanceof z.ZodError) {
@@ -277,8 +281,10 @@ app.get("/api/properties/:id/availability", async (req, res) => {
           } else {
             startDate = new Date(event.start);
           }
-        } else {
+        } else if (event.start) {
           startDate = new Date(event.start);
+        } else {
+          continue;
         }
         
         if (typeof event.end === 'string') {
@@ -292,9 +298,11 @@ app.get("/api/properties/:id/availability", async (req, res) => {
             endDate = new Date(event.end);
             endDate.setDate(endDate.getDate() - 1);
           }
-        } else {
+        } else if (event.end) {
           endDate = new Date(event.end);
           endDate.setDate(endDate.getDate() - 1);
+        } else {
+          continue;
         }
         
         if (endDate >= today) {
@@ -340,6 +348,40 @@ app.get("/api/properties/:id/availability", async (req, res) => {
   } catch (error) {
     console.error('Error fetching availability:', error);
     res.status(500).json({ message: "Failed to fetch availability data" });
+  }
+});
+
+// Reviews API endpoints
+app.get("/api/reviews", async (req, res) => {
+  try {
+    const { propertyId, featured } = req.query;
+    let query = db.select().from(schema.reviews);
+    
+    if (propertyId) {
+      query = query.where(eq(schema.reviews.propertyId, parseInt(propertyId as string)));
+    } else if (featured === 'true') {
+      query = query.where(eq(schema.reviews.featured, true));
+    }
+    
+    const reviews = await query.orderBy(schema.reviews.stayDate);
+    res.json(reviews);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to fetch reviews" });
+  }
+});
+
+app.post("/api/reviews", async (req, res) => {
+  try {
+    const insertSchema = schema.insertReviewSchema;
+    const review = insertSchema.parse(req.body);
+    
+    const result = await db.insert(schema.reviews).values([review]).returning();
+    res.status(201).json(result[0]);
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return res.status(400).json({ message: "Invalid review data", errors: error.errors });
+    }
+    res.status(500).json({ message: "Failed to submit review" });
   }
 });
 
