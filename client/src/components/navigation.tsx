@@ -45,7 +45,7 @@ const Navigation = () => {
             <Link href="/">
               <div className="flex items-center cursor-pointer group">
                 <img 
-                  src="/arabian-coast-transparent-logo.png"
+                  src="/arabian-coast-black-logo.png"
                   alt="Arabian Coast Holiday Homes"
                   className="h-24 md:h-32 lg:h-36 w-auto transition-all duration-500 hover:scale-105"
                   style={{
