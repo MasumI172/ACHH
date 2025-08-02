@@ -58,7 +58,7 @@ const Guidebook = () => {
       icon: <ShoppingBag className="w-6 h-6" />,
       category: "Shopping & Entertainment",
       highlights: ["World's largest mall", "Ice rink & aquarium", "VR park", "Endless dining options"],
-      image: "/guidebook-dubai-mall.png",
+      image: "/attached_assets/TheDubaiMall.png",
       location: "Financial Centre Road, Downtown Dubai",
       directions: "8-minute walk via Sheikh Mohammed bin Rashid Boulevard. Multiple entrances available - use Fashion Avenue entrance for luxury shopping or Grand Atrium entrance for main attractions."
     },
