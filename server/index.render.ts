@@ -1,3 +1,4 @@
+
 import express, { type Request, Response, NextFunction } from "express";
 import path from "path";
 import fs from "fs";
@@ -14,7 +15,7 @@ const connectionString = process.env.DATABASE_URL!;
 const sql = neon(connectionString);
 const db = drizzle(sql, { schema });
 
-// Production-only logging function
+// Simple logging function - no external dependencies
 function log(message: string, source = "express") {
   const formattedTime = new Date().toLocaleTimeString("en-US", {
     hour: "numeric",
@@ -30,14 +31,10 @@ function serveStatic(app: express.Express) {
   const distPath = path.resolve(process.cwd(), "dist", "public");
 
   if (!fs.existsSync(distPath)) {
-    throw new Error(
-      `Could not find the build directory: ${distPath}, make sure to build the client first`,
-    );
+    throw new Error(`Could not find the build directory: ${distPath}`);
   }
 
   app.use(express.static(distPath));
-
-  // fall through to index.html if the file doesn't exist
   app.use("*", (_req, res) => {
     res.sendFile(path.resolve(distPath, "index.html"));
   });
@@ -47,6 +44,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Request logging middleware
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
@@ -65,11 +63,9 @@ app.use((req, res, next) => {
       if (capturedJsonResponse) {
         logLine += ` :: ${JSON.stringify(capturedJsonResponse)}`;
       }
-
       if (logLine.length > 80) {
         logLine = logLine.slice(0, 79) + "…";
       }
-
       log(logLine);
     }
   });
@@ -77,19 +73,17 @@ app.use((req, res, next) => {
   next();
 });
 
-// Inline API routes (no external imports)
+// API Routes - inline to avoid external imports
 app.get("/api/properties", async (req, res) => {
   try {
     const { checkIn, checkOut } = req.query;
     let properties = await db.select().from(schema.properties);
     
-    // If date filters are provided, check availability for each property
     if (checkIn && checkOut) {
       const availableProperties = [];
       
       for (const property of properties) {
         try {
-          // Get property availability from Hostex iCal
           const timestamp = Date.now();
           let icalUrl: string;
           
@@ -111,15 +105,13 @@ app.get("/api/properties", async (req, res) => {
           const icalData = await response.text();
           const events = ical.parseICS(icalData);
           
-          // Check if the requested dates conflict with existing bookings
           const requestedStart = new Date(checkIn as string);
           const requestedEnd = new Date(checkOut as string);
           let isAvailable = true;
           
-          // Temporary fix: Manual block for August 1st for property ID 13
           if (property.id === 13) {
-            const aug1Start = new Date(2025, 7, 1); // August 1st, 2025
-            const aug1End = new Date(2025, 7, 2);   // August 2nd, 2025 (end exclusive)
+            const aug1Start = new Date(2025, 7, 1);
+            const aug1End = new Date(2025, 7, 2);
             
             if (requestedStart < aug1End && requestedEnd > aug1Start) {
               isAvailable = false;
@@ -159,7 +151,6 @@ app.get("/api/properties", async (req, res) => {
                   bookingEnd = new Date(event.end);
                 }
                 
-                // Check for date overlap
                 if (requestedStart < bookingEnd && requestedEnd > bookingStart) {
                   isAvailable = false;
                   break;
@@ -172,7 +163,6 @@ app.get("/api/properties", async (req, res) => {
             availableProperties.push(property);
           }
         } catch (error) {
-          // If availability check fails, include the property anyway
           availableProperties.push(property);
         }
       }
@@ -186,7 +176,6 @@ app.get("/api/properties", async (req, res) => {
   }
 });
 
-// Get featured properties
 app.get("/api/properties/featured", async (req, res) => {
   try {
     const properties = await db.select().from(schema.properties).where(eq(schema.properties.featured, true));
@@ -196,7 +185,6 @@ app.get("/api/properties/featured", async (req, res) => {
   }
 });
 
-// Get property by ID
 app.get("/api/properties/:id", async (req, res) => {
   try {
     const id = parseInt(req.params.id);
@@ -215,7 +203,6 @@ app.get("/api/properties/:id", async (req, res) => {
   }
 });
 
-// Get properties by category
 app.get("/api/properties/category/:category", async (req, res) => {
   try {
     const { category } = req.params;
@@ -226,7 +213,6 @@ app.get("/api/properties/category/:category", async (req, res) => {
   }
 });
 
-// Submit inquiry
 app.post("/api/inquiries", async (req, res) => {
   try {
     const insertSchema = schema.insertInquirySchema;
@@ -242,7 +228,6 @@ app.post("/api/inquiries", async (req, res) => {
   }
 });
 
-// Get property availability from Hostex
 app.get("/api/properties/:id/availability", async (req, res) => {
   try {
     const propertyId = parseInt(req.params.id);
@@ -324,7 +309,6 @@ app.get("/api/properties/:id/availability", async (req, res) => {
       }
     }
 
-    // Temporary fix: Manually add August 1st as blocked for property 13 until Hostex sync resolves
     if (propertyId === 13) {
       const aug1Block = {
         id: 'manual-block-aug-1-2025',
@@ -359,46 +343,32 @@ app.get("/api/properties/:id/availability", async (req, res) => {
   }
 });
 
-(async () => {
-  // Serve static files from public directory
-  const publicPath = path.resolve(process.cwd(), "public");
-  app.use(express.static(publicPath));
-  
-  // Serve static files from attached_assets directory
-  const assetsPath = path.resolve(process.cwd(), "attached_assets");
-  app.use("/attached_assets", express.static(assetsPath));
+// Serve static assets
+const publicPath = path.resolve(process.cwd(), "public");
+app.use(express.static(publicPath));
 
-  // Seed database check
-  try {
-    const existingProperties = await db.select().from(schema.properties).limit(1);
-    if (existingProperties.length === 0) {
-      console.log("Database empty, but skipping seed in production");
-    } else {
-      console.log("Database already contains properties, skipping seed.");
-    }
-  } catch (error) {
-    console.log("Database check failed, continuing...");
-  }
+const assetsPath = path.resolve(process.cwd(), "attached_assets");
+app.use("/attached_assets", express.static(assetsPath));
 
-  const server = createServer(app);
+// Error handler
+app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+  const status = err.status || err.statusCode || 500;
+  const message = err.message || "Internal Server Error";
+  res.status(status).json({ message });
+  throw err;
+});
 
-  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
-    const status = err.status || err.statusCode || 500;
-    const message = err.message || "Internal Server Error";
-    res.status(status).json({ message });
-    throw err;
-  });
+// Serve static files
+serveStatic(app);
 
-  // In production, only serve static files
-  serveStatic(app);
+// Start server
+const port = parseInt(process.env.PORT || "5000", 10);
+const server = createServer(app);
 
-  // Use PORT environment variable for cloud deployment, fallback to 5000 for local
-  const port = parseInt(process.env.PORT || "5000", 10);
-  server.listen({
-    port,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
-    log(`serving on port ${port}`);
-  });
-})();
+server.listen({
+  port,
+  host: "0.0.0.0",
+  reusePort: true,
+}, () => {
+  log(`serving on port ${port}`);
+});
