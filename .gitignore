@@ -45,7 +45,6 @@ logs
 replit.nix
 
 # Development assets and archives
-attached_assets/
 *.tar.gz
 *.zip
 
