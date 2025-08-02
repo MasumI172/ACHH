@@ -6,7 +6,7 @@ export default function Reviews() {
     <div className="min-h-screen pt-32 pb-16 bg-gradient-to-br from-amber-50 to-orange-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-amber-900 mb-6 luxury-serif">
+          <h1 className="text-3xl md:text-4xl luxury-heading text-luxury-brown mb-4">
             What guests say about us
           </h1>
         </div>
