@@ -23,7 +23,7 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between min-h-[80px]">
           {/* Left Navigation */}
-          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
+          <div className="hidden md:flex items-center space-x-8 lg:space-x-12">
             {navItems.slice(0, 2).map((item) => (
               <Link key={item.href} href={item.href}>
                 <span
@@ -63,7 +63,7 @@ const Navigation = () => {
           </div>
 
           {/* Right Navigation */}
-          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
+          <div className="hidden md:flex items-center space-x-8 lg:space-x-12">
             {navItems.slice(2).map((item) => (
               <Link key={item.href} href={item.href}>
                 <span
@@ -79,11 +79,11 @@ const Navigation = () => {
                 </span>
               </Link>
             ))}
-            <a href="https://www.instagram.com/arabiancoastholidayhomes/profilecard/?igsh=dDdpYXk1Nzhnc254" target="_blank" rel="noopener noreferrer" className="text-luxury-bronze hover:text-luxury-gold transition-all duration-300 hover:scale-110">
+            <a href="https://www.instagram.com/arabiancoastholidayhomes/profilecard/?igsh=dDdpYXk1Nzhnc254" target="_blank" rel="noopener noreferrer" className="text-luxury-bronze hover:text-luxury-gold transition-all duration-300 hover:scale-110 ml-4">
               <Instagram className="h-5 w-5" />
             </a>
             <Link href="/contact">
-              <Button className="luxury-button">
+              <Button className="luxury-button ml-2">
                 Get in Touch
               </Button>
             </Link>
