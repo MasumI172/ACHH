@@ -68,7 +68,7 @@ const Guidebook = () => {
       icon: <Snowflake className="w-6 h-6" />,
       category: "Recreation",
       highlights: ["Indoor skating", "Public sessions", "Ice hockey games", "Cool escape from heat"],
-      image: "/guidebook-ice-rink-new.png",
+      image: "/attached_assets/IceRink.jpg",
       location: "Level 2, The Dubai Mall, Downtown Dubai",
       directions: "Walk to Dubai Mall (8 minutes), take escalator to Level 2. Follow signs for 'Dubai Ice Rink' or ask at the information desk near the main atrium."
     }
