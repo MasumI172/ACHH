@@ -24,7 +24,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between min-h-[80px]">
           {/* Left Navigation */}
           <div className="hidden md:flex items-center space-x-8 lg:space-x-12">
-            {navItems.slice(0, 2).map((item) => (
+            {navItems.slice(0, 3).map((item) => (
               <Link key={item.href} href={item.href}>
                 <span
                   className={`text-sm font-medium transition-all duration-300 hover:text-luxury-gold cursor-pointer uppercase tracking-wider luxury-serif relative whitespace-nowrap ${
@@ -64,7 +64,7 @@ const Navigation = () => {
 
           {/* Right Navigation */}
           <div className="hidden md:flex items-center space-x-8 lg:space-x-12">
-            {navItems.slice(2).map((item) => (
+            {navItems.slice(3).map((item) => (
               <Link key={item.href} href={item.href}>
                 <span
                   className={`text-sm font-medium transition-all duration-300 hover:text-luxury-gold cursor-pointer uppercase tracking-wider luxury-serif relative whitespace-nowrap ${
