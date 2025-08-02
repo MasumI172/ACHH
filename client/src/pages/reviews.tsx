@@ -1,5 +1,4 @@
 import { ReviewsSection } from "@/components/reviews-section";
-import { AdminReviewForm } from "@/components/admin-review-form";
 
 export default function Reviews() {
   return (
@@ -12,11 +11,6 @@ export default function Reviews() {
         </div>
 
         <ReviewsSection showTitle={false} />
-
-        {/* Admin Section for Adding Reviews */}
-        <div className="mt-16">
-          <AdminReviewForm />
-        </div>
       </div>
     </div>
   );
