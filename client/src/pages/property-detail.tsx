@@ -241,6 +241,7 @@ const PropertyDetail = () => {
         >
           <ReviewsSection 
             propertyId={propertyId}
+            propertyName={property.name}
           />
         </motion.div>
       </section>

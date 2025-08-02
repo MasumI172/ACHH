@@ -11,6 +11,7 @@ interface ReviewsSectionProps {
   className?: string;
   showTitle?: boolean;
   maxReviews?: number;
+  propertyName?: string;
 }
 
 export function ReviewsSection({ 
@@ -18,7 +19,8 @@ export function ReviewsSection({
   featured = false, 
   className = "",
   showTitle = true,
-  maxReviews
+  maxReviews,
+  propertyName
 }: ReviewsSectionProps) {
   const { data: reviews = [], isLoading } = useQuery<Review[]>({
     queryKey: propertyId ? ['/api/reviews', propertyId] : featured ? ['/api/reviews', 'featured'] : ['/api/reviews'],
@@ -72,8 +74,8 @@ export function ReviewsSection({
     <div className={`space-y-6 ${className}`}>
       {showTitle && (
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-amber-900 mb-2">What Our Guests Say</h2>
-          <p className="text-gray-600">Real experiences from verified guests</p>
+          <h2 className="text-3xl font-bold text-black mb-2">What Our Guests Say</h2>
+          <p className="text-gray-600">{propertyName || "Real experiences from verified guests"}</p>
         </div>
       )}
       
