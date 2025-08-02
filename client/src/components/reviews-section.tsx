@@ -128,7 +128,7 @@ export function ReviewsSection({
             </CardHeader>
             
             <CardContent className="flex-grow relative">
-              <p className="text-gray-700 leading-relaxed text-base font-normal">
+              <p className="text-gray-700 leading-relaxed text-sm font-normal">
                 {review.content}
               </p>
               
