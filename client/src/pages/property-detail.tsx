@@ -99,6 +99,11 @@ const PropertyDetail = () => {
                       alt={`${property.name} - Image ${index + 1}`}
                       className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                       loading={index === 0 ? "eager" : "lazy"}
+                      onError={(e) => {
+                        console.error('Failed to load property image:', image);
+                        // Hide broken image or show placeholder
+                        e.currentTarget.style.display = 'none';
+                      }}
                       style={{
                         filter: "contrast(1.05) saturate(1.1) brightness(1.02)"
                       }}

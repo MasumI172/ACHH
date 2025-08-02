@@ -39,13 +39,22 @@ app.use((req, res, next) => {
 });
 
 (async () => {
-  // Serve static files from public directory
-  const publicPath = path.resolve(process.cwd(), "public");
-  app.use(express.static(publicPath));
-  
-  // Serve static files from attached_assets directory
-  const assetsPath = path.resolve(process.cwd(), "attached_assets");
-  app.use("/attached_assets", express.static(assetsPath));
+  // Serve static files from public directory with proper headers
+  app.use(express.static(path.join(__dirname, "../public"), {
+    setHeaders: (res, path) => {
+      if (path.endsWith('.jpg') || path.endsWith('.jpeg') || path.endsWith('.png') || path.endsWith('.webp')) {
+        res.setHeader('Cache-Control', 'public, max-age=31536000');
+      }
+    }
+  }));
+
+  // Explicitly serve attached_assets with better error handling
+  app.use("/attached_assets", express.static(path.join(__dirname, "../public/attached_assets"), {
+    setHeaders: (res, path) => {
+      res.setHeader('Cache-Control', 'public, max-age=31536000');
+      res.setHeader('Access-Control-Allow-Origin', '*');
+    }
+  }));
 
   // Seed the database with sample properties
   await seedDatabase();

@@ -40,6 +40,11 @@ const PropertyCard = ({ property, index = 0, isAvailable = false, showAvailabili
               alt={property.name}
               className="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
               loading="lazy"
+              onError={(e) => {
+                console.error('Failed to load image:', property.images[0]);
+                // Fallback to a placeholder or retry
+                e.currentTarget.src = '/logo.png';
+              }}
               style={{
                 filter: "contrast(1.08) saturate(1.15) brightness(1.03)"
               }}
