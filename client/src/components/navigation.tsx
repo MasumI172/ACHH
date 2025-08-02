@@ -45,17 +45,14 @@ const Navigation = () => {
           <div className="absolute left-1/2 transform -translate-x-1/2">
             <Link href="/">
               <div className="flex items-center cursor-pointer group">
-                <div 
-                  className="h-24 md:h-32 lg:h-36 transition-all duration-500 hover:scale-105"
+                <img 
+                  src="/attached_assets/ACHHLogo_1754148072828.PNG"
+                  alt="Arabian Coast Holiday Homes"
+                  className="h-24 md:h-32 lg:h-36 w-auto transition-all duration-500 hover:scale-105"
                   style={{
-                    backgroundImage: 'url(/arabian-coast-logo.png)',
-                    backgroundSize: 'contain',
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'center',
                     filter: 'drop-shadow(0 2px 8px rgba(60, 47, 31, 0.15))',
-                    mixBlendMode: 'multiply',
-                    width: '240px',
-                    minWidth: '240px'
+                    maxWidth: '280px',
+                    objectFit: 'contain'
                   }}
                 />
               </div>
