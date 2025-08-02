@@ -100,6 +100,24 @@ const sampleReviews: InsertReview[] = [
     stayDate: new Date('2025-04-24'),
     featured: false,
     verified: true
+  },
+  {
+    guestName: "Gabreil",
+    propertyId: 15,
+    rating: 5,
+    content: "Beautiful apartment and very friendly staff. Highly recommended",
+    stayDate: new Date('2025-07-22'),
+    featured: false,
+    verified: true
+  },
+  {
+    guestName: "Sjoerd",
+    propertyId: 15,
+    rating: 5,
+    content: "Great location and exactly as described. Communication is very correct and fast",
+    stayDate: new Date('2025-07-16'),
+    featured: false,
+    verified: true
   }
 ];
 
