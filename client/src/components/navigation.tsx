@@ -19,15 +19,15 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="fixed w-full top-0 bg-white shadow-md border-b border-gray-100 py-6 z-50">
+    <nav className="fixed w-full top-0 bg-white shadow-md border-b border-gray-100 py-4 lg:py-6 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between min-h-[80px]">
           {/* Left Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
             {navItems.slice(0, 2).map((item) => (
               <Link key={item.href} href={item.href}>
                 <span
-                  className={`text-sm font-medium transition-all duration-300 hover:text-luxury-gold cursor-pointer uppercase tracking-wider luxury-serif relative ${
+                  className={`text-sm font-medium transition-all duration-300 hover:text-luxury-gold cursor-pointer uppercase tracking-wider luxury-serif relative whitespace-nowrap ${
                     location === item.href
                       ? "text-luxury-gold after:w-full"
                       : "text-luxury-brown"
@@ -63,11 +63,11 @@ const Navigation = () => {
           </div>
 
           {/* Right Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
             {navItems.slice(2).map((item) => (
               <Link key={item.href} href={item.href}>
                 <span
-                  className={`text-sm font-medium transition-all duration-300 hover:text-luxury-gold cursor-pointer uppercase tracking-wider luxury-serif relative ${
+                  className={`text-sm font-medium transition-all duration-300 hover:text-luxury-gold cursor-pointer uppercase tracking-wider luxury-serif relative whitespace-nowrap ${
                     location === item.href
                       ? "text-luxury-gold after:w-full"
                       : "text-luxury-brown"
