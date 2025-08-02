@@ -49,10 +49,55 @@ const sampleReviews: InsertReview[] = [
   },
   {
     guestName: "Olga",
-    propertyId: 15,
+    propertyId: 16,
     rating: 5,
     content: "Simply the best!!!! I stayed in many Airbnbs  in Dubai, this is my all time favourite!!!",
     stayDate: new Date('2025-02-04'),
+    featured: false,
+    verified: true
+  },
+  {
+    guestName: "Renata",
+    propertyId: 16,
+    rating: 5,
+    content: "❤️",
+    stayDate: new Date('2025-04-19'),
+    featured: false,
+    verified: true
+  },
+  {
+    guestName: "Taghreed",
+    propertyId: 16,
+    rating: 5,
+    content: "Best service and place",
+    stayDate: new Date('2025-02-10'),
+    featured: false,
+    verified: true
+  },
+  {
+    guestName: "Jaqueline",
+    propertyId: 16,
+    rating: 5,
+    content: "Super comfortable apartment, I loved it 😻",
+    stayDate: new Date('2025-07-08'),
+    featured: false,
+    verified: true
+  },
+  {
+    guestName: "Mansour",
+    propertyId: 16,
+    rating: 5,
+    content: "One of the most beautiful apartments in Dubai and reminds me of the apartment I lived in in Greece",
+    stayDate: new Date('2025-04-08'),
+    featured: false,
+    verified: true
+  },
+  {
+    guestName: "Ile",
+    propertyId: 16,
+    rating: 5,
+    content: "Very nice stay, thank you",
+    stayDate: new Date('2025-04-24'),
     featured: false,
     verified: true
   }
