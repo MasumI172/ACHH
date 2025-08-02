@@ -40,7 +40,7 @@ app.use((req, res, next) => {
 
 (async () => {
   // Serve static files from public directory with proper headers
-  app.use(express.static(path.join(__dirname, "../public"), {
+  app.use(express.static(path.join(import.meta.dirname, "../public"), {
     setHeaders: (res, path) => {
       if (path.endsWith('.jpg') || path.endsWith('.jpeg') || path.endsWith('.png') || path.endsWith('.webp')) {
         res.setHeader('Cache-Control', 'public, max-age=31536000');
@@ -49,7 +49,7 @@ app.use((req, res, next) => {
   }));
 
   // Explicitly serve attached_assets with better error handling
-  app.use("/attached_assets", express.static(path.join(__dirname, "../public/attached_assets"), {
+  app.use("/attached_assets", express.static(path.join(import.meta.dirname, "../public/attached_assets"), {
     setHeaders: (res, path) => {
       res.setHeader('Cache-Control', 'public, max-age=31536000');
       res.setHeader('Access-Control-Allow-Origin', '*');
