@@ -3,6 +3,7 @@ import path from "path";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { seedDatabase } from "./seed";
+import { seedReviews } from "./reviewSeed";
 
 const app = express();
 app.use(express.json());
@@ -56,8 +57,9 @@ app.use((req, res, next) => {
     }
   }));
 
-  // Seed the database with sample properties
+  // Seed the database with sample properties and reviews
   await seedDatabase();
+  await seedReviews();
 
   const server = await registerRoutes(app);
 

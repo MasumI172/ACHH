@@ -5,6 +5,7 @@ import Hero from "@/components/hero";
 import PropertyCard from "@/components/property-card";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { ReviewsSection } from "@/components/reviews-section";
 import { Link } from "wouter";
 import { 
   Star,
@@ -186,6 +187,39 @@ const Home = () => {
             <Link href="/properties">
               <Button className="luxury-button text-base px-12 py-4">
                 View All Properties
+              </Button>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Featured Reviews Section */}
+      <section className="py-20 bg-gradient-to-br from-amber-50 to-orange-50">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="mb-12"
+          >
+            <ReviewsSection 
+              featured={true} 
+              maxReviews={3}
+              className="max-w-6xl mx-auto"
+            />
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-center"
+          >
+            <Link href="/reviews">
+              <Button className="luxury-button text-base px-12 py-4">
+                Read All Reviews
               </Button>
             </Link>
           </motion.div>

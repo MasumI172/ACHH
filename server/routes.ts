@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertInquirySchema } from "@shared/schema";
+import { insertInquirySchema, insertReviewSchema } from "@shared/schema";
 import { z } from "zod";
 import ical from "node-ical";
 
@@ -318,6 +318,54 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error('Error fetching availability:', error);
       res.status(500).json({ message: "Failed to fetch availability data" });
+    }
+  });
+
+  // Reviews routes
+  app.get("/api/reviews", async (req, res) => {
+    try {
+      const { propertyId, featured } = req.query;
+      let reviews = await storage.getAllReviews();
+      
+      if (propertyId) {
+        reviews = reviews.filter(r => r.propertyId === parseInt(propertyId as string));
+      }
+      
+      if (featured === 'true') {
+        reviews = reviews.filter(r => r.featured);
+      }
+      
+      res.json(reviews);
+    } catch (error) {
+      console.error("Error fetching reviews:", error);
+      res.status(500).json({ message: "Failed to fetch reviews" });
+    }
+  });
+
+  app.post("/api/reviews", async (req, res) => {
+    try {
+      const reviewData = insertReviewSchema.parse(req.body);
+      const review = await storage.createReview(reviewData);
+      res.json(review);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: "Invalid review data", errors: error.errors });
+      }
+      console.error("Error creating review:", error);
+      res.status(500).json({ message: "Failed to create review" });
+    }
+  });
+
+  app.get("/api/reviews/:id", async (req, res) => {
+    try {
+      const review = await storage.getReview(parseInt(req.params.id));
+      if (!review) {
+        return res.status(404).json({ message: "Review not found" });
+      }
+      res.json(review);
+    } catch (error) {
+      console.error("Error fetching review:", error);
+      res.status(500).json({ message: "Failed to fetch review" });
     }
   });
 

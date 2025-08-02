@@ -1,5 +1,6 @@
-import { pgTable, text, serial, integer, boolean, decimal } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, boolean, decimal, timestamp } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
+import { relations } from "drizzle-orm";
 import { z } from "zod";
 
 export const users = pgTable("users", {
@@ -51,9 +52,45 @@ export const insertInquirySchema = createInsertSchema(inquiries).omit({
   createdAt: true,
 });
 
+// Reviews table for guest testimonials
+export const reviews = pgTable("reviews", {
+  id: serial("id").primaryKey(),
+  guestName: text("guest_name").notNull(),
+  guestLocation: text("guest_location"),
+  propertyId: integer("property_id").references(() => properties.id),
+  rating: integer("rating").notNull(), // 1-5 stars
+  title: text("title"),
+  content: text("content").notNull(),
+  stayDate: timestamp("stay_date"),
+  featured: boolean("featured").default(false),
+  verified: boolean("verified").default(true),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+// Relations
+export const reviewsRelations = relations(reviews, ({ one }) => ({
+  property: one(properties, {
+    fields: [reviews.propertyId],
+    references: [properties.id],
+  }),
+}));
+
+export const propertiesRelations = relations(properties, ({ many }) => ({
+  reviews: many(reviews),
+}));
+
+// Insert schemas
+export const insertReviewSchema = createInsertSchema(reviews).omit({
+  id: true,
+  createdAt: true,
+});
+
+// Types
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type Property = typeof properties.$inferSelect;
 export type InsertProperty = z.infer<typeof insertPropertySchema>;
 export type Inquiry = typeof inquiries.$inferSelect;
 export type InsertInquiry = z.infer<typeof insertInquirySchema>;
+export type Review = typeof reviews.$inferSelect;
+export type InsertReview = z.infer<typeof insertReviewSchema>;

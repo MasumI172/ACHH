@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import BookingCalendar from "@/components/booking-calendar";
+import { ReviewsSection } from "@/components/reviews-section";
 import { 
   Users, 
   Bed, 
@@ -229,6 +230,19 @@ const PropertyDetail = () => {
             />
           </motion.div>
         </div>
+
+        {/* Property Reviews Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mt-16 max-w-6xl mx-auto px-4"
+        >
+          <ReviewsSection 
+            propertyId={propertyId}
+          />
+        </motion.div>
       </section>
     </div>
   );

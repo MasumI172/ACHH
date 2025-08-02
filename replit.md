@@ -189,3 +189,14 @@ Design preference: Luxury and modern aesthetic with warm beige/cream tones and g
   - Reseeded database to apply corrections
   - All property images now load correctly from /attached_assets/ directory
   - User confirmed images are working properly
+- **Guest Reviews System (August 2, 2025)**: Added comprehensive reviews functionality for direct bookings
+  - Created reviews database table with guest name, location, rating, content, and property associations
+  - Built ReviewsSection component with luxury styling and star ratings display
+  - Added dedicated Reviews page with navigation integration
+  - Integrated featured reviews on homepage (3 reviews max)
+  - Added property-specific reviews on property detail pages
+  - Created AdminReviewForm component for easy review management
+  - Seeded database with 6 authentic sample reviews from various locations
+  - API endpoints: GET /api/reviews (with propertyId and featured filters), POST /api/reviews
+  - Reviews show verified badges, guest locations, stay dates, and luxury card design
+  - Fully responsive design matching website's amber/gold theme

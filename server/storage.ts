@@ -2,12 +2,15 @@ import {
   users, 
   properties, 
   inquiries,
+  reviews,
   type User, 
   type InsertUser,
   type Property,
   type InsertProperty,
   type Inquiry,
-  type InsertInquiry
+  type InsertInquiry,
+  type Review,
+  type InsertReview
 } from "@shared/schema";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
@@ -25,6 +28,12 @@ export interface IStorage {
   
   createInquiry(inquiry: InsertInquiry): Promise<Inquiry>;
   getAllInquiries(): Promise<Inquiry[]>;
+  
+  getAllReviews(): Promise<Review[]>;
+  getReview(id: number): Promise<Review | undefined>;
+  createReview(review: InsertReview): Promise<Review>;
+  getReviewsByProperty(propertyId: number): Promise<Review[]>;
+  getFeaturedReviews(): Promise<Review[]>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -87,6 +96,31 @@ export class DatabaseStorage implements IStorage {
 
   async getAllInquiries(): Promise<Inquiry[]> {
     return await db.select().from(inquiries);
+  }
+
+  async getAllReviews(): Promise<Review[]> {
+    return await db.select().from(reviews);
+  }
+
+  async getReview(id: number): Promise<Review | undefined> {
+    const [review] = await db.select().from(reviews).where(eq(reviews.id, id));
+    return review || undefined;
+  }
+
+  async createReview(insertReview: InsertReview): Promise<Review> {
+    const [review] = await db
+      .insert(reviews)
+      .values(insertReview)
+      .returning();
+    return review;
+  }
+
+  async getReviewsByProperty(propertyId: number): Promise<Review[]> {
+    return await db.select().from(reviews).where(eq(reviews.propertyId, propertyId));
+  }
+
+  async getFeaturedReviews(): Promise<Review[]> {
+    return await db.select().from(reviews).where(eq(reviews.featured, true));
   }
 }
 
