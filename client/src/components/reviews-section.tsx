@@ -94,8 +94,8 @@ export function ReviewsSection({
                       key={i}
                       className={`h-5 w-5 ${
                         i < review.rating 
-                          ? "fill-luxury-gold text-luxury-gold drop-shadow-sm" 
-                          : "text-luxury-pearl"
+                          ? "fill-yellow-400 text-yellow-400 drop-shadow-md" 
+                          : "text-gray-300"
                       }`}
                     />
                   ))}
@@ -131,7 +131,7 @@ export function ReviewsSection({
             </CardHeader>
             
             <CardContent className="flex-grow relative">
-              <p className="text-luxury-light-brown leading-relaxed luxury-serif text-base font-light italic">
+              <p className="text-gray-700 leading-relaxed text-base font-normal">
                 {review.content}
               </p>
               

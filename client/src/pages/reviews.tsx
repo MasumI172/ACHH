@@ -26,7 +26,7 @@ export default function Reviews() {
             <div className="w-24 h-px bg-gradient-to-r from-luxury-gold via-transparent to-transparent"></div>
           </div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl luxury-heading text-luxury-brown mb-6 leading-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl luxury-heading text-luxury-brown mb-6 leading-tight px-4">
             What guests say about <span className="luxury-accent italic luxury-serif">us</span>
           </h1>
           
