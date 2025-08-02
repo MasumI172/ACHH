@@ -46,7 +46,7 @@ const Navigation = () => {
             <Link href="/">
               <div className="flex items-center cursor-pointer group">
                 <div 
-                  className="h-20 md:h-28 lg:h-32 transition-all duration-500 hover:scale-105"
+                  className="h-24 md:h-32 lg:h-36 transition-all duration-500 hover:scale-105"
                   style={{
                     backgroundImage: 'url(/arabian-coast-logo.png)',
                     backgroundSize: 'contain',
@@ -54,8 +54,8 @@ const Navigation = () => {
                     backgroundPosition: 'center',
                     filter: 'drop-shadow(0 2px 8px rgba(60, 47, 31, 0.15))',
                     mixBlendMode: 'multiply',
-                    width: '200px',
-                    minWidth: '200px'
+                    width: '240px',
+                    minWidth: '240px'
                   }}
                 />
               </div>
