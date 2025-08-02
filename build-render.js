@@ -1,3 +1,4 @@
+
 #!/usr/bin/env node
 
 import { execSync } from 'child_process';
@@ -11,7 +12,7 @@ try {
   console.log('1. Building frontend...');
   execSync('vite build', { stdio: 'inherit' });
 
-  // Step 2: Build backend with strict externals  
+  // Step 2: Build backend with correct file reference
   console.log('2. Building backend...');
   const esbuildCommand = [
     'esbuild server/index.render.ts',
