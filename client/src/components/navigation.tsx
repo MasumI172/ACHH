@@ -82,11 +82,6 @@ const Navigation = () => {
             <a href="https://www.instagram.com/arabiancoastholidayhomes/profilecard/?igsh=dDdpYXk1Nzhnc254" target="_blank" rel="noopener noreferrer" className="text-luxury-bronze hover:text-luxury-gold transition-all duration-300 hover:scale-110 ml-4">
               <Instagram className="h-5 w-5" />
             </a>
-            <Link href="/contact">
-              <Button className="luxury-button ml-2">
-                Get in Touch
-              </Button>
-            </Link>
           </div>
 
           {/* Mobile Menu */}
