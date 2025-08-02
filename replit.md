@@ -183,3 +183,9 @@ Design preference: Luxury and modern aesthetic with warm beige/cream tones and g
   - Updated `render.yaml` with optimized build and start commands
   - Production build verified: 13.5kB backend + 746kB frontend, zero problematic references
   - Deployment guaranteed to work on Render.com with HTTP 200 responses and full functionality
+- **Property Image Fix (August 2, 2025)**: Resolved broken image paths for "Stunning 1BR" property
+  - Updated database seed data with correct file extensions (Playroom.jpeg, DubaiFountain.avif)
+  - Fixed indentation issues in property images array
+  - Reseeded database to apply corrections
+  - All property images now load correctly from /attached_assets/ directory
+  - User confirmed images are working properly
