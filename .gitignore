@@ -52,4 +52,5 @@ attached_assets/
 # Deployment documentation
 *deployment*.md
 *domain*.md
-*ssl*.md
+*ssl*.md"*.zip" 
+"*.tar.gz" 
