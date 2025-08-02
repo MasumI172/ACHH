@@ -10,17 +10,14 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-3">
             <div className="flex items-center">
-              <div 
-                className="h-20 md:h-28 lg:h-32 transition-all duration-500 hover:scale-105"
+              <img 
+                src="/arabian-coast-black-logo.png"
+                alt="Arabian Coast Holiday Homes"
+                className="h-20 md:h-28 lg:h-32 w-auto transition-all duration-500 hover:scale-105"
                 style={{
-                  backgroundImage: 'url(/arabian-coast-logo.png)',
-                  backgroundSize: 'contain',
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'center',
                   filter: 'drop-shadow(0 2px 8px rgba(60, 47, 31, 0.15))',
-                  mixBlendMode: 'multiply',
-                  width: '200px',
-                  minWidth: '200px'
+                  maxWidth: '240px',
+                  objectFit: 'contain'
                 }}
               />
             </div>
